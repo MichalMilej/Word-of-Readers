@@ -1,5 +1,8 @@
 package pl.milej.michal.wordofreaders.model.author;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import pl.milej.michal.wordofreaders.model.book.Book;
 
 import javax.persistence.*;
@@ -7,6 +10,8 @@ import java.sql.Date;
 import java.util.Set;
 
 @Entity
+@Setter
+@Getter
 public class Author {
     @Id
     @GeneratedValue
@@ -34,4 +39,18 @@ public class Author {
             inverseJoinColumns = @JoinColumn(name = "id")
     )
     private Set<Book> books;
+
+    public Author(final String firstName,
+                  final String lastName,
+                  final Date birthDate,
+                  final Date deathDate,
+                  final Set<Book> books) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.deathDate = deathDate;
+        this.books = books;
+    }
+
+    public Author() {}
 }
