@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.model.cover;
+package pl.milej.michal.wordofreaders.cover;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

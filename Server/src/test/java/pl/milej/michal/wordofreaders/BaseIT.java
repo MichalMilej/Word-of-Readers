@@ -9,8 +9,8 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import pl.milej.michal.wordofreaders.model.author.Author;
-import pl.milej.michal.wordofreaders.model.author.AuthorRepository;
+import pl.milej.michal.wordofreaders.author.Author;
+import pl.milej.michal.wordofreaders.author.AuthorRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

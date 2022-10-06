@@ -1,6 +1,6 @@
-package pl.milej.michal.wordofreaders.model.cover;
+package pl.milej.michal.wordofreaders.cover;
 
-import pl.milej.michal.wordofreaders.model.book.Book;
+import pl.milej.michal.wordofreaders.book.Book;
 
 import javax.persistence.*;
 import java.util.Set;

@@ -1,12 +1,15 @@
-package pl.milej.michal.wordofreaders.model.book;
+package pl.milej.michal.wordofreaders.book;
 
-import pl.milej.michal.wordofreaders.model.author.Author;
-import pl.milej.michal.wordofreaders.model.cover.Cover;
+import lombok.Data;
+import pl.milej.michal.wordofreaders.author.Author;
+import pl.milej.michal.wordofreaders.cover.Cover;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
+@Data
 public class Book {
     @Id
     @GeneratedValue
@@ -14,6 +17,9 @@ public class Book {
 
     @Column(nullable = false)
     private String title;
+
+    @Column(name = "release_date", nullable = false)
+    private Date releaseDate;
 
     @ManyToMany(mappedBy = "books")
     private Set<Author> authors;
