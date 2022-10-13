@@ -13,8 +13,8 @@ public class BookController {
     BookServiceImpl bookService;
 
     @PostMapping
-    ResponseEntity<BookResponse> addBook(@RequestBody final Book book) {
-        return bookService.addBook(book);
+    ResponseEntity<BookData> addBook(@RequestBody final BookData bookData) {
+        return bookService.addBook(bookData);
     }
 
 }

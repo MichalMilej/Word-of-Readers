@@ -2,10 +2,9 @@ package pl.milej.michal.wordofreaders.author;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.util.StringUtils;
 import pl.milej.michal.wordofreaders.book.Book;
-import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -14,6 +13,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Author {
     @Id
     @GeneratedValue
@@ -41,62 +41,4 @@ public class Author {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private Set<Book> books;
-
-    public Author() {}
-
-    @Getter
-    public static class AuthorBuilder {
-        private String firstName;
-        private String secondName;
-        private String lastName;
-        private Date birthDate;
-        private Date deathDate;
-        private Set<Book> books;
-
-        public AuthorBuilder firstName(final String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public AuthorBuilder secondName(final String secondName) {
-            this.secondName = secondName;
-            return this;
-        }
-
-        public AuthorBuilder lastName(final String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public AuthorBuilder birthDate(final Date birthDate) {
-            this.birthDate = birthDate;
-            return this;
-        }
-
-        public AuthorBuilder deathDate(final Date deathDate) {
-            this.deathDate = deathDate;
-            return this;
-        }
-
-        public AuthorBuilder books(final Set<Book> books) {
-            this.books = books;
-            return this;
-        }
-
-        public Author build() {
-            if (!StringUtils.hasText(getFirstName()) || !StringUtils.hasText(getLastName())) {
-                throw new RequiredVariablesNotSetException("Variable firstName or lastName has not been set");
-            }
-
-            final Author author = new Author();
-            author.firstName = firstName;
-            author.secondName = secondName;
-            author.lastName = lastName;
-            author.birthDate = birthDate;
-            author.deathDate = deathDate;
-            author.books = books;
-            return author;
-        }
-
-    }
 }

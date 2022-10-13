@@ -17,44 +17,49 @@ public class AuthorServiceImpl implements AuthorService {
     final AuthorRepository authorRepository;
 
     @Override
-    public ResponseEntity<AuthorData> addAuthor(final AuthorData authorData) {
-        final Author savedAuthor = authorRepository.save(convertToAuthor(authorData));
-        return new ResponseEntity<>(convertToAuthorData(savedAuthor), HttpStatus.CREATED);
+    public AuthorData addAuthor(final AuthorData authorData) {
+        if (!StringUtils.hasText(authorData.getFirstName()) || !StringUtils.hasText(authorData.getLastName())) {
+            throw new RequiredVariablesNotSetException("Variable firstName or lastName has not been set");
+        }
+        System.out.println("Here: " + AuthorConverter.convertToAuthor(authorData).getLastName());
+        final Author savedAuthor = authorRepository.save(AuthorConverter.convertToAuthor(authorData));
+        return AuthorConverter.convertToAuthorData(savedAuthor);
     }
 
     @Override
-    public ResponseEntity<AuthorData> getAuthor(final Long id) {
+    public AuthorData getAuthor(final long id) {
         final Optional<Author> author = authorRepository.findById(id);
-        return ResponseEntity.ok(convertToAuthorData(author.orElseThrow(() -> {
+        return AuthorConverter.convertToAuthorData(author.orElseThrow(() -> {
             throw new ResourceNotFoundException("Author not found");
-        })));
+        }));
     }
 
     @Override
-    public ResponseEntity<AuthorData> updateAuthor(final AuthorData authorData) {
-        return null;
+    public AuthorData updateAuthor(final long id, final AuthorData authorData) {
+        final Author existingAuthor = authorRepository.findById(id).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Author not found");
+        });
+
+        if (StringUtils.hasText(authorData.getFirstName())) {
+            existingAuthor.setFirstName(authorData.getFirstName());
+        }
+        existingAuthor.setSecondName(authorData.getSecondName());
+        if (StringUtils.hasText(authorData.getLastName())) {
+            existingAuthor.setLastName(authorData.getLastName());
+        }
+        existingAuthor.setBirthDate(authorData.getBirthDate());
+        existingAuthor.setDeathDate(authorData.getDeathDate());
+        existingAuthor.setBooks(authorData.getBooks());
+
+        return AuthorConverter.convertToAuthorData(authorRepository.save(existingAuthor));
     }
 
-    private Author convertToAuthor(final AuthorData authorData) {
-        return new Author.AuthorBuilder()
-                .firstName(authorData.getFirstName())
-                .secondName(authorData.getSecondName())
-                .lastName(authorData.getLastName())
-                .birthDate(authorData.getBirthDate())
-                .deathDate(authorData.getDeathDate())
-                .books(authorData.getBooks())
-                .build();
-    }
+    @Override
+    public void deleteAuthor(long id) {
+        final Author existingAuthor = authorRepository.findById(id).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Author not found");
+        });
 
-    private AuthorData convertToAuthorData(final Author author) {
-        return new AuthorData.AuthorDataBuilder()
-                .id(author.getId())
-                .firstName(author.getFirstName())
-                .secondName(author.getSecondName())
-                .lastName(author.getLastName())
-                .birthDate(author.getBirthDate())
-                .deathDate(author.getDeathDate())
-                .books(author.getBooks())
-                .build();
+        authorRepository.delete(existingAuthor);
     }
 }

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class RequiredVariablesNotSetException extends RuntimeException {
 
     public RequiredVariablesNotSetException(final String message) {
-        super(message);
+        super(message, null);
     }
 }

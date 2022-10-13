@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Data
 @Builder
-public class BookResponse {
+public class BookData {
 
     private long id;
     private String title;
