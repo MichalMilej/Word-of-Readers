@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.cover;
+package pl.milej.michal.wordofreaders.book.cover;
 
 public class CoverConverter {
 

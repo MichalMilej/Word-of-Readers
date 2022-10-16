@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.cover;
+package pl.milej.michal.wordofreaders.book.cover;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;

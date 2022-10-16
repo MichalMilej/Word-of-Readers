@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.milej.michal.wordofreaders.author.Author;
-import pl.milej.michal.wordofreaders.cover.Cover;
+import pl.milej.michal.wordofreaders.book.cover.Cover;
 
 import javax.persistence.*;
 import java.sql.Date;
