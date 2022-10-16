@@ -1,6 +1,5 @@
 package pl.milej.michal.wordofreaders.book;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -2,8 +2,6 @@ package pl.milej.michal.wordofreaders.author;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;

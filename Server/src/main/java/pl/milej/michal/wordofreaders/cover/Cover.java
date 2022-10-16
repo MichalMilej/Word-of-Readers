@@ -16,11 +16,19 @@ public class Cover {
 
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
 
-    @Lob
-    byte[] content;
+    @Column(nullable = false)
+    private String coverName;
+
+    @Column(nullable = false)
+    private String location;
 
     @OneToMany(mappedBy = "cover")
-    Set<Book> books;
+    private Set<Book> books;
+
+    public Cover(final String coverName, final String location) {
+        this.coverName = coverName;
+        this.location = location;
+    }
 }

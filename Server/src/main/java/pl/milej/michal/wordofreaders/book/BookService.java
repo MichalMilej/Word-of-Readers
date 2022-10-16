@@ -1,8 +1,7 @@
 package pl.milej.michal.wordofreaders.book;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-
 public interface BookService {
-    ResponseEntity<BookData> addBook(@RequestBody final BookData bookData);
+    BookData addBook(final BookData bookData);
+    BookData getBook(final long id);
+    BookData updateBook(final long id, final BookData bookData);
 }
