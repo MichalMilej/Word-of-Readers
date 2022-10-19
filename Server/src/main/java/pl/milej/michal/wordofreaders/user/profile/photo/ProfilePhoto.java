@@ -1,22 +1,22 @@
-package pl.milej.michal.wordofreaders.book.cover;
+package pl.milej.michal.wordofreaders.user.profile.photo;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.milej.michal.wordofreaders.book.Book;
+import pl.milej.michal.wordofreaders.user.User;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
-public class Cover {
+public class ProfilePhoto {
 
-    @Id
     @GeneratedValue
-    private Long id;
+    @Id
+    Long id;
 
     @Column
     private String name;
@@ -24,10 +24,10 @@ public class Cover {
     @Column(nullable = false)
     private String location;
 
-    @OneToMany(mappedBy = "cover")
-    private Set<Book> books;
+    @OneToMany(mappedBy = "profilePhoto")
+    private Set<User> users;
 
-    public Cover(final String name, final String location) {
+    public ProfilePhoto(String name, String location) {
         this.name = name;
         this.location = location;
     }

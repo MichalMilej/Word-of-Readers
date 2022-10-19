@@ -30,6 +30,9 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'commons-codec:commons-codec:1.15'
+	implementation 'org.liquibase:liquibase-core:4.17.0'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testImplementation "org.testcontainers:testcontainers:1.17.4"

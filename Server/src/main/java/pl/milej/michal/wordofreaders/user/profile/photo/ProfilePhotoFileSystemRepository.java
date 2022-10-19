@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.book.cover;
+package pl.milej.michal.wordofreaders.user.profile.photo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -13,22 +13,22 @@ import java.nio.file.Paths;
 import java.util.Date;
 
 @Repository
-public class CoverFileSystemRepository {
+public class ProfilePhotoFileSystemRepository {
 
-    @Value("${filesystem.path.images}/covers/")
+    @Value("${filesystem.path.images}/profile photos/")
     private String directory;
 
-    public String saveCoverImage(final MultipartFile coverImage) {
-        final Path path = Paths.get(directory + new Date().getTime() + "-" + coverImage.getOriginalFilename());
+    public String saveProfilePhoto(final MultipartFile profilePhoto) {
+        final Path path = Paths.get(directory + new Date().getTime() + "-" + profilePhoto.getOriginalFilename());
         try {
-            Files.write(path, coverImage.getBytes());
+            Files.write(path, profilePhoto.getBytes());
         } catch (IOException e) {
-            throw new SavingFileException("There was a problem with saving cover image");
+            throw new SavingFileException("There was a problem with saving profile photo");
         }
         return path.toAbsolutePath().toString();
     }
 
-    public FileSystemResource getCoverImage(final String location) {
+    public FileSystemResource getProfilePhoto(final String location) {
         return new FileSystemResource(Paths.get(location));
     }
 }

@@ -16,7 +16,7 @@ public class CoverController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    CoverData addCover(@RequestParam final MultipartFile coverImage) {
+    CoverData addCover(@RequestBody final MultipartFile coverImage) {
         return coverService.addCover(coverImage);
     }
 
