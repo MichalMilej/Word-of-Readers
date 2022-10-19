@@ -4,6 +4,6 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProfilePhotoService {
-    ProfilePhotoData addProfilePhoto(MultipartFile profilePhotoImage);
+    ProfilePhoto addProfilePhoto(final MultipartFile profilePhotoImage);
     FileSystemResource getProfilePhotoImage(final Long id);
 }

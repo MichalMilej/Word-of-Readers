@@ -18,17 +18,13 @@ public class ProfilePhoto {
     @Id
     Long id;
 
-    @Column
-    private String name;
-
     @Column(nullable = false)
     private String location;
 
     @OneToMany(mappedBy = "profilePhoto")
     private Set<User> users;
 
-    public ProfilePhoto(String name, String location) {
-        this.name = name;
+    public ProfilePhoto(String location) {
         this.location = location;
     }
 }

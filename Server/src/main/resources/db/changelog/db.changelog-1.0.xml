@@ -9,7 +9,6 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(75)"/>
             <column name="location" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
@@ -19,7 +18,6 @@
     <changeSet id="2" author="Michał Milej">
         <insert tableName="profile_photo">
             <column name="id" value="1"/>
-            <column name="name" value="default profile photo"/>
             <column name="location" value="${filesystem.path.default.profile.photo}"/>
         </insert>
     </changeSet>

@@ -8,6 +8,7 @@ public class UserConverter {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .role(user.getRole())
+                .profilePhotoId(user.getProfilePhoto().getId())
                 .banned(user.getBanned())
                 .build();
     }

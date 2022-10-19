@@ -14,11 +14,11 @@ public class ProfilePhotoServiceImpl implements ProfilePhotoService{
     final ProfilePhotoRepository profilePhotoRepository;
     
     @Override
-    public ProfilePhotoData addProfilePhoto(final MultipartFile profilePhotoImage) {
+    public ProfilePhoto addProfilePhoto(final MultipartFile profilePhotoImage) {
         final String location = profilePhotoFileSystemRepository.saveProfilePhoto(profilePhotoImage);
-        final ProfilePhoto profilePhoto = new ProfilePhoto(profilePhotoImage.getOriginalFilename(), location);
+        final ProfilePhoto profilePhoto = new ProfilePhoto(location);
 
-        return ProfilePhotoConverter.convertProfilePhoto(profilePhotoRepository.save(profilePhoto));
+        return profilePhotoRepository.save(profilePhoto);
     }
 
     @Override

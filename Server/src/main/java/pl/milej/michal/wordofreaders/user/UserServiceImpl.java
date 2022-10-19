@@ -5,10 +5,9 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import pl.milej.michal.wordofreaders.exception.RequiredResourceNotInDatabaseException;
-import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhoto;
-import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhotoRepository;
-import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhotoServiceImpl;
+import pl.milej.michal.wordofreaders.user.profile.photo.*;
 
 @Service
 @RequiredArgsConstructor
@@ -42,13 +41,32 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public UserResponse getUser(Long id) {
+        return UserConverter.convertToUserResponse(findUserById(id));
+    }
+
+    @Override
     public FileSystemResource getUserProfilePhotoImage(Long id) {
-        final User user = userRepository.findById(id).orElseThrow(() -> {
-            throw new ResourceNotFoundException("User not found");
-        });
+        final User user = findUserById(id);
         final ProfilePhoto photo = profilePhotoRepository.findById(user.getProfilePhoto().getId()).orElseThrow(() -> {
             throw new ResourceNotFoundException("User profile photo not found in database");
         });
         return profilePhotoService.getProfilePhotoImage(photo.getId());
+    }
+
+    @Override
+    public UserResponse updateUserProfilePhoto(final Long id, final MultipartFile profilePhotoImage) {
+        final User existingUser = findUserById(id);
+
+        final ProfilePhoto newProfilePhoto = profilePhotoService.addProfilePhoto(profilePhotoImage);
+        existingUser.setProfilePhoto(newProfilePhoto);
+
+        return UserConverter.convertToUserResponse(userRepository.save(existingUser));
+    }
+
+    private User findUserById(final Long id) {
+        return userRepository.findById(id).orElseThrow(() -> {
+            throw new ResourceNotFoundException("User not found");
+        });
     }
 }
