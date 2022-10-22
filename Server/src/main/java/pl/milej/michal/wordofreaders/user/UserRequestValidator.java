@@ -20,7 +20,7 @@ public class UserRequestValidator {
         if (username == null || username.length() < 3) {
             throw new BadRequestException("Username should be at least 3 characters long");
         }
-        if (!userRepository.findByUsernameEqualsIgnoreCase(username).isEmpty()) {
+        if (userRepository.findByUsernameEqualsIgnoreCase(username).isPresent()) {
             throw new BadRequestException("Username already in database");
         }
     }
@@ -35,7 +35,7 @@ public class UserRequestValidator {
         if (email == null || !email.contains("@") || email.length() < 4) {
             throw new BadRequestException("E-mail address is not correct");
         }
-        if (!userRepository.findByEmailEqualsIgnoreCase(email).isEmpty()) {
+        if (userRepository.findByEmailEqualsIgnoreCase(email).isPresent()) {
             throw new BadRequestException("Email already in database");
         }
     }

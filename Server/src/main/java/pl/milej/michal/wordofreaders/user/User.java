@@ -3,7 +3,7 @@ package pl.milej.michal.wordofreaders.user;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.milej.michal.wordofreaders.comment.Comment;
+import pl.milej.michal.wordofreaders.review.comment.Comment;
 import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhoto;
 
 import javax.persistence.*;
@@ -34,11 +34,11 @@ public class User {
     private ProfilePhoto profilePhoto;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private Role role;
+    private Boolean banned = false;
 
     @Column(nullable = false)
-    private Boolean banned = false;
+    @Enumerated(EnumType.ORDINAL)
+    private Role role;
 
     @OneToMany(mappedBy = "user")
     private Set<Comment> comments;

@@ -16,5 +16,6 @@ public class BookData {
     private String title;
     private Date releaseDate;
     private Set<Author> authors;
+    private String description;
     private Cover cover;
 }

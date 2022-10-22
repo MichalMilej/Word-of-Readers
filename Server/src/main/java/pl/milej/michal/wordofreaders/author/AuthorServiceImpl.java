@@ -3,12 +3,14 @@ package pl.milej.michal.wordofreaders.author;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
 
 import java.util.Optional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
 
@@ -25,6 +27,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AuthorData getAuthor(final long id) {
         final Optional<Author> author = authorRepository.findById(id);
         return AuthorConverter.convertToAuthorData(author.orElseThrow(() -> {
