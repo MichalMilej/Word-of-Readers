@@ -62,13 +62,13 @@
             <column name="release_date" type="date"/>
             <column name="description" type="varchar(500)"/>
             <column name="cover_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_book_cover" references="cover(id)"/>
+                <constraints foreignKeyName="fk_book_cover" references="cover(id)"/>
             </column>
         </createTable>
     </changeSet>
     
     <changeSet id="6" author="Michał Milej">
-        <createTable tableName="author_books">
+        <createTable tableName="book_authors">
             <column name="author_id" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_author" references="author(id)"/>
             </column>
@@ -164,5 +164,31 @@
                 <constraints nullable="false" foreignKeyName="fk_application_user" references="application_user(id)"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="12" author="Michał Milej">
+        <insert tableName="author">
+            <column name="id">1</column>
+            <column name="first_name">Adam</column>
+            <column name="second_name">Bernard</column>
+            <column name="last_name">Mickiewicz</column>
+            <column name="birth_date">1798-12-24</column>
+            <column name="death_date">1855-11-26</column>
+        </insert>
+        <insert tableName="author">
+            <column name="id">2</column>
+            <column name="first_name">Bolesław</column>
+            <column name="last_name">Prus</column>
+            <column name="birth_date">1847-08-20</column>
+            <column name="death_date">1912-05-19</column>
+        </insert>
+        <insert tableName="author">
+            <column name="id">3</column>
+            <column name="first_name">Henryk</column>
+            <column name="second_name">Adam Aleksander</column>
+            <column name="last_name">Sienkiewicz</column>
+            <column name="birth_date">1846-05-05</column>
+            <column name="death_date">1916-11-15</column>
+        </insert>
     </changeSet>
 </databaseChangeLog>

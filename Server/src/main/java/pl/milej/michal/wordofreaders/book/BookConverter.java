@@ -3,20 +3,20 @@ package pl.milej.michal.wordofreaders.book;
 
 public class BookConverter {
 
-    public static Book convertToBook(final BookData bookData) {
+    public static Book convertBookRequestToBook(final BookRequest bookRequest) {
         final Book book = new Book();
-        book.setTitle(book.getTitle());
-        book.setAuthors(bookData.getAuthors());
-        book.setReleaseDate(bookData.getReleaseDate());
-        book.setCover(book.getCover());
+        book.setTitle(bookRequest.getTitle());
+        book.setDescription(bookRequest.getDescription());
+        book.setReleaseDate(bookRequest.getReleaseDate());
         return book;
     }
 
-    public static BookData convertToBookData(final Book book) {
-        return new BookData.BookDataBuilder()
+    public static BookResponse convertToBookResponse(final Book book) {
+        return new BookResponse.BookResponseBuilder()
                 .id(book.getId())
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())
+                .description(book.getDescription())
                 .authors(book.getAuthors())
                 .cover(book.getCover())
                 .build();

@@ -17,50 +17,44 @@ public class AuthorServiceImpl implements AuthorService {
     final AuthorRepository authorRepository;
 
     @Override
-    public AuthorData addAuthor(final AuthorData authorData) {
-        if (!StringUtils.hasText(authorData.getFirstName()) || !StringUtils.hasText(authorData.getLastName())) {
+    public AuthorResponse addAuthor(final AuthorRequest authorRequest) {
+        if (!StringUtils.hasText(authorRequest.getFirstName()) || !StringUtils.hasText(authorRequest.getLastName())) {
             throw new RequiredVariablesNotSetException("Variable firstName or lastName has not been set");
         }
-        System.out.println("Here: " + AuthorConverter.convertToAuthor(authorData).getLastName());
-        final Author savedAuthor = authorRepository.save(AuthorConverter.convertToAuthor(authorData));
-        return AuthorConverter.convertToAuthorData(savedAuthor);
+        final Author savedAuthor = authorRepository.save(AuthorConverter.convertAuthorRequestToAuthor(authorRequest));
+        return AuthorConverter.convertAuthorToAuthorResponse(savedAuthor);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public AuthorData getAuthor(final long id) {
+    public AuthorResponse getAuthor(final long id) {
         final Optional<Author> author = authorRepository.findById(id);
-        return AuthorConverter.convertToAuthorData(author.orElseThrow(() -> {
+        return AuthorConverter.convertAuthorToAuthorResponse(author.orElseThrow(() -> {
             throw new ResourceNotFoundException("Author not found");
         }));
     }
 
     @Override
-    public AuthorData updateAuthor(final long id, final AuthorData authorData) {
+    public AuthorResponse updateAuthor(final long id, final AuthorRequest authorRequest) {
         final Author existingAuthor = authorRepository.findById(id).orElseThrow(() -> {
             throw new ResourceNotFoundException("Author not found");
         });
 
-        if (StringUtils.hasText(authorData.getFirstName())) {
-            existingAuthor.setFirstName(authorData.getFirstName());
+        if (StringUtils.hasText(authorRequest.getFirstName())) {
+            existingAuthor.setFirstName(authorRequest.getFirstName());
         }
-        existingAuthor.setSecondName(authorData.getSecondName());
-        if (StringUtils.hasText(authorData.getLastName())) {
-            existingAuthor.setLastName(authorData.getLastName());
+        existingAuthor.setSecondName(authorRequest.getSecondName());
+        if (StringUtils.hasText(authorRequest.getLastName())) {
+            existingAuthor.setLastName(authorRequest.getLastName());
         }
-        existingAuthor.setBirthDate(authorData.getBirthDate());
-        existingAuthor.setDeathDate(authorData.getDeathDate());
-        existingAuthor.setBooks(authorData.getBooks());
+        existingAuthor.setBirthDate(authorRequest.getBirthDate());
+        existingAuthor.setDeathDate(authorRequest.getDeathDate());
 
-        return AuthorConverter.convertToAuthorData(authorRepository.save(existingAuthor));
+        return AuthorConverter.convertAuthorToAuthorResponse(authorRepository.save(existingAuthor));
     }
 
     @Override
     public void deleteAuthor(long id) {
-        final Author existingAuthor = authorRepository.findById(id).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Author not found");
-        });
-
-        authorRepository.delete(existingAuthor);
+        authorRepository.deleteById(id);
     }
 }

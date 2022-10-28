@@ -2,26 +2,24 @@ package pl.milej.michal.wordofreaders.author;
 
 public class AuthorConverter {
 
-    public static Author convertToAuthor(final AuthorData authorData) {
+    public static Author convertAuthorRequestToAuthor(final AuthorRequest authorRequest) {
         final Author author = new Author();
-        author.setFirstName(authorData.getFirstName());
-        author.setSecondName(authorData.getSecondName());
-        author.setLastName(authorData.getLastName());
-        author.setBirthDate(authorData.getBirthDate());
-        author.setDeathDate(authorData.getDeathDate());
-        author.setBooks(authorData.getBooks());
+        author.setFirstName(authorRequest.getFirstName());
+        author.setSecondName(authorRequest.getSecondName());
+        author.setLastName(authorRequest.getLastName());
+        author.setBirthDate(authorRequest.getBirthDate());
+        author.setDeathDate(authorRequest.getDeathDate());
         return author;
     }
 
-    public static AuthorData convertToAuthorData(final Author author) {
-        return new AuthorData.AuthorDataBuilder()
+    public static AuthorResponse convertAuthorToAuthorResponse(final Author author) {
+        return new AuthorResponse.AuthorResponseBuilder()
                 .id(author.getId())
                 .firstName(author.getFirstName())
                 .secondName(author.getSecondName())
                 .lastName(author.getLastName())
                 .birthDate(author.getBirthDate())
                 .deathDate(author.getDeathDate())
-                .books(author.getBooks())
                 .build();
     }
 }

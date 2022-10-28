@@ -4,51 +4,102 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import pl.milej.michal.wordofreaders.author.Author;
+import pl.milej.michal.wordofreaders.author.AuthorRepository;
+import pl.milej.michal.wordofreaders.book.cover.Cover;
+import pl.milej.michal.wordofreaders.book.cover.CoverRepository;
+import pl.milej.michal.wordofreaders.exception.RelationAlreadySet;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService{
 
-    private BookRepository bookRepository;
+    final private BookRepository bookRepository;
+    final private CoverRepository coverRepository;
+    final private AuthorRepository authorRepository;
 
     @Override
-    public BookData addBook(BookData bookData) {
-        if (!StringUtils.hasText(bookData.getTitle()) || bookData.getCover() == null || bookData.getReleaseDate() == null) {
-            throw new RequiredVariablesNotSetException("Variable title, releaseDate or cover has not been set");
+    public BookResponse addBook(BookRequest bookRequest) {
+        if (!StringUtils.hasText(bookRequest.getTitle()) || bookRequest.getReleaseDate() == null) {
+            throw new RequiredVariablesNotSetException("Variable title or releaseDate has not been set");
         }
+        final Book savedBook = bookRepository.save(BookConverter.convertBookRequestToBook(bookRequest));
 
-        final Book savedBook = bookRepository.save(BookConverter.convertToBook(bookData));
-        return BookConverter.convertToBookData(savedBook);
+        return BookConverter.convertToBookResponse(savedBook);
     }
 
     @Override
-    public BookData getBook(long id) {
+    public BookResponse getBook(long id) {
         final Optional<Book> book = bookRepository.findById(id);
-        return BookConverter.convertToBookData(book.orElseThrow(() -> {
+        return BookConverter.convertToBookResponse(book.orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
         }));
     }
 
     @Override
-    public BookData updateBook(long id, BookData bookData) {
-        final Book existingBook = bookRepository.findById(id).orElseThrow(() -> {
+    public BookResponse updateBook(long id, BookRequest bookRequest) {
+        final Book existingBook = findBookById(id);
+
+        if (StringUtils.hasText(bookRequest.getTitle())) {
+            existingBook.setTitle(bookRequest.getTitle());
+        }
+        if (bookRequest.getReleaseDate() != null) {
+            existingBook.setReleaseDate(bookRequest.getReleaseDate());
+        }
+        if (bookRequest.getDescription() != null) {
+            existingBook.setDescription(bookRequest.getDescription());
+        }
+
+        return BookConverter.convertToBookResponse(bookRepository.save(existingBook));
+    }
+
+    @Override
+    public BookResponse assignAuthor(long bookId, long authorId) {
+        final Book book = findBookById(bookId);
+        final Author author = findAuthorById(authorId);
+
+        if (book.getAuthors().contains(author)) {
+            throw new RelationAlreadySet("This author has been already set");
+        }
+
+        book.getAuthors().add(author);
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse assignCover(final long bookId, final long coverId) {
+        final Book book = findBookById(bookId);
+        final Cover cover = findCoverById(coverId);
+
+        book.setCover(cover);
+
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public void deleteBook(long id) {
+        bookRepository.deleteById(id);
+    }
+
+    private Book findBookById(final long bookId) {
+        return bookRepository.findById(bookId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
         });
+    }
 
-        if (StringUtils.hasText(bookData.getTitle())) {
-            existingBook.setTitle(bookData.getTitle());
-        }
-        if (bookData.getReleaseDate() != null) {
-            existingBook.setReleaseDate(bookData.getReleaseDate());
-        }
-        existingBook.setAuthors(bookData.getAuthors());
-        if (bookData.getCover() != null) {
-            existingBook.setCover(bookData.getCover());
-        }
+    private Cover findCoverById(final long coverId) {
+        return coverRepository.findById(coverId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Cover not found");
+        });
+    }
 
-        return BookConverter.convertToBookData(bookRepository.save(existingBook));
+    private Author findAuthorById(final long authorId) {
+        return authorRepository.findById(authorId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Author not found");
+        });
     }
 }

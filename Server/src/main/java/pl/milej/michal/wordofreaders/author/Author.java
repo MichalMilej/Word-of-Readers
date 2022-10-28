@@ -1,9 +1,10 @@
 package pl.milej.michal.wordofreaders.author;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.book.Book;
 
 import javax.persistence.*;
@@ -28,17 +29,15 @@ public class Author {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "birth_date")
     private Date birthDate;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "death_date")
     private Date deathDate;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "author_books",
-            joinColumns = @JoinColumn(name = "author_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "book_id", nullable = false)
-    )
+    @JsonIgnore
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
 }

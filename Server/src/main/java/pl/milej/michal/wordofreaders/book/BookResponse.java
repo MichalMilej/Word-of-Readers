@@ -10,12 +10,12 @@ import java.util.Set;
 
 @Data
 @Builder
-public class BookData {
+public class BookResponse {
 
     private long id;
     private String title;
     private Date releaseDate;
-    private Set<Author> authors;
     private String description;
+    private Set<Author> authors;
     private Cover cover;
 }

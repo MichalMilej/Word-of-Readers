@@ -15,18 +15,33 @@ public class BookController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    BookData addBook(@RequestBody final BookData bookData) {
-        return bookService.addBook(bookData);
+    BookResponse addBook(@RequestBody final BookRequest bookRequest) {
+        return bookService.addBook(bookRequest);
     }
 
-    @GetMapping("/{id}")
-    BookData getBook(@PathVariable final long id) {
-        return bookService.getBook(id);
+    @GetMapping("/{bookId}")
+    BookResponse getBook(@PathVariable final long bookId) {
+        return bookService.getBook(bookId);
     }
 
-    @PutMapping("/{id}")
-    BookData updateBook(@PathVariable final long id, final BookData bookData) {
-        return bookService.updateBook(id, bookData);
+    @PutMapping("/{bookId}")
+    BookResponse updateBook(@PathVariable final long bookId, @RequestBody final BookRequest bookRequest) {
+        return bookService.updateBook(bookId, bookRequest);
+    }
+
+    @PutMapping("/{bookId}/authors/{authorId}")
+    BookResponse assignAuthor(@PathVariable final long bookId, @PathVariable final long authorId) {
+        return bookService.assignAuthor(bookId, authorId);
+    }
+
+    @PutMapping("/{bookId}/{coverId}")
+    BookResponse assignCover(@PathVariable final long bookId, @PathVariable final long coverId) {
+        return bookService.assignCover(bookId, coverId);
+    }
+
+    @DeleteMapping("/{bookId}")
+    void deleteBook(@PathVariable final long bookId) {
+        bookService.deleteBook(bookId);
     }
 
 

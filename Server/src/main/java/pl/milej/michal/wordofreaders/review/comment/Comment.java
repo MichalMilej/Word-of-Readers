@@ -1,7 +1,10 @@
 package pl.milej.michal.wordofreaders.review.comment;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.review.Review;
 import pl.milej.michal.wordofreaders.user.User;
 
@@ -9,7 +12,8 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Comment {
 
@@ -20,6 +24,7 @@ public class Comment {
     @Column(nullable = false)
     private String text;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "publication_date", nullable = false)
     private Date publicationDate;
 

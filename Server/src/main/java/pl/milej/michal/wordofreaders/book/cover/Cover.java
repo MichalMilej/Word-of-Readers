@@ -18,7 +18,6 @@ public class Cover {
     @GeneratedValue
     private Long id;
 
-    @Column
     private String name;
 
     @Column(nullable = false)

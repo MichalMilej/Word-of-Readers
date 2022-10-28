@@ -15,18 +15,18 @@ public class AuthorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AuthorData addAuthor(@RequestBody final AuthorData authorData) {
-        return authorService.addAuthor(authorData);
+    public AuthorResponse addAuthor(@RequestBody final AuthorRequest authorRequest) {
+        return authorService.addAuthor(authorRequest);
     }
 
     @GetMapping("/{id}")
-    public AuthorData getAuthor(@PathVariable final long id) {
+    public AuthorResponse getAuthor(@PathVariable final long id) {
         return authorService.getAuthor(id);
     }
 
     @PutMapping("/{id}")
-    public AuthorData updateAuthor(@PathVariable final long id, @RequestBody final AuthorData authorData) {
-        return authorService.updateAuthor(id, authorData);
+    public AuthorResponse updateAuthor(@PathVariable final long id, @RequestBody final AuthorRequest authorRequest) {
+        return authorService.updateAuthor(id, authorRequest);
     }
 
     @DeleteMapping("/{id}")

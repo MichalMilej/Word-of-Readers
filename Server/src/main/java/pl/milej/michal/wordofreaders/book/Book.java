@@ -3,6 +3,7 @@ package pl.milej.michal.wordofreaders.book;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.author.Author;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
@@ -24,20 +25,25 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "release_date")
     private Date releaseDate;
 
-    @Column
     private String description;
 
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany
+    @JoinTable(
+            name = "book_authors",
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false)
+    )
     private Set<Author> authors;
 
     @ManyToMany(mappedBy = "books")
     private Set<Publisher> publishers;
 
     @ManyToOne
-    @JoinColumn(name = "cover_id", nullable = false)
+    @JoinColumn(name = "cover_id")
     private Cover cover;
 
     @OneToMany(mappedBy = "book")
