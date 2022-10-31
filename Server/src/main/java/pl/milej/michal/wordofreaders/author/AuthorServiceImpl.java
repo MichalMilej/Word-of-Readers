@@ -1,6 +1,9 @@
 package pl.milej.michal.wordofreaders.author;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +35,13 @@ public class AuthorServiceImpl implements AuthorService {
         return AuthorConverter.convertAuthorToAuthorResponse(author.orElseThrow(() -> {
             throw new ResourceNotFoundException("Author not found");
         }));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<AuthorResponse> getAuthors(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return authorRepository.findAll(pageable).map(AuthorConverter::convertAuthorToAuthorResponse);
     }
 
     @Override

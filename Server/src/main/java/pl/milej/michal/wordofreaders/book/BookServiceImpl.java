@@ -1,6 +1,9 @@
 package pl.milej.michal.wordofreaders.book;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -12,7 +15,6 @@ import pl.milej.michal.wordofreaders.exception.RelationAlreadySet;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
 
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +40,13 @@ public class BookServiceImpl implements BookService{
         return BookConverter.convertToBookResponse(book.orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
         }));
+    }
+
+    @Override
+    public Page<BookResponse> getBooks(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        return bookRepository.findAll(pageable).map(BookConverter::convertToBookResponse);
     }
 
     @Override
@@ -67,6 +76,15 @@ public class BookServiceImpl implements BookService{
         }
 
         book.getAuthors().add(author);
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse removeAuthor(long bookId, long authorId) {
+        final Book book = findBookById(bookId);
+        final Author author = findAuthorById(authorId);
+
+        book.getAuthors().remove(author);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 

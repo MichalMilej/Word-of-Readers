@@ -1,6 +1,7 @@
 package pl.milej.michal.wordofreaders.author;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,11 @@ public class AuthorController {
     @GetMapping("/{id}")
     public AuthorResponse getAuthor(@PathVariable final long id) {
         return authorService.getAuthor(id);
+    }
+
+    @GetMapping
+    public Page<AuthorResponse> getAuthors(@RequestParam final Integer pageNumber, @RequestParam final Integer pageSize) {
+        return authorService.getAuthors(pageNumber, pageSize);
     }
 
     @PutMapping("/{id}")

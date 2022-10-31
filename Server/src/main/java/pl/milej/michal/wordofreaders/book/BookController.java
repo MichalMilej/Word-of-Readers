@@ -2,6 +2,7 @@ package pl.milej.michal.wordofreaders.book;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,17 +25,27 @@ public class BookController {
         return bookService.getBook(bookId);
     }
 
+    @GetMapping
+    Page<BookResponse> getBooks(@RequestParam final Integer pageNumber, @RequestParam final Integer pageSize) {
+        return bookService.getBooks(pageNumber, pageSize);
+    }
+
     @PutMapping("/{bookId}")
     BookResponse updateBook(@PathVariable final long bookId, @RequestBody final BookRequest bookRequest) {
         return bookService.updateBook(bookId, bookRequest);
     }
 
-    @PutMapping("/{bookId}/authors/{authorId}")
+    @PatchMapping("/{bookId}/authors/{authorId}")
     BookResponse assignAuthor(@PathVariable final long bookId, @PathVariable final long authorId) {
         return bookService.assignAuthor(bookId, authorId);
     }
 
-    @PutMapping("/{bookId}/{coverId}")
+    @DeleteMapping("/{bookId}/authors/{authorId}")
+    BookResponse removeAuthor(@PathVariable final long bookId, @PathVariable final long authorId) {
+        return bookService.removeAuthor(bookId, authorId);
+    }
+
+    @PatchMapping("/{bookId}/cover/{coverId}")
     BookResponse assignCover(@PathVariable final long bookId, @PathVariable final long coverId) {
         return bookService.assignCover(bookId, coverId);
     }

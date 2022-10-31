@@ -1,5 +1,6 @@
 package pl.milej.michal.wordofreaders.book.cover;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Cover {
     @Column(nullable = false)
     private String location;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cover")
     private Set<Book> books;
 
