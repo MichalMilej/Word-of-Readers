@@ -1,8 +1,12 @@
 package pl.milej.michal.wordofreaders.user;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +15,7 @@ import pl.milej.michal.wordofreaders.user.profile.photo.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService{
 
     final UserRequestValidator userRequestValidator;
@@ -22,6 +27,7 @@ public class UserServiceImpl implements UserService{
     public UserResponse addUser(final UserRequest userRequest, final Role role) {
         userRequestValidator.validateUserRequest(userRequest);
         final User savedUser = saveUser(userRequest, role);
+        log.info(String.format("User with id %s created", savedUser.getId()));
         return UserConverter.convertToUserResponse(savedUser);
     }
 
@@ -43,6 +49,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserResponse getUser(Long id) {
         return UserConverter.convertToUserResponse(findUserById(id));
+    }
+
+    @Override
+    public Page<UserResponse> getUsers(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return userRepository.findAll(pageable).map(UserConverter::convertToUserResponse);
     }
 
     @Override

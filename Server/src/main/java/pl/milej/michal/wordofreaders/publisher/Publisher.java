@@ -1,5 +1,6 @@
 package pl.milej.michal.wordofreaders.publisher;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.milej.michal.wordofreaders.book.Book;
@@ -20,6 +21,7 @@ public class Publisher {
     private String name;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "publisher_books",
             joinColumns = @JoinColumn(name = "publisher_id", nullable = false),

@@ -2,6 +2,7 @@ package pl.milej.michal.wordofreaders.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,11 @@ public class UserController {
     @GetMapping("/{id}")
     UserResponse getUser(@PathVariable final long id) {
         return userService.getUser(id);
+    }
+
+    @GetMapping
+    Page<UserResponse> getUsers(@RequestParam final Integer pageNumber, @RequestParam final Integer pageSize) {
+        return userService.getUsers(pageNumber, pageSize);
     }
 
     @GetMapping("/{id}/profile-photo-image")

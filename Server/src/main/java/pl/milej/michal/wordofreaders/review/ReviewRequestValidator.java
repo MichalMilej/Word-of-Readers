@@ -1,8 +1,10 @@
 package pl.milej.michal.wordofreaders.review;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import pl.milej.michal.wordofreaders.exception.BadRequestException;
 
+@Component
 public class ReviewRequestValidator {
 
     public void validateReview(final ReviewRequest reviewRequest) {
