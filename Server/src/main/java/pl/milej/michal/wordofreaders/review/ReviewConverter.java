@@ -7,6 +7,8 @@ public class ReviewConverter {
                 .id(review.getId())
                 .text(review.getText())
                 .publicationDate(review.getPublicationDate())
+                .likes(review.getLikes())
+                .dislikes(review.getDislikes())
                 .bookId(review.getBook().getId())
                 .userId(review.getUser().getId())
                 .build();

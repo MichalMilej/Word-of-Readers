@@ -3,7 +3,7 @@ package pl.milej.michal.wordofreaders.book;
 
 import pl.milej.michal.wordofreaders.author.AuthorConverter;
 
-import java.util.Set;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BookConverter {
@@ -22,7 +22,8 @@ public class BookConverter {
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())
                 .description(book.getDescription())
-                .authorResponses(book.getAuthors()
+                .authorResponses(Optional.ofNullable(book.getAuthors()).isEmpty() ? null :
+                        book.getAuthors()
                         .stream()
                         .map(AuthorConverter::convertAuthorToAuthorResponse)
                         .collect(Collectors.toSet()))

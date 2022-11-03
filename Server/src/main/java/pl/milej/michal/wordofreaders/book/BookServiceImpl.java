@@ -11,10 +11,8 @@ import pl.milej.michal.wordofreaders.author.Author;
 import pl.milej.michal.wordofreaders.author.AuthorRepository;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.book.cover.CoverRepository;
-import pl.milej.michal.wordofreaders.exception.RelationAlreadySet;
+import pl.milej.michal.wordofreaders.exception.RelationAlreadySetException;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,11 +33,8 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookResponse getBook(long id) {
-        final Optional<Book> book = bookRepository.findById(id);
-        return BookConverter.convertToBookResponse(book.orElseThrow(() -> {
-            throw new ResourceNotFoundException("Book not found");
-        }));
+    public BookResponse getBook(long bookId) {
+        return BookConverter.convertToBookResponse(findBookById(bookId));
     }
 
     @Override
@@ -72,7 +67,7 @@ public class BookServiceImpl implements BookService{
         final Author author = findAuthorById(authorId);
 
         if (book.getAuthors().contains(author)) {
-            throw new RelationAlreadySet("This author has been already set");
+            throw new RelationAlreadySetException("This author has been already set");
         }
 
         book.getAuthors().add(author);

@@ -5,6 +5,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import pl.milej.michal.wordofreaders.review.reaction.Reaction;
+import pl.milej.michal.wordofreaders.review.reaction.UserReactionRequest;
+import pl.milej.michal.wordofreaders.review.reaction.UserReactionService;
+
+import java.util.Map;
 
 
 @RestController
@@ -28,6 +33,11 @@ public class ReviewController {
                                     @RequestParam final Integer pageNumber,
                                     @RequestParam final Integer pageSize) {
         return reviewService.getReviewsByBookId(bookId, pageNumber, pageSize);
+    }
+
+    @GetMapping("/{reviewId}")
+    ReviewResponse getReview(@PathVariable final Long reviewId) {
+        return reviewService.getReview(reviewId);
     }
 
     @DeleteMapping("/{reviewId}")

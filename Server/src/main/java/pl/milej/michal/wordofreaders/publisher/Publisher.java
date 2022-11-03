@@ -23,7 +23,7 @@ public class Publisher {
     @ManyToMany
     @JsonIgnore
     @JoinTable(
-            name = "publisher_books",
+            name = "publisher_book",
             joinColumns = @JoinColumn(name = "publisher_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "book_id", nullable = false)
     )

@@ -3,7 +3,8 @@ package pl.milej.michal.wordofreaders.user;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.milej.michal.wordofreaders.review.comment.Comment;
+import pl.milej.michal.wordofreaders.review.Review;
+import pl.milej.michal.wordofreaders.review.reaction.UserReaction;
 import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhoto;
 
 import javax.persistence.*;
@@ -41,5 +42,8 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
-    private Set<Comment> comments;
+    private Set<Review> reviews;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserReaction> userReactions;
 }

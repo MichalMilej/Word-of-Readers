@@ -1,12 +1,11 @@
 package pl.milej.michal.wordofreaders.review;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.book.Book;
-import pl.milej.michal.wordofreaders.review.comment.Comment;
+import pl.milej.michal.wordofreaders.review.reaction.UserReaction;
 import pl.milej.michal.wordofreaders.user.User;
 
 import javax.persistence.*;
@@ -30,6 +29,13 @@ public class Review {
     @Column(name = "publication_date", nullable = false)
     private Date publicationDate;
 
+    private Integer likes = 0;
+
+    private Integer dislikes = 0;
+
+    @OneToMany(mappedBy = "review")
+    private Set<UserReaction> usersWhoReacted;
+
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
@@ -37,7 +43,4 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "application_user_id", nullable = false)
     private User user;
-
-    @OneToMany(mappedBy = "review")
-    private Set<Comment> comments;
 }
