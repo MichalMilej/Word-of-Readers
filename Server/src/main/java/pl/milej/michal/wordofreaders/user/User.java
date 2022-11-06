@@ -3,6 +3,7 @@ package pl.milej.michal.wordofreaders.user;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.milej.michal.wordofreaders.book.score.UserScore;
 import pl.milej.michal.wordofreaders.review.Review;
 import pl.milej.michal.wordofreaders.review.reaction.UserReaction;
 import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhoto;
@@ -24,7 +25,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column(name = "hashed_password", nullable = false)
     private String hashedPassword;
 
     @Column(nullable = false, unique = true)
@@ -46,4 +47,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<UserReaction> userReactions;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserScore> userScores;
 }

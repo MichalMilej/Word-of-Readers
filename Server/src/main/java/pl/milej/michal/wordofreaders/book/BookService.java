@@ -1,6 +1,8 @@
 package pl.milej.michal.wordofreaders.book;
 
 import org.springframework.data.domain.Page;
+import pl.milej.michal.wordofreaders.author.Author;
+import pl.milej.michal.wordofreaders.book.cover.Cover;
 
 public interface BookService {
     BookResponse addBook(final BookRequest bookRequest);
@@ -10,5 +12,11 @@ public interface BookService {
     BookResponse assignAuthor(final long bookId, final long authorId);
     BookResponse removeAuthor(final long bookId, final long authorId);
     BookResponse assignCover(final long bookId, final long coverId);
+    BookResponse updateUserScoreAverage(final long bookId, final float userScoreAverage);
+    BookResponse updateUserScoreCount(final long bookId, final int userScoreCount);
+
+    Book findBookById(final long bookId);
+    Cover findCoverById(final long coverId);
+    Author findAuthorById(final long authorId);
     void deleteBook(final long id);
 }

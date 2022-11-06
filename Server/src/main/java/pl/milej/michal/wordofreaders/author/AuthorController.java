@@ -30,7 +30,7 @@ public class AuthorController {
         return authorService.getAuthors(pageNumber, pageSize);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public AuthorResponse updateAuthor(@PathVariable final long id, @RequestBody final AuthorRequest authorRequest) {
         return authorService.updateAuthor(id, authorRequest);
     }

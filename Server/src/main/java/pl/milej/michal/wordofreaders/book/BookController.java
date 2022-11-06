@@ -30,7 +30,7 @@ public class BookController {
         return bookService.getBooks(pageNumber, pageSize);
     }
 
-    @PutMapping("/{bookId}")
+    @PatchMapping("/{bookId}")
     BookResponse updateBook(@PathVariable final long bookId, @RequestBody final BookRequest bookRequest) {
         return bookService.updateBook(bookId, bookRequest);
     }
@@ -54,7 +54,5 @@ public class BookController {
     void deleteBook(@PathVariable final long bookId) {
         bookService.deleteBook(bookId);
     }
-
-
 
 }

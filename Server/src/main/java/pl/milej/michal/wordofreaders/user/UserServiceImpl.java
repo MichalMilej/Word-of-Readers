@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService{
         return UserConverter.convertToUserResponse(userRepository.save(existingUser));
     }
 
-    private User findUserById(final Long id) {
+    public User findUserById(final Long id) {
         return userRepository.findById(id).orElseThrow(() -> {
             throw new ResourceNotFoundException("User not found");
         });

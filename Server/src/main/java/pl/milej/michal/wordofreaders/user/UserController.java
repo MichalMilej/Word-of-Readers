@@ -36,7 +36,7 @@ public class UserController {
         return userService.getUserProfilePhotoImage(id);
     }
 
-    @PutMapping ("/{id}/profile-photo")
+    @PatchMapping("/{id}/profile-photo")
     UserResponse updateUserProfilePhoto(@PathVariable final long id, @RequestBody final MultipartFile newProfilePhotoImage) {
         return userService.updateUserProfilePhoto(id, newProfilePhotoImage);
     }

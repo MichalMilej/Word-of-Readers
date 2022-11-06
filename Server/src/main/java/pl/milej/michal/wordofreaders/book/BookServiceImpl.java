@@ -11,6 +11,8 @@ import pl.milej.michal.wordofreaders.author.Author;
 import pl.milej.michal.wordofreaders.author.AuthorRepository;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.book.cover.CoverRepository;
+import pl.milej.michal.wordofreaders.exception.BadRequestException;
+import pl.milej.michal.wordofreaders.exception.BadServerRequestException;
 import pl.milej.michal.wordofreaders.exception.RelationAlreadySetException;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
 
@@ -94,23 +96,43 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public BookResponse updateUserScoreAverage(final long bookId, final float userScoreAverage) {
+        if (userScoreAverage < 0 || userScoreAverage > 10) {
+            throw new BadServerRequestException("Wrong userScoreAverage");
+        }
+        final Book book = findBookById(bookId);
+        book.setUserScoreAverage(userScoreAverage);
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse updateUserScoreCount(final long bookId, final int userScoreCount) {
+        if (userScoreCount < 0) {
+            throw new BadRequestException("Wrong userScoreTotalNumber");
+        }
+        final Book book = findBookById(bookId);
+        book.setUserScoreCount(userScoreCount);
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
     public void deleteBook(long id) {
         bookRepository.deleteById(id);
     }
 
-    private Book findBookById(final long bookId) {
+    public Book findBookById(final long bookId) {
         return bookRepository.findById(bookId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
         });
     }
 
-    private Cover findCoverById(final long coverId) {
+    public Cover findCoverById(final long coverId) {
         return coverRepository.findById(coverId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Cover not found");
         });
     }
 
-    private Author findAuthorById(final long authorId) {
+    public Author findAuthorById(final long authorId) {
         return authorRepository.findById(authorId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Author not found");
         });

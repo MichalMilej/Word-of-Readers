@@ -11,4 +11,5 @@ public interface UserService {
     Page<UserResponse> getUsers(final Integer pageNumber, final Integer pageSize);
     FileSystemResource getUserProfilePhotoImage(final Long id);
     UserResponse updateUserProfilePhoto(final Long id, final MultipartFile profilePhotoImage);
+    User findUserById(final Long id);
 }

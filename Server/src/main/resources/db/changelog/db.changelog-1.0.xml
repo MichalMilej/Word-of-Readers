@@ -64,6 +64,10 @@
             <column name="cover_id" type="bigint">
                 <constraints foreignKeyName="fk_book_cover" references="cover(id)"/>
             </column>
+            <column name="user_score_average" type="float"/>
+            <column name="user_score_count" type="int">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
     
@@ -191,6 +195,23 @@
             </column>
             <column name="review_id" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_review" references="review(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="13" author="Michał Milej">
+        <createTable tableName="user_score">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="score" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_book" references="book(id)"/>
+            </column>
+            <column name="application_user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_application_user" references="application_user(id)"/>
             </column>
         </createTable>
     </changeSet>

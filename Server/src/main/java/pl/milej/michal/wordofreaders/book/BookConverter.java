@@ -28,6 +28,8 @@ public class BookConverter {
                         .map(AuthorConverter::convertAuthorToAuthorResponse)
                         .collect(Collectors.toSet()))
                 .cover(book.getCover())
+                .userScoreAverage(book.getUserScoreAverage())
+                .userScoreCount(book.getUserScoreCount())
                 .build();
     }
 }

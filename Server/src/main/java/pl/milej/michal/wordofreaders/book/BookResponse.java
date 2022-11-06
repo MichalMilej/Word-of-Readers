@@ -18,4 +18,7 @@ public class BookResponse {
     private String description;
     private Set<AuthorResponse> authorResponses;
     private Cover cover;
+    private Float userScoreAverage;
+    private Integer userScoreCount;
+
 }
