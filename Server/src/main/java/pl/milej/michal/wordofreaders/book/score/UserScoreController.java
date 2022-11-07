@@ -2,6 +2,7 @@ package pl.milej.michal.wordofreaders.book.score;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.milej.michal.wordofreaders.book.BookResponse;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 @RequestMapping("/books")
 @RequiredArgsConstructor
 @ResponseStatus(HttpStatus.OK)
+@Transactional
 public class UserScoreController {
 
     final UserScoreServiceImpl userScoreService;

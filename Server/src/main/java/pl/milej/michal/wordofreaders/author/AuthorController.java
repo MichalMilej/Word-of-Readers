@@ -3,6 +3,7 @@ package pl.milej.michal.wordofreaders.author;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/authors")
 @RequiredArgsConstructor
 @ResponseStatus(HttpStatus.OK)
+@Transactional
 public class AuthorController {
 
     final AuthorServiceImpl authorService;

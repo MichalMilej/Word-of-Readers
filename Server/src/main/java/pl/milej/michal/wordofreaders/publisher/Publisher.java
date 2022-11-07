@@ -20,12 +20,7 @@ public class Publisher {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "publishers")
     @JsonIgnore
-    @JoinTable(
-            name = "publisher_book",
-            joinColumns = @JoinColumn(name = "publisher_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "book_id", nullable = false)
-    )
     private Set<Book> books;
 }

@@ -2,6 +2,7 @@ package pl.milej.michal.wordofreaders.review.reaction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.milej.michal.wordofreaders.review.ReviewServiceImpl;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 @RequestMapping("/reviews/{reviewId}/user-reactions")
 @RequiredArgsConstructor
 @ResponseStatus(HttpStatus.OK)
+@Transactional
 public class UserReactionController {
     final UserReactionServiceImpl userReactionService;
     final ReviewServiceImpl reviewService;

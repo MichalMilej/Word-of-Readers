@@ -40,7 +40,12 @@ public class Book {
     )
     private Set<Author> authors;
 
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany
+    @JoinTable(
+            name = "book_publisher",
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "publisher_id", nullable = false)
+    )
     private Set<Publisher> publishers;
 
     @ManyToOne

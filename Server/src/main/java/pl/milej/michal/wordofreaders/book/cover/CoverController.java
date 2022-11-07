@@ -3,6 +3,7 @@ package pl.milej.michal.wordofreaders.book.cover;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/books/covers")
 @RequiredArgsConstructor
 @ResponseStatus(HttpStatus.OK)
+@Transactional
 public class CoverController {
 
     final CoverServiceImpl coverService;

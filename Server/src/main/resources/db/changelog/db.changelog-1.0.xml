@@ -120,12 +120,12 @@
     </changeSet>
 
     <changeSet id="9" author="Michał Milej">
-        <createTable tableName="publisher_book">
-            <column name="publisher_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_publisher" references="publisher(id)"/>
-            </column>
+        <createTable tableName="book_publisher">
             <column name="book_id" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_book" references="book(id)"/>
+            </column>
+            <column name="publisher_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_publisher" references="publisher(id)"/>
             </column>
         </createTable>
     </changeSet>
@@ -214,5 +214,28 @@
                 <constraints nullable="false" foreignKeyName="fk_application_user" references="application_user(id)"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="14" author="Michał Milej">
+        <insert tableName="publisher">
+            <column name="id">1</column>
+            <column name="name">Wydawnictwo GREG</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">2</column>
+            <column name="name">Media Rodzina</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">3</column>
+            <column name="name">Siedmioróg</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">4</column>
+            <column name="name">Wydawnictwo Rea</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">5</column>
+            <column name="name">Helion</column>
+        </insert>
     </changeSet>
 </databaseChangeLog>

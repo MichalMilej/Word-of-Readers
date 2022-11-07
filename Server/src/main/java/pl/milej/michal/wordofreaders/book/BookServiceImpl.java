@@ -15,6 +15,8 @@ import pl.milej.michal.wordofreaders.exception.BadRequestException;
 import pl.milej.michal.wordofreaders.exception.BadServerRequestException;
 import pl.milej.michal.wordofreaders.exception.RelationAlreadySetException;
 import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
+import pl.milej.michal.wordofreaders.publisher.Publisher;
+import pl.milej.michal.wordofreaders.publisher.PublisherServiceImpl;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,7 @@ public class BookServiceImpl implements BookService{
     final private BookRepository bookRepository;
     final private CoverRepository coverRepository;
     final private AuthorRepository authorRepository;
+    final private PublisherServiceImpl publisherService;
 
     @Override
     public BookResponse addBook(BookRequest bookRequest) {
@@ -69,19 +72,10 @@ public class BookServiceImpl implements BookService{
         final Author author = findAuthorById(authorId);
 
         if (book.getAuthors().contains(author)) {
-            throw new RelationAlreadySetException("This author has been already set");
+            throw new RelationAlreadySetException("This author has already been assigned to this book");
         }
 
         book.getAuthors().add(author);
-        return BookConverter.convertToBookResponse(bookRepository.save(book));
-    }
-
-    @Override
-    public BookResponse removeAuthor(long bookId, long authorId) {
-        final Book book = findBookById(bookId);
-        final Author author = findAuthorById(authorId);
-
-        book.getAuthors().remove(author);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
@@ -92,6 +86,19 @@ public class BookServiceImpl implements BookService{
 
         book.setCover(cover);
 
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse assignPublisher(long bookId, long publisherId) {
+        final Book book = findBookById(bookId);
+        final Publisher publisher = publisherService.findPublisherById(publisherId);
+
+        if (book.getPublishers().contains(publisher)) {
+            throw new RelationAlreadySetException("This publisher has already been assigned to this book");
+        }
+
+        book.getPublishers().add(publisher);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
@@ -112,6 +119,15 @@ public class BookServiceImpl implements BookService{
         }
         final Book book = findBookById(bookId);
         book.setUserScoreCount(userScoreCount);
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse removeAuthor(long bookId, long authorId) {
+        final Book book = findBookById(bookId);
+        final Author author = findAuthorById(authorId);
+
+        book.getAuthors().remove(author);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
