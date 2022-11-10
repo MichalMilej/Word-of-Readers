@@ -38,9 +38,11 @@ public class User {
     @Column(nullable = false)
     private Boolean banned = false;
 
+    private Boolean activated = true;
+
     @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole;
 
     @OneToMany(mappedBy = "user")
     private Set<Review> reviews;

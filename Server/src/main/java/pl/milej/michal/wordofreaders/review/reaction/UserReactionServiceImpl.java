@@ -35,7 +35,6 @@ public class UserReactionServiceImpl implements UserReactionService {
 
     @Override
     public UserReactionResponse getUserReaction(final Long reviewId, final Long userId) {
-        System.out.println("Hereee: " + reviewId + " " + userId);
         return UserReactionConverter.convertUserReactionToUserReactionResponse(
                 userReactionRepository.findByUserIdAndReviewId(userId, reviewId).orElseThrow(() -> {
             throw new ResourceNotFoundException("User reaction not found");

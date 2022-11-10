@@ -7,9 +7,18 @@ public class UserConverter {
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .role(user.getRole())
+                .userRole(user.getUserRole())
                 .profilePhotoId(user.getProfilePhoto().getId())
                 .banned(user.getBanned())
+                .activated(user.getActivated())
+                .build();
+    }
+
+    public static UserResponsePublic convertToUserResponsePublic(final User user) {
+        return UserResponsePublic.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .profilePhotoId(user.getProfilePhoto().getId())
                 .build();
     }
 }

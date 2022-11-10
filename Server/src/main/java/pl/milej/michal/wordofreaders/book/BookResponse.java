@@ -16,9 +16,8 @@ public class BookResponse {
     private Date releaseDate;
     private String description;
     private Set<Long> authorIds;
-    private Cover cover;
+    private Long coverId;
     private Set<Long> publisherIds;
     private Float userScoreAverage;
     private Integer userScoreCount;
-
 }

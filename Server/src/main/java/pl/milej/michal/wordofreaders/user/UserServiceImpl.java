@@ -2,12 +2,15 @@ package pl.milej.michal.wordofreaders.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.milej.michal.wordofreaders.exception.RequiredResourceNotInDatabaseException;
@@ -16,28 +19,35 @@ import pl.milej.michal.wordofreaders.user.profile.photo.*;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     final UserRequestValidator userRequestValidator;
     final UserRepository userRepository;
     final ProfilePhotoRepository profilePhotoRepository;
     final ProfilePhotoServiceImpl profilePhotoService;
+    final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserResponse addUser(final UserRequest userRequest, final Role role) {
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+        final User user = findUserByUsernameEqualsIgnoreCase(username);
+        return new UserPrincipal(user);
+    }
+
+    @Override
+    public UserResponse addUser(final UserRequest userRequest, final UserRole userRole) {
         userRequestValidator.validateUserRequest(userRequest);
-        final User savedUser = saveUser(userRequest, role);
+        final User savedUser = saveUser(userRequest, userRole);
         log.info(String.format("User with id %s created", savedUser.getId()));
         return UserConverter.convertToUserResponse(savedUser);
     }
 
-    private User saveUser(final UserRequest userRequest, final Role role) {
+    private User saveUser(final UserRequest userRequest, final UserRole userRole) {
         final User newUser = new User();
 
         newUser.setUsername(userRequest.getUsername());
-        newUser.setHashedPassword(DigestUtils.sha256Hex(userRequest.getPassword()));
+        newUser.setHashedPassword(passwordEncoder.encode(userRequest.getPassword()));
         newUser.setEmail(userRequest.getEmail());
-        newUser.setRole(role);
+        newUser.setUserRole(userRole);
         final ProfilePhoto defaultProfilePhoto = profilePhotoRepository.findById(1L).orElseThrow(() -> {
             throw new RequiredResourceNotInDatabaseException("Default user profile photo not saved to database");
         });
@@ -47,8 +57,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserResponse getUser(Long id) {
-        return UserConverter.convertToUserResponse(findUserById(id));
+    public UserResponse getUser(final long userId) {
+        return UserConverter.convertToUserResponse(findUserById(userId));
     }
 
     @Override
@@ -58,8 +68,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public FileSystemResource getUserProfilePhotoImage(Long id) {
-        final User user = findUserById(id);
+    public UserResponsePublic getUserPublic(final long userId) {
+        return UserConverter.convertToUserResponsePublic(findUserById(userId));
+    }
+
+    @Override
+    public FileSystemResource getUserProfilePhotoImage(final long userId) {
+        final User user = findUserById(userId);
         final ProfilePhoto photo = profilePhotoRepository.findById(user.getProfilePhoto().getId()).orElseThrow(() -> {
             throw new ResourceNotFoundException("User profile photo not found in database");
         });
@@ -67,7 +82,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserResponse updateUserProfilePhoto(final Long id, final MultipartFile profilePhotoImage) {
+    public UserResponse updateUserProfilePhoto(final long id, final MultipartFile profilePhotoImage) {
         final User existingUser = findUserById(id);
 
         final ProfilePhoto newProfilePhoto = profilePhotoService.addProfilePhoto(profilePhotoImage);
@@ -76,9 +91,23 @@ public class UserServiceImpl implements UserService{
         return UserConverter.convertToUserResponse(userRepository.save(existingUser));
     }
 
-    public User findUserById(final Long id) {
+    @Override
+    public UserResponse updateUserRole(final long userId, final UserRoleRequest userRoleRequest) {
+        final User existingUser = findUserById(userId);
+        existingUser.setUserRole(userRoleRequest.getUserRole());
+
+        return UserConverter.convertToUserResponse(userRepository.save(existingUser));
+    }
+
+    public User findUserById(final long id) {
         return userRepository.findById(id).orElseThrow(() -> {
             throw new ResourceNotFoundException("User not found");
+        });
+    }
+
+    public User findUserByUsernameEqualsIgnoreCase(final String username) {
+        return userRepository.findByUsernameEqualsIgnoreCase(username).orElseThrow(() -> {
+            throw new UsernameNotFoundException("User not found");
         });
     }
 }

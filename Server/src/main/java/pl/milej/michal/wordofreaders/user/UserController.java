@@ -20,12 +20,17 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     UserResponse addStandardUser(@RequestBody final UserRequest userRequest) {
-        return userService.addUser(userRequest, Role.STANDARD_USER);
+        return userService.addUser(userRequest, UserRole.USER);
     }
 
-    @GetMapping("/{id}")
-    UserResponse getUser(@PathVariable final long id) {
-        return userService.getUser(id);
+    @GetMapping("/{userId}")
+    UserResponse getUser(@PathVariable final long userId) {
+        return userService.getUser(userId);
+    }
+
+    @GetMapping("/{userId}/public")
+    UserResponsePublic getUserPublic(@PathVariable final long userId) {
+        return userService.getUserPublic(userId);
     }
 
     @GetMapping
@@ -33,13 +38,18 @@ public class UserController {
         return userService.getUsers(pageNumber, pageSize);
     }
 
-    @GetMapping("/{id}/profile-photo-image")
-    FileSystemResource getUserProfilePhotoImage(@PathVariable final long id) {
-        return userService.getUserProfilePhotoImage(id);
+    @GetMapping("/{userId}/profile-photo-image")
+    FileSystemResource getUserProfilePhotoImage(@PathVariable final long userId) {
+        return userService.getUserProfilePhotoImage(userId);
     }
 
-    @PatchMapping("/{id}/profile-photo")
-    UserResponse updateUserProfilePhoto(@PathVariable final long id, @RequestBody final MultipartFile newProfilePhotoImage) {
-        return userService.updateUserProfilePhoto(id, newProfilePhotoImage);
+    @PatchMapping("/{userId}/profile-photo")
+    UserResponse updateUserProfilePhoto(@PathVariable final long userId, @RequestBody final MultipartFile newProfilePhotoImage) {
+        return userService.updateUserProfilePhoto(userId, newProfilePhotoImage);
+    }
+
+    @PatchMapping("/{userId}/user-role")
+    UserResponse updateUserRole(@PathVariable final long userId, @RequestBody final UserRoleRequest userRoleRequest) {
+        return userService.updateUserRole(userId, userRoleRequest);
     }
 }

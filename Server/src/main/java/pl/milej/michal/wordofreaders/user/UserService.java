@@ -6,10 +6,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
-    UserResponse addUser(final UserRequest userRequest, final Role role);
-    UserResponse getUser(final Long id);
+    UserResponse addUser(final UserRequest userRequest, final UserRole userRole);
+    UserResponse getUser(final long id);
+    UserResponsePublic getUserPublic(final long userId);
     Page<UserResponse> getUsers(final Integer pageNumber, final Integer pageSize);
-    FileSystemResource getUserProfilePhotoImage(final Long id);
-    UserResponse updateUserProfilePhoto(final Long id, final MultipartFile profilePhotoImage);
-    User findUserById(final Long id);
+    FileSystemResource getUserProfilePhotoImage(final long id);
+    UserResponse updateUserProfilePhoto(final long id, final MultipartFile profilePhotoImage);
+    UserResponse updateUserRole(final long userId, final UserRoleRequest userRoleRequest);
+    User findUserById(final long id);
 }

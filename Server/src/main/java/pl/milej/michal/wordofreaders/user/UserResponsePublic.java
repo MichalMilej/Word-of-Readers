@@ -5,13 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserResponse {
+public class UserResponsePublic {
 
     private Long id;
     private String username;
-    private String email;
-    private UserRole userRole;
     private Long profilePhotoId;
-    private boolean banned;
-    private boolean activated;
 }

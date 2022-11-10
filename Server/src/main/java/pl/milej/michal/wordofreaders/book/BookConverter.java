@@ -26,7 +26,7 @@ public class BookConverter {
                 .releaseDate(book.getReleaseDate())
                 .description(book.getDescription())
                 .authorIds(book.getAuthors().stream().map(Author::getId).collect(Collectors.toSet()))
-                .cover(book.getCover())
+                .coverId(book.getCover().getId())
                 .publisherIds(book.getPublishers().stream().map(Publisher::getId).collect(Collectors.toSet()))
                 .userScoreAverage(book.getUserScoreAverage())
                 .userScoreCount(book.getUserScoreCount())

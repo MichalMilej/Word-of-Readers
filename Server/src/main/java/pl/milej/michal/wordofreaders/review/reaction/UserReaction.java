@@ -17,7 +17,7 @@ public class UserReaction {
     @Id
     private Long id;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Reaction reaction;
 
