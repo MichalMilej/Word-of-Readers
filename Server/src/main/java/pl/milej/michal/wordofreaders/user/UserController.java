@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
 
     final UserServiceImpl userService;
+    final UserAuthenticationService userAuthenticationService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -25,27 +26,29 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
+    @PreAuthorize("@userAuthenticationService.canPrincipalAccessUser(#userId)")
     UserResponse getUser(@PathVariable final long userId) {
         return userService.getUser(userId);
     }
 
-    @GetMapping("/{userId}/public")
+    @GetMapping("/public/user/{userId}")
     UserResponsePublic getUserPublic(@PathVariable final long userId) {
         return userService.getUserPublic(userId);
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('MOD', 'ADMIN')")
     Page<UserResponse> getUsers(@RequestParam final Integer pageNumber, @RequestParam final Integer pageSize) {
         return userService.getUsers(pageNumber, pageSize);
     }
 
-    @GetMapping("/{userId}/profile-photo-image")
+    @GetMapping("/public/user/{userId}/profile-photo-image")
     FileSystemResource getUserProfilePhotoImage(@PathVariable final long userId) {
         return userService.getUserProfilePhotoImage(userId);
     }
 
     @PatchMapping("/{userId}/profile-photo")
-    @PreAuthorize("hasAnyAuthority('USER, MOD, ADMIN')")
+    @PreAuthorize("@userAuthenticationService.canPrincipalAccessUser(#userId)")
     UserResponse updateUserProfilePhoto(@PathVariable final long userId, @RequestBody final MultipartFile newProfilePhotoImage) {
         return userService.updateUserProfilePhoto(userId, newProfilePhotoImage);
     }

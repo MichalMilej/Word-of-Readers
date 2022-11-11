@@ -16,6 +16,10 @@ public class UserPrincipal extends org.springframework.security.core.userdetails
         return user.getId();
     }
 
+    public UserRole getUserRole() {
+        return user.getUserRole();
+    }
+
     @Override
     public String getPassword() {
         return user.getHashedPassword();
