@@ -1,23 +1,19 @@
 package pl.milej.michal.wordofreaders.user;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
-public class UserPrincipal implements UserDetails {
-    final private User user;
+public class UserPrincipal extends org.springframework.security.core.userdetails.User {
+    private final User user;
 
-    public UserPrincipal(User user) {
+    public UserPrincipal(String username, String password, Collection<? extends GrantedAuthority> authorities, User user) {
+        super(username, password, authorities);
         this.user = user;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        final SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getUserRole().toString());
-        return Collections.singletonList(authority);
+    public Long getId() {
+        return user.getId();
     }
 
     @Override

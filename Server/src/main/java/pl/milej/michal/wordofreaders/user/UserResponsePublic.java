@@ -9,5 +9,6 @@ public class UserResponsePublic {
 
     private Long id;
     private String username;
+    private UserRole userRole;
     private Long profilePhotoId;
 }

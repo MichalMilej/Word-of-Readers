@@ -2,7 +2,6 @@ package pl.milej.michal.wordofreaders.book;
 
 import lombok.Builder;
 import lombok.Data;
-import pl.milej.michal.wordofreaders.book.cover.Cover;
 
 import java.sql.Date;
 import java.util.Set;

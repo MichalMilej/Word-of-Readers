@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.milej.michal.wordofreaders.book.score.UserScore;
 import pl.milej.michal.wordofreaders.review.Review;
-import pl.milej.michal.wordofreaders.review.reaction.UserReaction;
+import pl.milej.michal.wordofreaders.review.reaction.Reaction;
 import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhoto;
 
 import javax.persistence.*;
@@ -48,7 +48,7 @@ public class User {
     private Set<Review> reviews;
 
     @OneToMany(mappedBy = "user")
-    private Set<UserReaction> userReactions;
+    private Set<Reaction> reactions;
 
     @OneToMany(mappedBy = "user")
     private Set<UserScore> userScores;

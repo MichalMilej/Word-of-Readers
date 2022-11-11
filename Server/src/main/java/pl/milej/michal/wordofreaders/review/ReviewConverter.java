@@ -2,7 +2,7 @@ package pl.milej.michal.wordofreaders.review;
 
 public class ReviewConverter {
 
-    public static ReviewResponse convertReviewToReviewResponse(final Review review) {
+    public static ReviewResponse convertToReviewResponse(final Review review) {
         return ReviewResponse.builder()
                 .id(review.getId())
                 .text(review.getText())

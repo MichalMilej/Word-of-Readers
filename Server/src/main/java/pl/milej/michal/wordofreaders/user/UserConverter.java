@@ -18,6 +18,7 @@ public class UserConverter {
         return UserResponsePublic.builder()
                 .id(user.getId())
                 .username(user.getUsername())
+                .userRole(user.getUserRole())
                 .profilePhotoId(user.getProfilePhoto().getId())
                 .build();
     }

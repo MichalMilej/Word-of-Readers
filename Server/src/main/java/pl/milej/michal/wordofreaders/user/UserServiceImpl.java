@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.milej.michal.wordofreaders.exception.RequiredResourceNotInDatabaseException;
 import pl.milej.michal.wordofreaders.user.profile.photo.*;
+
+import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +33,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         final User user = findUserByUsernameEqualsIgnoreCase(username);
-        return new UserPrincipal(user);
+        final SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getUserRole().toString());
+
+        return new UserPrincipal(user.getUsername(), user.getHashedPassword(), Collections.singletonList(authority), user);
     }
 
     @Override
@@ -38,6 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRequestValidator.validateUserRequest(userRequest);
         final User savedUser = saveUser(userRequest, userRole);
         log.info(String.format("User with id %s created", savedUser.getId()));
+
         return UserConverter.convertToUserResponse(savedUser);
     }
 
@@ -97,6 +103,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingUser.setUserRole(userRoleRequest.getUserRole());
 
         return UserConverter.convertToUserResponse(userRepository.save(existingUser));
+    }
+
+    @Override
+    public UserResponse updateUserBanned(long userId, UserBannedRequest userBannedRequest) {
+        final User user = findUserById(userId);
+        user.setBanned(userBannedRequest.getBanned());
+        return UserConverter.convertToUserResponse(userRepository.save(user));
     }
 
     public User findUserById(final long id) {

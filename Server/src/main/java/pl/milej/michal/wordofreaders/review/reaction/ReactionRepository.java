@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserReactionRepository extends CrudRepository<UserReaction, Long> {
-    Optional<UserReaction> findByUserIdAndReviewId(final Long userId, final Long reviewId);
+public interface ReactionRepository extends CrudRepository<Reaction, Long> {
+    Optional<Reaction> findByReviewIdAndUserId(Long reviewId, Long userId);
 }

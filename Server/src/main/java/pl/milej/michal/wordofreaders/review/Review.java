@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.book.Book;
-import pl.milej.michal.wordofreaders.review.reaction.UserReaction;
+import pl.milej.michal.wordofreaders.review.reaction.Reaction;
 import pl.milej.michal.wordofreaders.user.User;
 
 import javax.persistence.*;
@@ -34,7 +34,7 @@ public class Review {
     private Integer dislikes = 0;
 
     @OneToMany(mappedBy = "review")
-    private Set<UserReaction> usersWhoReacted;
+    private Set<Reaction> usersWhoReacted;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)

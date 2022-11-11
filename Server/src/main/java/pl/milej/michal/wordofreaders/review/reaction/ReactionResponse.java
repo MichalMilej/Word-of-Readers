@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 @Builder
-public class UserReactionResponse {
+public class ReactionResponse {
 
     private Long id;
-    private Reaction reaction;
+    private UserReaction userReaction;
     private Long reviewId;
     private Long userId;
 }

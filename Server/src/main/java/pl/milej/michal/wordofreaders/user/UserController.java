@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,11 +45,19 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}/profile-photo")
+    @PreAuthorize("hasAnyAuthority('USER, MOD, ADMIN')")
     UserResponse updateUserProfilePhoto(@PathVariable final long userId, @RequestBody final MultipartFile newProfilePhotoImage) {
         return userService.updateUserProfilePhoto(userId, newProfilePhotoImage);
     }
 
+    @PatchMapping("/{userId}/banned")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    UserResponse updateUserBannedStatus(@PathVariable long userId, @RequestBody UserBannedRequest userBannedRequest) {
+        return userService.updateUserBanned(userId, userBannedRequest);
+    }
+
     @PatchMapping("/{userId}/user-role")
+    @PreAuthorize("hasAuthority('ADMIN')")
     UserResponse updateUserRole(@PathVariable final long userId, @RequestBody final UserRoleRequest userRoleRequest) {
         return userService.updateUserRole(userId, userRoleRequest);
     }
