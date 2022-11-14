@@ -9,6 +9,7 @@ public interface BookService {
 
     BookResponse getBook(final long id);
     Page<BookResponse> getBooks(final Integer pageNumber, final Integer pageSize);
+    Page<BookResponse> getBooksByTitle(final String title, final int pageNumber, final int pageSize);
 
     BookResponse updateBook(final long id, final BookRequest bookRequest);
     BookResponse assignAuthor(final long bookId, final long authorId);

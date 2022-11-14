@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -47,6 +48,12 @@ public class BookServiceImpl implements BookService{
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         return bookRepository.findAll(pageable).map(BookConverter::convertToBookResponse);
+    }
+
+    @Override
+    public Page<BookResponse> getBooksByTitle(String title, int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("title"));
+        return bookRepository.findByTitleContains(title, pageable).map(BookConverter::convertToBookResponse);
     }
 
     @Override

@@ -26,8 +26,14 @@ public class BookController {
     }
 
     @GetMapping
-    Page<BookResponse> getBooks(@RequestParam final Integer pageNumber, @RequestParam final Integer pageSize) {
-        return bookService.getBooks(pageNumber, pageSize);
+    Page<BookResponse> getBooks(@RequestParam(required = false) final String title,
+                                @RequestParam final Integer pageNumber,
+                                @RequestParam final Integer pageSize) {
+        if (title == null) {
+            return bookService.getBooks(pageNumber, pageSize);
+        } else {
+            return bookService.getBooksByTitle(title, pageNumber, pageSize);
+        }
     }
 
     @PatchMapping("/{bookId}")
