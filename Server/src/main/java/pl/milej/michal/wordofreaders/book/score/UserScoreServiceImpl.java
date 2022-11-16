@@ -5,6 +5,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.milej.michal.wordofreaders.book.BookResponse;
 import pl.milej.michal.wordofreaders.book.BookServiceImpl;
+import pl.milej.michal.wordofreaders.user.UserPrincipalUtils;
 import pl.milej.michal.wordofreaders.user.UserServiceImpl;
 
 import java.util.HashMap;
@@ -20,12 +21,12 @@ public class UserScoreServiceImpl implements UserScoreService {
     final UserScoreRequestValidator userScoreRequestValidator;
 
     @Override
-    public Map<String, Object> addUserScore(final UserScoreRequest userScoreRequest) {
-        userScoreRequestValidator.validateUserScoreRequest(userScoreRequest);
-        userScoreRequestValidator.validateUserScoreNotAddedYet(userScoreRequest);
+    public Map<String, Object> addUserScore(final long bookId, final UserScoreRequest userScoreRequest) {
+        final long userId = UserPrincipalUtils.getUserPrincipalId();
 
-        final long userId = userScoreRequest.getUserId();
-        final long bookId = userScoreRequest.getBookId();
+        userScoreRequestValidator.validateUserScoreRequest(userScoreRequest);
+        userScoreRequestValidator.validateBookId(bookId);
+        userScoreRequestValidator.validateUserScoreNotAddedYet(bookId, userId);
 
         UserScore newUserScore = new UserScore();
         newUserScore.setScore(userScoreRequest.getScore());

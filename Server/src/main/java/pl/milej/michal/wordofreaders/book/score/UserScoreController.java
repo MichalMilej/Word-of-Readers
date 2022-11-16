@@ -17,9 +17,9 @@ public class UserScoreController {
 
     final UserScoreServiceImpl userScoreService;
 
-    @PostMapping("/user-scores")
-    Map<String, Object> addUserScore(@RequestBody UserScoreRequest userScoreRequest) {
-        return userScoreService.addUserScore(userScoreRequest);
+    @PostMapping("/{bookId}/user-scores")
+    Map<String, Object> addUserScore(@PathVariable long bookId, @RequestBody UserScoreRequest userScoreRequest) {
+        return userScoreService.addUserScore(bookId, userScoreRequest);
     }
 
     @GetMapping("/user-scores/{userScoreId}")

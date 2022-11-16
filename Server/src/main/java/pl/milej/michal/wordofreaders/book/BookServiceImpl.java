@@ -53,7 +53,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public Page<BookResponse> getBooksByTitle(String title, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("title"));
-        return bookRepository.findByTitleContains(title, pageable).map(BookConverter::convertToBookResponse);
+        return bookRepository.findByTitleContainsIgnoreCase(title, pageable).map(BookConverter::convertToBookResponse);
     }
 
     @Override

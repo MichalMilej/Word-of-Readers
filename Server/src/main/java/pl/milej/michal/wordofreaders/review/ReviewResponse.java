@@ -1,5 +1,6 @@
 package pl.milej.michal.wordofreaders.review;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ public class ReviewResponse {
 
     private Long id;
     private String text;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date publicationDate;
     private Integer likes;
     private Integer dislikes;

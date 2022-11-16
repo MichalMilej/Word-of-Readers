@@ -25,7 +25,7 @@ public class Review {
     @Column(nullable = false)
     private String text;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "publication_date", nullable = false)
     private Date publicationDate;
 

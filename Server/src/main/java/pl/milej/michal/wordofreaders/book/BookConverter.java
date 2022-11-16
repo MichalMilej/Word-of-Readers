@@ -1,7 +1,7 @@
 package pl.milej.michal.wordofreaders.book;
 
 
-import pl.milej.michal.wordofreaders.author.Author;
+import pl.milej.michal.wordofreaders.author.AuthorConverter;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
 
 import java.util.stream.Collectors;
@@ -22,8 +22,8 @@ public class BookConverter {
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())
                 .description(book.getDescription())
-                .authorIds(book.getAuthors() != null ?
-                        book.getAuthors().stream().map(Author::getId).collect(Collectors.toSet()) : null)
+                .authorResponses(book.getAuthors() != null ? book.getAuthors().stream()
+                        .map(AuthorConverter::convertAuthorToAuthorResponse).collect(Collectors.toSet()) : null)
                 .coverId(book.getCover() != null ?
                         book.getCover().getId() : null)
                 .publisherIds(book.getPublishers() != null ?

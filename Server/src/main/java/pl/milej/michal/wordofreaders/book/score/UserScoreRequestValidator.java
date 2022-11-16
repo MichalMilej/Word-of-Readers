@@ -17,8 +17,10 @@ public class UserScoreRequestValidator {
 
     public void validateUserScoreRequest(final UserScoreRequest userScoreRequest) {
         validateScore(userScoreRequest.getScore());
-        bookService.findBookById(userScoreRequest.getBookId());
-        userService.findUserById(userScoreRequest.getUserId());
+    }
+
+    public void validateBookId(final long bookId) {
+        bookService.findBookById(bookId);
     }
 
     public void validateScore(final int score) {
@@ -26,8 +28,8 @@ public class UserScoreRequestValidator {
             throw new BadRequestException("Wrong score. Correct is from 1 to 10");
         }
     }
-    public void validateUserScoreNotAddedYet(final UserScoreRequest userScoreRequest) {
-        if (userScoreRepository.findByBookIdAndUserId(userScoreRequest.getBookId(), userScoreRequest.getUserId()).isPresent()) {
+    public void validateUserScoreNotAddedYet(final long bookId, final long userId) {
+        if (userScoreRepository.findByBookIdAndUserId(bookId, userId).isPresent()) {
             throw new LimitExceededException("User has already added the score");
         }
     }

@@ -26,7 +26,7 @@ public class Book {
     @Column(nullable = false)
     private String title;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "release_date")
     private Date releaseDate;
 
