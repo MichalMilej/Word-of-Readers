@@ -12,5 +12,6 @@ public class BookRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date releaseDate;
     private String description;
+    private Long publisherId;
     private Long coverId;
 }

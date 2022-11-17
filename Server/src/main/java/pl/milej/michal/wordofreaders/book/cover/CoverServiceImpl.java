@@ -29,4 +29,10 @@ public class CoverServiceImpl implements CoverService {
 
         return coverFileSystemRepository.getCoverImage(cover.getLocation());
     }
+
+    public Cover findCoverById(final long coverId) {
+        return coverRepository.findById(coverId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Cover not found");
+        });
+    }
 }

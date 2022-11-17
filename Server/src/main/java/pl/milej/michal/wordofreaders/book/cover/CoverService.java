@@ -7,4 +7,5 @@ public interface CoverService {
 
     CoverData addCover(final MultipartFile coverImage);
     FileSystemResource getCoverImage(final Long id);
+    Cover findCoverById(final long coverId);
 }

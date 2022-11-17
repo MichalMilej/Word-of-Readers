@@ -9,4 +9,5 @@ public interface AuthorService {
     Page<AuthorResponse> getAuthors(final Integer pageNumber, final Integer pageSize);
     AuthorResponse updateAuthor(final long id, final AuthorRequest authorRequest);
     void deleteAuthor(final long id);
+    Author findAuthorById(final long authorId);
 }

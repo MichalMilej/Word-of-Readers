@@ -21,7 +21,5 @@ public interface BookService {
     BookResponse removeAuthor(final long bookId, final long authorId);
 
     Book findBookById(final long bookId);
-    Cover findCoverById(final long coverId);
-    Author findAuthorById(final long authorId);
     void deleteBook(final long id);
 }

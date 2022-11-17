@@ -40,16 +40,12 @@ public class Book {
     )
     private Set<Author> authors;
 
-    @ManyToMany
-    @JoinTable(
-            name = "book_publisher",
-            joinColumns = @JoinColumn(name = "book_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "publisher_id", nullable = false)
-    )
-    private Set<Publisher> publishers;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
 
     @ManyToOne
-    @JoinColumn(name = "cover_id")
+    @JoinColumn(name = "cover_id", nullable = false)
     private Cover cover;
 
     @Column(name = "user_score_average")

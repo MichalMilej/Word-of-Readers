@@ -20,7 +20,7 @@ public class Publisher {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "publishers")
+    @OneToMany(mappedBy = "publisher")
     @JsonIgnore
     private Set<Book> books;
 }

@@ -9,31 +9,52 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import pl.milej.michal.wordofreaders.author.Author;
-import pl.milej.michal.wordofreaders.author.AuthorRepository;
+import pl.milej.michal.wordofreaders.author.AuthorServiceImpl;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
-import pl.milej.michal.wordofreaders.book.cover.CoverRepository;
-import pl.milej.michal.wordofreaders.exception.BadRequestException;
-import pl.milej.michal.wordofreaders.exception.BadServerRequestException;
-import pl.milej.michal.wordofreaders.exception.RelationAlreadySetException;
-import pl.milej.michal.wordofreaders.exception.RequiredVariablesNotSetException;
+import pl.milej.michal.wordofreaders.book.cover.CoverServiceImpl;
+import pl.milej.michal.wordofreaders.exception.*;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
 import pl.milej.michal.wordofreaders.publisher.PublisherServiceImpl;
+
+import java.sql.Date;
 
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService{
 
     final private BookRepository bookRepository;
-    final private CoverRepository coverRepository;
-    final private AuthorRepository authorRepository;
+    final private AuthorServiceImpl authorService;
     final private PublisherServiceImpl publisherService;
+    final private CoverServiceImpl coverService;
 
     @Override
     public BookResponse addBook(BookRequest bookRequest) {
-        if (!StringUtils.hasText(bookRequest.getTitle()) || bookRequest.getReleaseDate() == null) {
+        final String title = bookRequest.getTitle();
+        final Date releaseDate = bookRequest.getReleaseDate();
+
+        if (!StringUtils.hasText(title) || bookRequest.getReleaseDate() == null) {
             throw new RequiredVariablesNotSetException("Variable title or releaseDate has not been set");
         }
-        final Book savedBook = bookRepository.save(BookConverter.convertBookRequestToBook(bookRequest));
+        if (bookRepository.findByTitleContainsIgnoreCaseAndReleaseDateEquals(title, releaseDate).isPresent()) {
+            throw new LimitExceededException("There is a book with this name and release date in database");
+        }
+
+        final Book book = new Book();
+        book.setTitle(title);
+        book.setDescription(bookRequest.getDescription());
+        book.setReleaseDate(releaseDate);
+        if (bookRequest.getPublisherId() != null) {
+            final Publisher publisher = publisherService.findPublisherById(bookRequest.getPublisherId());
+            book.setPublisher(publisher);
+        }
+        final Cover cover;
+        if (bookRequest.getCoverId() != null) {
+            cover = coverService.findCoverById(bookRequest.getCoverId());
+        } else {
+            cover = coverService.findCoverById(1);
+        }
+        book.setCover(cover);
+        final Book savedBook = bookRepository.save(book);
 
         return BookConverter.convertToBookResponse(savedBook);
     }
@@ -76,7 +97,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookResponse assignAuthor(long bookId, long authorId) {
         final Book book = findBookById(bookId);
-        final Author author = findAuthorById(authorId);
+        final Author author = authorService.findAuthorById(authorId);
 
         if (book.getAuthors().contains(author)) {
             throw new RelationAlreadySetException("This author has already been assigned to this book");
@@ -89,7 +110,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookResponse assignCover(final long bookId, final long coverId) {
         final Book book = findBookById(bookId);
-        final Cover cover = findCoverById(coverId);
+        final Cover cover = coverService.findCoverById(coverId);
 
         book.setCover(cover);
 
@@ -101,11 +122,8 @@ public class BookServiceImpl implements BookService{
         final Book book = findBookById(bookId);
         final Publisher publisher = publisherService.findPublisherById(publisherId);
 
-        if (book.getPublishers().contains(publisher)) {
-            throw new RelationAlreadySetException("This publisher has already been assigned to this book");
-        }
+        book.setPublisher(publisher);
 
-        book.getPublishers().add(publisher);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
@@ -132,7 +150,7 @@ public class BookServiceImpl implements BookService{
     @Override
     public BookResponse removeAuthor(long bookId, long authorId) {
         final Book book = findBookById(bookId);
-        final Author author = findAuthorById(authorId);
+        final Author author = authorService.findAuthorById(authorId);
 
         book.getAuthors().remove(author);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
@@ -146,18 +164,6 @@ public class BookServiceImpl implements BookService{
     public Book findBookById(final long bookId) {
         return bookRepository.findById(bookId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
-        });
-    }
-
-    public Cover findCoverById(final long coverId) {
-        return coverRepository.findById(coverId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Cover not found");
-        });
-    }
-
-    public Author findAuthorById(final long authorId) {
-        return authorRepository.findById(authorId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Author not found");
         });
     }
 }
