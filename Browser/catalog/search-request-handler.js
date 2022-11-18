@@ -15,15 +15,18 @@ async function getBooksByTitle() {
 function displayBooksInTable(jsonData, table) {
     // Display table headers
     let headersTr = document.createElement('tr');
-    let titleTd = document.createElement('th');
-    titleTd.appendChild(document.createTextNode("Title"));
-    let releaseDateTd = document.createElement('th');
-    releaseDateTd.appendChild(document.createTextNode("Release date"));
-    let userScoreAverageTd = document.createElement('th');
-    userScoreAverageTd.appendChild(document.createTextNode("User score average"));
-    headersTr.appendChild(titleTd);
-    headersTr.appendChild(releaseDateTd);
-    headersTr.appendChild(userScoreAverageTd);
+    let titleTh = document.createElement('th');
+    titleTh.appendChild(document.createTextNode("Title"));
+    let releaseDateTh = document.createElement('th');
+    releaseDateTh.appendChild(document.createTextNode("Release date"));
+    let publisherTh = document.createElement('th');
+    publisherTh.appendChild(document.createTextNode("Publisher"));
+    let authorTh = document.createElement('th');
+    authorTh.appendChild(document.createTextNode("Author"));
+    headersTr.appendChild(titleTh);
+    headersTr.appendChild(releaseDateTh);
+    headersTr.appendChild(publisherTh);
+    headersTr.appendChild(authorTh);
     table.appendChild(headersTr);
 
     // Display table content
@@ -32,20 +35,40 @@ function displayBooksInTable(jsonData, table) {
         let bookTr = document.createElement('tr');
         let titleTd = document.createElement('td');
         let releaseDateTd = document.createElement('td');
-        let userScoreAverageTd = document.createElement('td');
+        let publisherTd = document.createElement('td');
+        let authorTd = document.createElement('td');
 
-        //bookTr.setAttribute("onclick", `window.open("../about-book/about-book.html")`);
+        let bookId = jsonData.content[i].id;
+        bookTr.setAttribute("onclick", `window.location.href="../about-book/about-book.html?bookId=${bookId}"`);
+        bookTr.setAttribute("class", "bookRow");
+        //bookTr.setAttribute()
+        // setting title
         titleTd.appendChild(document.createTextNode(jsonData.content[i].title));
+        // setting release date
         releaseDateTd.appendChild(document.createTextNode(jsonData.content[i].releaseDate));
-        let userScoreAverage = jsonData.content[i].userScoreAverage;
-        if (userScoreAverage == null) {
-            userScoreAverage = "No user scores";
+        // setting publisher
+        if (jsonData.content[i].publisherResponse == null) {
+            publisherTd.appendChild(document.createTextNode(""));
+        } else {
+            publisherTd.appendChild(document.createTextNode(jsonData.content[i].publisherResponse.name));
         }
-        userScoreAverageTd.appendChild(document.createTextNode(userScoreAverage));
+        // setting authors last names
+        let authorsLastNames = "";
+        if (jsonData.content[i].authorResponses != null) {
+            let j = 0;
+            for (author in jsonData.content[i].authorResponses) {
+                if (j != 0) {
+                    authorsLastNames += ", ";
+                }
+                authorsLastNames += jsonData.content[i].authorResponses[j++].lastName;
+            }
+        }
+        authorTd.appendChild(document.createTextNode(authorsLastNames));
 
         bookTr.appendChild(titleTd);
         bookTr.appendChild(releaseDateTd);
-        bookTr.appendChild(userScoreAverageTd);
+        bookTr.appendChild(publisherTd);
+        bookTr.appendChild(authorTd);
 
         table.appendChild(bookTr);
         i++;

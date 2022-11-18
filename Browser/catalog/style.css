@@ -11,10 +11,14 @@ input {
     margin-bottom: 2em;
     font-style: italic;
 }
-.center {
+table {
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
-table {
-    width: 50%;
+.bookRow {
+    cursor: pointer;
+}
+.bookRow:hover {
+    background-color: bisque;
 }
