@@ -22,7 +22,7 @@ public class CoverController {
         return coverService.addCover(coverImage);
     }
 
-    @GetMapping(value = "/{coverId}/image")
+    @GetMapping("/{coverId}/image")
     FileSystemResource getCoverImage(@PathVariable final long coverId) {
         return coverService.getCoverImage(coverId);
     }

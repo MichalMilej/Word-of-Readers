@@ -14,7 +14,7 @@ public interface BookService {
     BookResponse updateBook(final long id, final BookRequest bookRequest);
     BookResponse assignAuthor(final long bookId, final long authorId);
     BookResponse assignCover(final long bookId, final long coverId);
-    BookResponse assignPublisher(final long bookId, final long publisherId);
+    BookResponse updatePublisher(final long bookId, final long publisherId);
     BookResponse updateUserScoreAverage(final long bookId, final float userScoreAverage);
     BookResponse updateUserScoreCount(final long bookId, final int userScoreCount);
 

@@ -75,8 +75,8 @@
             <column name="publisher_id" type="bigint">
                 <constraints foreignKeyName="fK_publisher" references="publisher(id)"/>
             </column>
-            <column name="cover_id" type="bigint">
-                <constraints foreignKeyName="fk_book_cover" references="cover(id)"/>
+            <column name="cover_id" type="bigint" defaultValue="1">
+                <constraints nullable="false" foreignKeyName="fk_book_cover" references="cover(id)"/>
             </column>
             <column name="user_score_average" type="float"/>
             <column name="user_score_count" type="int" defaultValue="0">
@@ -268,26 +268,24 @@
         <insert tableName="cover">
             <column name="id">1</column>
             <column name="name">default cover</column>
-            <column name="location" value="${filesystem.path.default.default.book.cover}"/>
+            <column name="location" value="${filesystem.path.default.book.cover}"/>
         </insert>
     </changeSet>
 
     <changeSet id="16" author="Michał Milej">
         <insert tableName="book">
-            <column name="id">1</column>
+            <column name="id" value="1"/>
             <column name="title">Hobbit, czyli tam i z powrotem</column>
             <column name="release_date">2021-01-01</column>
             <column name="description">„Hobbit, czyli Tam i z powrotem” to pasjonująca powieść fantastyczno-przygodowa, opowiadająca o wydarzeniach, które stają się udziałem tytułowego bohatera – Bilba Bagginsa. Hobbit ten wiedzie spokojne życie w swojej norce do dnia, w którym los stawia na jego drodze czarodzieja Gandalfa i dwunastu krasnoludów. Ich kompania zamierza wyruszyć w podróż w celu odzyskania skarbów należących do przodków Thorina Dębowej Tarczy, a bezprawnie zagarniętych przez smoka Smauga. Przedtem jednak krasnoludy muszą znaleźć „włamywacza”, czyli osobę, która zmierzy się z bestią i owe skarby odzyska. Początkowo niechętny przygodom, Bilbo decyduje się jednak na dołączenie do wyprawy, nie podejrzewając, że ta jedna decyzja odmieni jego życie…</column>
             <column name="publisher_id">6</column>
-            <column name="cover_id">1</column>
         </insert>
         <insert tableName="book">
-            <column name="id">2</column>
+            <column name="id" value="2"/>
             <column name="title">Java. Efektywne programowanie</column>
             <column name="release_date">2022-11-08</column>
             <column name="description">Ta książka jest kolejnym, trzecim wydaniem klasycznego podręcznika programowania w Javie. Poszczególne rozdziały zostały gruntownie przejrzane, zaktualizowane i wzbogacone o sporo ważnych treści. Znalazło się tu wiele wartościowych porad dotyczących organizowania kodu w taki sposób, aby stał się przejrzysty, co ułatwi przyszłe modyfikacje i usprawnienia. Poza takimi zagadnieniami, jak programowanie zorientowane obiektowo czy korzystanie z różnych typów, obszernie omówiono stosowanie lambd i strumieni, zasady obsługi wyjątków, korzystania ze współbieżności i serializacji. Książka składa się z dziewięćdziesięciu tematów pogrupowanych w dwanaście rozdziałów. Taki układ pozwala na szybkie odnalezienie potrzebnego rozwiązania.</column>
             <column name="publisher_id">5</column>
-            <column name="cover_id">1</column>
         </insert>
     </changeSet>
 

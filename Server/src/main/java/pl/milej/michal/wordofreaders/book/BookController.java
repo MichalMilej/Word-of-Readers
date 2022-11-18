@@ -47,8 +47,8 @@ public class BookController {
     }
 
     @PatchMapping("/{bookId}/publisher/{publisherId}")
-    BookResponse assignPublisher(@PathVariable final long bookId, @PathVariable final long publisherId) {
-        return bookService.assignPublisher(bookId, publisherId);
+    BookResponse updatePublisher(@PathVariable final long bookId, @PathVariable final long publisherId) {
+        return bookService.updatePublisher(bookId, publisherId);
     }
 
     @DeleteMapping("/{bookId}/authors/{authorId}")

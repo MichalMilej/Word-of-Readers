@@ -118,7 +118,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookResponse assignPublisher(long bookId, long publisherId) {
+    public BookResponse updatePublisher(long bookId, long publisherId) {
         final Book book = findBookById(bookId);
         final Publisher publisher = publisherService.findPublisherById(publisherId);
 
