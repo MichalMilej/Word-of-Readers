@@ -2,12 +2,11 @@ package pl.milej.michal.wordofreaders.book.cover;
 
 public class CoverConverter {
 
-    public static CoverData convertCover(final Cover cover) {
-        return new CoverData.CoverDataBuilder()
+    public static CoverResponse convertToCoverResponse(final Cover cover) {
+        return new CoverResponse.CoverResponseBuilder()
                 .id(cover.getId())
-                .coverName(cover.getName())
+                .name(cover.getName())
                 .location(cover.getLocation())
-                .books(cover.getBooks())
                 .build();
     }
 }

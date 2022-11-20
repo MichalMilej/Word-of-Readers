@@ -1,7 +1,6 @@
 package pl.milej.michal.wordofreaders.book.cover;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +17,12 @@ public class CoverController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    CoverData addCover(@RequestBody final MultipartFile coverImage) {
+    CoverResponse addCover(@RequestBody final MultipartFile coverImage) {
         return coverService.addCover(coverImage);
     }
 
-    @GetMapping("/{coverId}/image")
-    FileSystemResource getCoverImage(@PathVariable final long coverId) {
-        return coverService.getCoverImage(coverId);
+    @GetMapping(value = "/{coverId}")
+    CoverResponse getCover(@PathVariable final long coverId) {
+        return coverService.getCover(coverId);
     }
 }

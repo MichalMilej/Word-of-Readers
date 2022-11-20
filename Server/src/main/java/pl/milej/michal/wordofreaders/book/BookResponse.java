@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 import pl.milej.michal.wordofreaders.author.AuthorResponse;
+import pl.milej.michal.wordofreaders.book.cover.CoverResponse;
 import pl.milej.michal.wordofreaders.publisher.PublisherResponse;
 
 import java.sql.Date;
@@ -19,7 +20,7 @@ public class BookResponse {
     private Date releaseDate;
     private String description;
     private Set<AuthorResponse> authorResponses;
-    private Long coverId;
+    private CoverResponse coverResponse;
     private PublisherResponse publisherResponse;
     private Float userScoreAverage;
     private Integer userScoreCount;

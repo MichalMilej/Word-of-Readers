@@ -14,20 +14,17 @@ public class CoverServiceImpl implements CoverService {
     final CoverRepository coverRepository;
 
     @Override
-    public CoverData addCover(final MultipartFile coverImage) {
+    public CoverResponse addCover(final MultipartFile coverImage) {
         final String location = coverFileSystemRepository.saveCoverImage(coverImage);
         final Cover cover = new Cover(coverImage.getOriginalFilename(), location);
 
-        return CoverConverter.convertCover(coverRepository.save(cover));
+        return CoverConverter.convertToCoverResponse(coverRepository.save(cover));
     }
 
     @Override
-    public FileSystemResource getCoverImage(final Long id) {
-        final Cover cover = coverRepository.findById(id).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Cover not found");
-        });
-
-        return coverFileSystemRepository.getCoverImage(cover.getLocation());
+    public CoverResponse getCover(final Long coverId) {
+        final Cover cover = findCoverById(coverId);
+        return CoverConverter.convertToCoverResponse(cover);
     }
 
     public Cover findCoverById(final long coverId) {
