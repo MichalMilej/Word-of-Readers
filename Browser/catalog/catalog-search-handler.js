@@ -7,8 +7,8 @@ async function getBooksByTitle() {
         const jsonData = await response.json();
         displayBooksInTable(jsonData, resultTable);
     } catch(err) {
-        resultTable.appendChild(document.createTextNode("There was a problem with retrieving and displaying data from server."));
-        console.error("There was a problem with retrieving and displaying data from server.");
+        resultTable.appendChild(document.createTextNode("There was a problem with retrieving and displaying books data from server."));
+        console.error("There was a problem with retrieving and displaying books data from server.");
     }
 }
 
@@ -21,12 +21,12 @@ function displayBooksInTable(jsonData, table) {
     releaseDateTh.appendChild(document.createTextNode("Release date"));
     let publisherTh = document.createElement('th');
     publisherTh.appendChild(document.createTextNode("Publisher"));
-    let authorTh = document.createElement('th');
-    authorTh.appendChild(document.createTextNode("Author"));
+    let authorsTh = document.createElement('th');
+    authorsTh.appendChild(document.createTextNode("Authors"));
     headersTr.appendChild(titleTh);
     headersTr.appendChild(releaseDateTh);
     headersTr.appendChild(publisherTh);
-    headersTr.appendChild(authorTh);
+    headersTr.appendChild(authorsTh);
     table.appendChild(headersTr);
 
     // Display table content
@@ -36,12 +36,11 @@ function displayBooksInTable(jsonData, table) {
         let titleTd = document.createElement('td');
         let releaseDateTd = document.createElement('td');
         let publisherTd = document.createElement('td');
-        let authorTd = document.createElement('td');
+        let authorsTd = document.createElement('td');
 
         let bookId = jsonData.content[i].id;
         bookTr.setAttribute("onclick", `window.location.href="../about-book/about-book.html?bookId=${bookId}"`);
         bookTr.setAttribute("class", "bookRow");
-        //bookTr.setAttribute()
         // setting title
         titleTd.appendChild(document.createTextNode(jsonData.content[i].title));
         // setting release date
@@ -63,12 +62,12 @@ function displayBooksInTable(jsonData, table) {
                 authorsLastNames += jsonData.content[i].authorResponses[j++].lastName;
             }
         }
-        authorTd.appendChild(document.createTextNode(authorsLastNames));
+        authorsTd.appendChild(document.createTextNode(authorsLastNames));
 
         bookTr.appendChild(titleTd);
         bookTr.appendChild(releaseDateTd);
         bookTr.appendChild(publisherTd);
-        bookTr.appendChild(authorTd);
+        bookTr.appendChild(authorsTd);
 
         table.appendChild(bookTr);
         i++;

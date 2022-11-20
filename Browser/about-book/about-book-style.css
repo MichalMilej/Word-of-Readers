@@ -1,0 +1,30 @@
+body {
+    font-size: 1.1em;
+}
+table {
+    border-collapse: separate;
+    border: 0.3em solid rgb(0, 0, 0);
+    border-spacing: 1em;
+    border-radius: 1em;
+    width: 30%;
+}
+#coverImg {
+    width: 16em;
+    height: 22em;
+    margin-right: 1em;
+    float: left;
+    border: solid rgb(255, 255, 255);
+    border-radius: 1em;
+}
+#authorsTd {
+    white-space: pre;
+}
+.headerTd {
+    width: 30%;
+}
+#userScoresTable {
+    margin-top: 1em;
+}
+#generalInfoSection {
+    overflow: auto;
+}
