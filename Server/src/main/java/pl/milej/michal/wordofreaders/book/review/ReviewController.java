@@ -17,10 +17,10 @@ public class ReviewController {
     final ReviewServiceImpl reviewService;
     final ReviewAuthenticationService reviewAuthenticationService;
 
-    @PostMapping("/reviews")
+    @PostMapping("/{bookId}/reviews")
     @ResponseStatus(HttpStatus.CREATED)
-    ReviewResponse addReview(@RequestBody final ReviewRequest reviewRequest) {
-        return reviewService.addReview(reviewRequest);
+    ReviewResponse addReview(@PathVariable final long bookId, @RequestBody final ReviewRequest reviewRequest) {
+        return reviewService.addReview(bookId, reviewRequest);
     }
 
     @GetMapping("/{bookId}/reviews")

@@ -26,8 +26,8 @@ public class ReviewServiceImpl implements ReviewService {
     final private ReviewRepository reviewRepository;
 
     @Override
-    public ReviewResponse addReview(ReviewRequest reviewRequest) {
-        reviewRequestValidator.validateReview(reviewRequest);
+    public ReviewResponse addReview(final long bookId, ReviewRequest reviewRequest) {
+        reviewRequestValidator.validateReviewText(reviewRequest.getText());
 
         long userId = UserPrincipalUtils.getUserPrincipalId();
 
@@ -36,7 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
         newReview.setUser(userRepository.findById(userId).orElseThrow(() -> {
             throw new ResourceNotFoundException("User not found");
         }));
-        newReview.setBook(bookRepository.findById(reviewRequest.getBookId()).orElseThrow(() -> {
+        newReview.setBook(bookRepository.findById(bookId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
         }));
         newReview.setPublicationDate(new Date(System.currentTimeMillis()));
@@ -83,7 +83,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ReviewResponse editReview(final long reviewId, final ReviewRequest reviewRequest) {
-        reviewRequestValidator.validateReviewText(reviewRequest);
+        reviewRequestValidator.validateReviewText(reviewRequest.getText());
         final Review review = findReviewById(reviewId);
         review.setText(reviewRequest.getText());
         return ReviewConverter.convertToReviewResponse(reviewRepository.saveAndFlush(review));

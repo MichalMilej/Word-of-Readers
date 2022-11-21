@@ -11,5 +11,4 @@ public class ReviewRequest {
 
     @NotNull
     private String text;
-    private Long bookId;
 }
