@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.milej.michal.wordofreaders.book.score.UserScore;
-import pl.milej.michal.wordofreaders.review.Review;
-import pl.milej.michal.wordofreaders.review.reaction.Reaction;
+import pl.milej.michal.wordofreaders.book.review.Review;
+import pl.milej.michal.wordofreaders.book.review.reaction.Reaction;
 import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhoto;
 
 import javax.persistence.*;

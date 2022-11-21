@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.review;
+package pl.milej.michal.wordofreaders.book.review;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

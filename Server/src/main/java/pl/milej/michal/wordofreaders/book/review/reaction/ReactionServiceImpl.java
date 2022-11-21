@@ -1,10 +1,12 @@
-package pl.milej.michal.wordofreaders.review.reaction;
+package pl.milej.michal.wordofreaders.book.review.reaction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.milej.michal.wordofreaders.book.review.Review;
+import pl.milej.michal.wordofreaders.book.review.ReviewResponse;
+import pl.milej.michal.wordofreaders.book.review.ReviewServiceImpl;
 import pl.milej.michal.wordofreaders.exception.BadRequestException;
-import pl.milej.michal.wordofreaders.review.*;
 import pl.milej.michal.wordofreaders.user.UserPrincipalUtils;
 import pl.milej.michal.wordofreaders.user.UserServiceImpl;
 

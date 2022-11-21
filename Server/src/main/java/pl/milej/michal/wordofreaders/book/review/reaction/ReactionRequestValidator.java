@@ -1,9 +1,9 @@
-package pl.milej.michal.wordofreaders.review.reaction;
+package pl.milej.michal.wordofreaders.book.review.reaction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.milej.michal.wordofreaders.book.review.ReviewServiceImpl;
 import pl.milej.michal.wordofreaders.exception.LimitExceededException;
-import pl.milej.michal.wordofreaders.review.ReviewServiceImpl;
 
 @Component
 @RequiredArgsConstructor

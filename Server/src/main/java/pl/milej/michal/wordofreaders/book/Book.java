@@ -8,7 +8,7 @@ import pl.milej.michal.wordofreaders.author.Author;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.book.score.UserScore;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
-import pl.milej.michal.wordofreaders.review.Review;
+import pl.milej.michal.wordofreaders.book.review.Review;
 
 import javax.persistence.*;
 import java.sql.Date;

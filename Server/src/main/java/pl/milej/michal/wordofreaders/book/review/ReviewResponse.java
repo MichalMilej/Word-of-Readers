@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.review;
+package pl.milej.michal.wordofreaders.book.review;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

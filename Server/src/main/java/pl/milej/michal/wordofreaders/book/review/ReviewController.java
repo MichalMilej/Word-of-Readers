@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.review;
+package pl.milej.michal.wordofreaders.book.review;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/books")
 @RequiredArgsConstructor
 @ResponseStatus(HttpStatus.OK)
 @Transactional
@@ -17,13 +17,13 @@ public class ReviewController {
     final ReviewServiceImpl reviewService;
     final ReviewAuthenticationService reviewAuthenticationService;
 
-    @PostMapping
+    @PostMapping("/reviews")
     @ResponseStatus(HttpStatus.CREATED)
     ReviewResponse addReview(@RequestBody final ReviewRequest reviewRequest) {
         return reviewService.addReview(reviewRequest);
     }
 
-    @GetMapping("/book/{bookId}")
+    @GetMapping("/{bookId}/reviews")
     @Transactional(readOnly = true)
     Page<ReviewResponse> getReviewsByBookId(@PathVariable final Long bookId,
                                     @RequestParam final Integer pageNumber,
@@ -31,18 +31,18 @@ public class ReviewController {
         return reviewService.getReviewsByBookId(bookId, pageNumber, pageSize);
     }
 
-    @GetMapping("/{reviewId}")
+    @GetMapping("/reviews/{reviewId}")
     ReviewResponse getReview(@PathVariable final Long reviewId) {
         return reviewService.getReview(reviewId);
     }
 
-    @PatchMapping ("/{reviewId}")
+    @PatchMapping ("/reviews/{reviewId}")
     @PreAuthorize("@reviewAuthenticationService.isUserIdInReviewEqualsPrincipalId(#reviewId, principal.id)")
     ReviewResponse editReview(@PathVariable final long reviewId, @RequestBody final ReviewRequest reviewRequest) {
         return reviewService.editReview(reviewId, reviewRequest);
     }
 
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("/reviews/{reviewId}")
     @PreAuthorize("@reviewAuthenticationService.isUserIdInReviewEqualsPrincipalId(#reviewId, principal.id)")
     void deleteReview(@PathVariable final Long reviewId) {
         reviewService.deleteReview(reviewId);

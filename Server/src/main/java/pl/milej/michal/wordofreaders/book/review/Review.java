@@ -1,11 +1,11 @@
-package pl.milej.michal.wordofreaders.review;
+package pl.milej.michal.wordofreaders.book.review;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.book.Book;
-import pl.milej.michal.wordofreaders.review.reaction.Reaction;
+import pl.milej.michal.wordofreaders.book.review.reaction.Reaction;
 import pl.milej.michal.wordofreaders.user.User;
 
 import javax.persistence.*;

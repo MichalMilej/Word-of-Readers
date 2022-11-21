@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.review.reaction;
+package pl.milej.michal.wordofreaders.book.review.reaction;
 
 
 public class ReactionConverter {

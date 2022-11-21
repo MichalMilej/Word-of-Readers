@@ -1,8 +1,8 @@
-package pl.milej.michal.wordofreaders.review.reaction;
+package pl.milej.michal.wordofreaders.book.review.reaction;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.milej.michal.wordofreaders.review.Review;
+import pl.milej.michal.wordofreaders.book.review.Review;
 import pl.milej.michal.wordofreaders.user.User;
 
 import javax.persistence.*;

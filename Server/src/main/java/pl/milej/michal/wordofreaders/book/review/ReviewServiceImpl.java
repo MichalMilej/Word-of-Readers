@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.review;
+package pl.milej.michal.wordofreaders.book.review;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,8 +9,8 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.milej.michal.wordofreaders.book.Book;
 import pl.milej.michal.wordofreaders.book.BookRepository;
+import pl.milej.michal.wordofreaders.book.review.reaction.UserReaction;
 import pl.milej.michal.wordofreaders.exception.BadServerRequestException;
-import pl.milej.michal.wordofreaders.review.reaction.*;
 import pl.milej.michal.wordofreaders.user.UserRepository;
 import pl.milej.michal.wordofreaders.user.UserPrincipalUtils;
 

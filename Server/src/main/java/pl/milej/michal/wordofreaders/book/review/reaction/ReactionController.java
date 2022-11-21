@@ -1,16 +1,16 @@
-package pl.milej.michal.wordofreaders.review.reaction;
+package pl.milej.michal.wordofreaders.book.review.reaction;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import pl.milej.michal.wordofreaders.review.ReviewServiceImpl;
+import pl.milej.michal.wordofreaders.book.review.ReviewServiceImpl;
 
 import java.util.Map;
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/books/reviews")
 @RequiredArgsConstructor
 @ResponseStatus(HttpStatus.OK)
 @Transactional

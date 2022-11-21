@@ -1,10 +1,10 @@
 package pl.milej.michal.wordofreaders.user;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
-@Builder
 public class UserRequest {
 
     private String username;

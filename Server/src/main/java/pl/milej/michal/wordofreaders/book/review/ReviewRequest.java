@@ -1,12 +1,12 @@
-package pl.milej.michal.wordofreaders.review;
+package pl.milej.michal.wordofreaders.book.review;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class ReviewRequest {
 
     @NotNull

@@ -1,4 +1,4 @@
-package pl.milej.michal.wordofreaders.review.reaction;
+package pl.milej.michal.wordofreaders.book.review.reaction;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
