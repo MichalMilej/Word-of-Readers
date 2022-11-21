@@ -3,6 +3,7 @@ package pl.milej.michal.wordofreaders.book.review;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
+import pl.milej.michal.wordofreaders.user.UserResponsePublic;
 
 import java.sql.Date;
 
@@ -17,5 +18,5 @@ public class ReviewResponse {
     private Integer likes;
     private Integer dislikes;
     private Long bookId;
-    private Long userId;
+    private UserResponsePublic userResponsePublic;
 }

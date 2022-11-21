@@ -1,5 +1,7 @@
 package pl.milej.michal.wordofreaders.user;
 
+import pl.milej.michal.wordofreaders.user.profile.photo.ProfilePhotoConverter;
+
 public class UserConverter {
 
     public static UserResponse convertToUserResponse(final User user) {
@@ -8,7 +10,7 @@ public class UserConverter {
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .userRole(user.getUserRole())
-                .profilePhotoId(user.getProfilePhoto().getId())
+                .profilePhotoResponse(ProfilePhotoConverter.convertToProfilePhotoResponse(user.getProfilePhoto()))
                 .banned(user.getBanned())
                 .activated(user.getActivated())
                 .build();
@@ -19,7 +21,7 @@ public class UserConverter {
                 .id(user.getId())
                 .username(user.getUsername())
                 .userRole(user.getUserRole())
-                .profilePhotoId(user.getProfilePhoto().getId())
+                .profilePhotoResponse(ProfilePhotoConverter.convertToProfilePhotoResponse(user.getProfilePhoto()))
                 .build();
     }
 }
