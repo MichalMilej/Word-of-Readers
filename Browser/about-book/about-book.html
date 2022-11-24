@@ -3,14 +3,13 @@
     <head>
         <title>about book</title>
 
-        <script src="book-info-displayer.js"></script>
         <link rel="stylesheet" href="../main-style.css">
         <link rel="stylesheet" href="about-book-style.css">
     </head>
     <body>
         <div id="generalInfoSection">
             <img id="coverImg">
-            <table id="bookInfoTable">
+            <table class="bookInfoTable">
                 <tr>
                     <td class="headerTd">Title:</td>
                     <td id="titleTd"></td>
@@ -28,7 +27,7 @@
                     <td id="releaseDateTd"></td>
                 </tr>
             </table>
-            <table id="userScoresTable">
+            <table id="userScoresTable" class="bookInfoTable">
                 <tr>
                     <td class="headerTd">Average of readers scores:</td>
                     <td id="userScoreAverageTd"></td>
@@ -39,10 +38,18 @@
                 </tr>
             </table>
         </div>
-        <div>
-            <h4>Description</h4>
-            <p id="descriptionP"></p>
-            <h4>Readers reviews</h4>
+
+        <h4>Description</h4>
+        <p id="descriptionP"></p>
+
+        <h4>Opinions</h4>
+        <div id="opinionsArea"></div>
+        <div id="opinionsControlArea">
+            <input id="previousPageBtn" class="controlBtn" type="button" value="previous page" onclick="loadPreviousOpinions()">
+            <input id="nextPageBtn" class="controlBtn" type="button" value="next page" onclick="loadNextOpinions()">
         </div>
+
+        <script src="book-info-displayer.js"></script>
+        <script src="opinion-displayer.js"></script>
     </body>
 </html>

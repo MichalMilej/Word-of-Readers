@@ -1,21 +1,22 @@
 let url = window.location.href;
 const urlParams = new URLSearchParams(url.split("?")[1]);
+var bookId = null;
 if (urlParams.has("bookId")) {
-    let bookId = urlParams.get("bookId");
+    bookId = urlParams.get("bookId");
     loadAndDisplayBookData(bookId);
 }
 
 async function loadAndDisplayBookData(bookId) {
     try {
         const response = await fetch(`http://localhost:8080/books/${bookId}`);
-        const jsonData = await response.json();
-        displayBookData(jsonData);
+        const json = await response.json();
+        displayBookData(json);
     } catch(err) {
         console.error("There was a problem with retrieving and displaying book data from server.")
     }
 }
 
-function displayBookData(jsonData) {
+function displayBookData(json) {
     let coverImg = document.getElementById("coverImg");
     let titleTd = document.getElementById("titleTd");
     let authorsTd = document.getElementById("authorsTd");
@@ -25,35 +26,36 @@ function displayBookData(jsonData) {
     let userScoreCountTd = document.getElementById("userScoreCountTd");
     let descriptionP = document.getElementById("descriptionP");
 
-    if (jsonData.coverResponse != null) {
-        coverImg.src = jsonData.coverResponse.location;
+    if (json.coverResponse != null) {
+        coverImg.src = json.coverResponse.location;
     }
-    titleTd.appendChild(document.createTextNode(jsonData.title));
-    setAuthorsTd(authorsTd, jsonData);
-    if (jsonData.publisherResponse != null) {
-        publisherTd.appendChild(document.createTextNode(jsonData.publisherResponse.name));
+    titleTd.appendChild(document.createTextNode(json.title));
+    setAuthorsTd(authorsTd, json);
+    if (json.publisherResponse != null) {
+        publisherTd.appendChild(document.createTextNode(json.publisherResponse.name));
     }
-    releaseDateTd.appendChild(document.createTextNode(jsonData.releaseDate));
-    if (jsonData.userScoreAverage != null) {
-        userScoreAverageTd.appendChild(document.createTextNode(jsonData.userScoreAverage))
+    releaseDateTd.appendChild(document.createTextNode(json.releaseDate));
+    if (json.userScoreAverage != null) {
+        userScoreAverageTd.appendChild(document.createTextNode(json.userScoreAverage))
     }
-    if (jsonData.userScoreCount != null) {
-        userScoreCountTd.appendChild(document.createTextNode(jsonData.userScoreCount + " readers"))
+    if (json.userScoreCount != null) {
+        let readers = json.userScoreCount == 1 ? "reader" : "readers";
+        userScoreCountTd.appendChild(document.createTextNode(json.userScoreCount + " " + readers));
     }
-    descriptionP.appendChild(document.createTextNode(jsonData.description));
+    descriptionP.appendChild(document.createTextNode(json.description));
 }
 
-function setAuthorsTd(authorsTd, jsonData) {
-    let i = 0;
-    for (author in jsonData.authorResponses) {
-        if (i != 0) {
+function setAuthorsTd(authorsTd, json) {
+    let authorIndex = 0;
+    for (author in json.authorResponses) {
+        if (authorIndex != 0) {
             authorsTd.appendChild(document.createTextNode(",\n"));
         }
-        authorsTd.appendChild(document.createTextNode(jsonData.authorResponses[i].firstName + " "));
-        if (jsonData.authorResponses[i].secondName != null) {
-            authorsTd.appendChild(document.createTextNode(jsonData.authorResponses[i].secondName + " "));
+        authorsTd.appendChild(document.createTextNode(json.authorResponses[authorIndex].firstName + " "));
+        if (json.authorResponses[authorIndex].secondName != null) {
+            authorsTd.appendChild(document.createTextNode(json.authorResponses[authorIndex].secondName + " "));
         }
-        authorsTd.appendChild(document.createTextNode(jsonData.authorResponses[i].lastName));
-        i++;
+        authorsTd.appendChild(document.createTextNode(json.authorResponses[authorIndex].lastName));
+        authorIndex++;
     }
 }

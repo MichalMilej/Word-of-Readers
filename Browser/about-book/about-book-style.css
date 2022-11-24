@@ -1,12 +1,27 @@
+table {
+    border-collapse: separate;
+    border-radius: 1em;
+}
 body {
     font-size: 1.1em;
 }
-table {
-    border-collapse: separate;
-    border: 0.3em solid rgb(0, 0, 0);
-    border-spacing: 1em;
-    border-radius: 1em;
+td {
     width: 30%;
+}
+img {
+    width: 3%;
+    height: 3%;
+}
+.bookInfoTable {
+    border: 0.2em solid rgb(0, 0, 0);
+    border-spacing: 1em;
+    width: 30%;
+}
+.headerTd {
+    width: 30%;
+}
+#generalInfoSection {
+    overflow: auto;
 }
 #coverImg {
     width: 16em;
@@ -19,12 +34,28 @@ table {
 #authorsTd {
     white-space: pre;
 }
-.headerTd {
-    width: 30%;
-}
 #userScoresTable {
     margin-top: 1em;
 }
-#generalInfoSection {
-    overflow: auto;
+.opinionTable {
+    border: 0.15em solid rgb(0, 0, 0);
+    border-spacing: 0.5em;
+    width: 50%;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+}
+.opinionTable td {
+    border: 0.05em solid rgb(0, 0, 0);;
+    padding: 0.5em;
+    border-radius: 0.75em;
+}
+.controlBtn {
+    float: left;
+    font-size: 0.9em;
+    padding: 0.8em;
+    display: none;
+    margin-bottom: 1em;
+}
+#previousPageBtn {
+    margin-right: 1em;
 }
