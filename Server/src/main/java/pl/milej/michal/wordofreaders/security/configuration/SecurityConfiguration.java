@@ -24,6 +24,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf().disable()
+                .cors()
+                .and()
                 .authorizeRequests()
                     .antMatchers(HttpMethod.GET, "/authors/**")
                     .permitAll()
