@@ -20,6 +20,12 @@ img {
 .headerTd {
     width: 30%;
 }
+#registrationBtn {
+    float: right;
+    padding: 1em;
+    font-size: 1.2em;
+    font-style: italic;
+}
 #generalInfoSection {
     overflow: auto;
 }

@@ -1,0 +1,23 @@
+body{
+    text-align: center;
+}
+table {
+    font-size: 1em;
+    margin: auto;
+}
+input {
+    font-size: 1em;
+    padding: 0.4em 1.2em;
+}
+#submitRegistrationBtn {
+    margin-top: 1.5em;
+}
+.password1Td {
+    padding-top: 0.7em;
+}
+.password2Td {
+    padding-bottom: 0.7em;
+}
+#registrationHeader {
+    padding: 1.5em;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>registration</title>
+
+        <link rel="stylesheet" href="../main-style.css">
+        <link rel="stylesheet" href="registration-style.css">
+    </head>
+    <body>
+        <h2 id="registrationHeader">Registration</h2>
+        <table id="registrationTable">
+            <tr>
+                <td>Username:</td>
+                <td><input type="text"id="username"></td>
+            </tr>
+            <tr>
+                <td class="password1Td">Password:</td>
+                <td class="password1Td"><input type="password" id="password1"></td>
+            </tr>
+            <tr>
+                <td class="password2Td">Repeat password:</td>
+                <td class="password2Td"><input type="password" id="password2"></td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td><input type="email" id="email"></td>
+            </tr>
+        </table>
+        <input id="submitRegistrationBtn" type="submit" value="Register" onclick="registerUser()">
+        <p id="submitResultInfo"></p>
+
+        <script src="user-input-validator.js"></script>
+        <script src="registration-handler.js"></script>
+    </body>
+</html>

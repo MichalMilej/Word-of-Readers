@@ -21,3 +21,6 @@ table {
 .bookRow:hover {
     background-color: bisque;
 }
+#title {
+    padding: 1.5em;
+}

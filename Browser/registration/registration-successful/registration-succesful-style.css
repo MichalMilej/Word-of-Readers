@@ -1,0 +1,10 @@
+body {
+    text-align: center;
+}
+h2 {
+    margin: 3em;
+}
+input {
+    font-size: 1.5em;
+    padding: 1em 2em;
+}
