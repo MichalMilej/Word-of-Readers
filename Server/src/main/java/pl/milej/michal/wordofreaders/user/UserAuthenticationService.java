@@ -7,11 +7,22 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserAuthenticationService {
 
-    public boolean canPrincipalAccessUser(final long userId) {
-        final UserRole userRole = UserPrincipalUtils.getUserPrincipalRole();
-        if (userRole == UserRole.MOD || userRole == UserRole.ADMIN) {
+    public boolean canPrincipalAccessUser(final Long userId) {
+        if (hasPrincipalImportantRole()) {
             return true;
         }
-        return userId == UserPrincipalUtils.getUserPrincipalId();
+        return userId.equals(UserPrincipalUtils.getUserPrincipalId());
+    }
+
+    public boolean canPrincipalAccessUser(final String username) {
+        if (hasPrincipalImportantRole()) {
+            return true;
+        }
+        return username.equals(UserPrincipalUtils.getUserPrincipalUsername());
+    }
+
+    private boolean hasPrincipalImportantRole() {
+        final UserRole userRole = UserPrincipalUtils.getUserPrincipalRole();
+        return userRole == UserRole.MOD || userRole == UserRole.ADMIN;
     }
 }

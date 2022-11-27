@@ -4,12 +4,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotNull;
-
 public interface UserService {
 
     UserResponse addUser(final UserRequest userRequest, final UserRole userRole);
-    UserResponse getUser(final long id);
+    UserResponse getUser(final Long id);
+    UserResponse getUserByUsername(final String username);
     UserResponsePublic getUserPublic(final long userId);
     Page<UserResponse> getUsers(final Integer pageNumber, final Integer pageSize);
     FileSystemResource getUserProfilePhotoImage(final long id);

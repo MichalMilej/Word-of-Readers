@@ -8,6 +8,10 @@ public class UserPrincipalUtils {
         return ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
     }
 
+    public static String getUserPrincipalUsername() {
+        return ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+    }
+
     public static UserRole getUserPrincipalRole() {
         return ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserRole();
     }

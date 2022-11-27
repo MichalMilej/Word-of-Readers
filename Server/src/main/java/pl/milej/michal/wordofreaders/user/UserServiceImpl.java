@@ -63,8 +63,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserResponse getUser(final long userId) {
+    public UserResponse getUser(final Long userId) {
         return UserConverter.convertToUserResponse(findUserById(userId));
+    }
+
+    @Override
+    public UserResponse getUserByUsername(String username) {
+        return UserConverter.convertToUserResponse(findUserByUsernameEqualsIgnoreCase(username));
     }
 
     @Override

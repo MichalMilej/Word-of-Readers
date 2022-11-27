@@ -31,6 +31,12 @@ public class UserController {
         return userService.getUser(userId);
     }
 
+    @GetMapping("/username/{username}")
+    @PreAuthorize("@userAuthenticationService.canPrincipalAccessUser(#username)")
+    UserResponse getUserByUsername(@PathVariable final String username) {
+        return userService.getUserByUsername(username);
+    }
+
     @GetMapping("/public/user/{userId}")
     UserResponsePublic getUserPublic(@PathVariable final long userId) {
         return userService.getUserPublic(userId);
