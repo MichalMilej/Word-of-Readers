@@ -1,0 +1,17 @@
+body{
+    text-align: center;
+}
+table {
+    font-size: 1em;
+    margin: auto;
+}
+input {
+    font-size: 1em;
+    padding: 0.4em 1.2em;
+}
+#loginHeader {
+    padding: 1.5em;
+}
+#submitLoginBtn {
+    margin-top: 1.5em;
+}

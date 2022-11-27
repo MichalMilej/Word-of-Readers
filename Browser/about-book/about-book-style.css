@@ -20,11 +20,14 @@ img {
 .headerTd {
     width: 30%;
 }
-#registrationBtn {
+.menuBtn {
     float: right;
-    padding: 1em;
+    padding: 0.8em;
     font-size: 1.2em;
     font-style: italic;
+}
+#registrationBtn {
+    margin-left: 0.5%;
 }
 #generalInfoSection {
     overflow: auto;
