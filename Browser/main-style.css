@@ -15,6 +15,17 @@ input {
 #registrationBtn {
     margin-left: 0.5%;
 }
-#logoutBtn {
+#loggedInSection {
+    float: right;
     display: none;
+    border: 0.1em solid black;
+    border-radius: 0.4em;
+    padding: 1em 1.5em;
+}
+#loggedUserUsernameP{
+    margin-top: 0.5em;
+}
+#loggedUserProfilePhotoImg {
+    width: 4em;
+    height: 4em;
 }

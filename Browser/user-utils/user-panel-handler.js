@@ -1,7 +1,7 @@
 if (isUserLoggedIn()) {
     hideStandardPanel();
+    loadUserInfo();
     displayUserPanel();
-    console.log('done');
 }
 
 function hideStandardPanel() {
@@ -12,7 +12,14 @@ function hideStandardPanel() {
     registrationBtn.style.display = "none";
 }
 
+function loadUserInfo() {
+    let loggedUserUsernameP = document.getElementById('loggedUserUsernameP');
+    loggedUserUsernameP.appendChild(document.createTextNode(localStorage.getItem('username')));
+    let loggedUserImg = document.getElementById('loggedUserProfilePhotoImg');
+    loggedUserImg.src = localStorage.getItem("userProfilePhotoLocation");
+}
+
 function displayUserPanel() {
-    let logoutBtn = document.getElementById('logoutBtn');
-    logoutBtn.style.display = "block";
+    let loggedInSection = document.getElementById('loggedInSection');
+    loggedInSection.style.display = "block";
 }

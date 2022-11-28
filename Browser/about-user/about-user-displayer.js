@@ -16,6 +16,8 @@ async function displayUserInfo() {
         usernameTd.appendChild(document.createTextNode(json.username));
         emailTd.appendChild(document.createTextNode(json.email));
         roleTd.appendChild(document.createTextNode(json.userRole.toLowerCase()));
+
+        localStorage.setItem("userProfilePhotoLocation", json.profilePhotoResponse.location);
     } catch(error) {
         profilePhotoImg.innerHTML="There was a problem with server connection.";
     }

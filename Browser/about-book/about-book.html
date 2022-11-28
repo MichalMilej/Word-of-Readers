@@ -9,7 +9,14 @@
     <body>
         <input type="button" value="Registration" onclick="window.location.href = '../registration/registration.html';" id="registrationBtn" class="menuBtn">
         <input type="button" value="Login" onclick="window.location.href = '../login/login.html';" id="loginBtn" class="menuBtn">
-        <input type="button" value="Logout" onclick="logout()" id="logoutBtn" class="menuBtn">
+        <div id="loggedInSection">
+            <div id="loggedUserInfo">
+                <img id="loggedUserProfilePhotoImg">
+                <p id="loggedUserUsernameP"></p>
+            </div>
+            <input type="button" value="Logout" onclick="logout()" id="logoutBtn" class="menuBtn">
+        </div>
+        
         <div id="generalInfoSection">
             <img id="coverImg">
             <table class="bookInfoTable">
