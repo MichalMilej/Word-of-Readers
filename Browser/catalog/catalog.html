@@ -2,12 +2,14 @@
 <html>
     <head>
         <title>catalog</title>
-
-        <script src="catalog-search-handler.js"></script>
+        
         <link rel="stylesheet" href="../main-style.css">
         <link rel="stylesheet" href="catalog-style.css">
     </head>
     <body>
+        <input type="button" value="Registration" onclick="window.location.href = '../registration/registration.html';" id="registrationBtn" class="menuBtn">
+        <input type="button" value="Login" onclick="window.location.href = '../login/login.html';" id="loginBtn" class="menuBtn">
+        <input type="button" value="Logout" onclick="logout()" id="logoutBtn" class="menuBtn">
         <h1 id="title">Word of Readers</h1>
 
         <input type="text" id="titleInput" placeholder="Find by title...">
@@ -15,5 +17,10 @@
         <table id="searchResultTable" class="center">
         </table> 
 
+        <script src="catalog-search-handler.js"></script>
+        
+        <script src="../user-utils/user-authorization-handler.js"></script>
+        <script src="../user-utils/user-panel-handler.js"></script>
+        <script src="../logout/logout-handler.js"></script>
     </body>
 </html>

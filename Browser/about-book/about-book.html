@@ -9,6 +9,7 @@
     <body>
         <input type="button" value="Registration" onclick="window.location.href = '../registration/registration.html';" id="registrationBtn" class="menuBtn">
         <input type="button" value="Login" onclick="window.location.href = '../login/login.html';" id="loginBtn" class="menuBtn">
+        <input type="button" value="Logout" onclick="logout()" id="logoutBtn" class="menuBtn">
         <div id="generalInfoSection">
             <img id="coverImg">
             <table class="bookInfoTable">
@@ -53,5 +54,9 @@
 
         <script src="book-info-displayer.js"></script>
         <script src="opinion-displayer.js"></script>
+
+        <script src="../user-utils/user-authorization-handler.js"></script>
+        <script src="../user-utils/user-panel-handler.js"></script>
+        <script src="../logout/logout-handler.js"></script>
     </body>
 </html>

@@ -2,15 +2,6 @@ if (isUserLoggedIn()) {
     displayUserInfo();
 }
 
-function isUserLoggedIn() {
-    if (localStorage.getItem("userId") == null 
-        || localStorage.getItem("username") == null
-        || localStorage.getItem("authorization") == null) {
-            return false;
-        }
-    return true;
-}
-
 async function displayUserInfo() {
     let profilePhotoImg = document.getElementById('profilePhotoImg');
     let usernameTd = document.getElementById('usernameTd');

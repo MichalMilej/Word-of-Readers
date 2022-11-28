@@ -6,3 +6,15 @@ input {
     font-size: 1em;
     padding: 0.5em;
 }
+.menuBtn {
+    float: right;
+    padding: 1rem;
+    font-size: 1.3rem;
+    font-style: italic;
+}
+#registrationBtn {
+    margin-left: 0.5%;
+}
+#logoutBtn {
+    display: none;
+}
