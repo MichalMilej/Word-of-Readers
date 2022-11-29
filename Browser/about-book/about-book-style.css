@@ -59,3 +59,10 @@ img {
 #previousPageBtn {
     margin-right: 1em;
 }
+#postOpinionBtn {
+    margin-bottom: 1em;
+    padding: 0.35em 1em;
+    font-style: italic;
+    font-size: 1em;
+    display: none;
+}

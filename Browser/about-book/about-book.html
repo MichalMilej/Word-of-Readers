@@ -53,17 +53,19 @@
         <p id="descriptionP"></p>
 
         <h4>Opinions</h4>
+        <input type="button" value="Post opinion" id="postOpinionBtn" onclick="window.location.href='new-opinion/new-opinion.html'">
         <div id="opinionsArea"></div>
         <div id="opinionsControlArea">
             <input id="previousPageBtn" class="controlBtn" type="button" value="previous page" onclick="loadPreviousOpinions()">
             <input id="nextPageBtn" class="controlBtn" type="button" value="next page" onclick="loadNextOpinions()">
         </div>
 
-        <script src="book-info-displayer.js"></script>
-        <script src="opinion-displayer.js"></script>
-
         <script src="../user-utils/user-authorization-handler.js"></script>
         <script src="../user-utils/user-panel-handler.js"></script>
         <script src="../logout/logout-handler.js"></script>
+
+        <script src="book-info-displayer.js"></script>
+        <script src="opinion-displayer.js"></script>
+        <script src="user-actions-controller.js"></script>
     </body>
 </html>

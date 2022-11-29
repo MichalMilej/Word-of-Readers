@@ -6,6 +6,9 @@ input {
     font-size: 1em;
     padding: 0.5em;
 }
+input[type='button'] {
+    cursor: pointer;
+}
 .menuBtn {
     float: right;
     padding: 1rem;
