@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>publish-opinion</title>
+
+        <link rel="stylesheet" href="publish-opinion-style.css">
+        <link rel="stylesheet" href="../../main-style.css"></linl>
+    </head>
+    <body>
+        <h2>Share your opinion</h3>
+        <h3 id="bookTitleH"></h4>
+
+        <table id="newOpinionTable">
+            <tr>
+                <td id="userInfoTd">
+                    <img id="userProfilePhotoImg">
+                </td>
+            </tr>
+            <tr>
+                <td id="opinionTextTd">
+                    <textarea maxlength="1000" placeholder="..." autofocus="true" id="opinionTextarea"></textarea>
+                </td>
+            </tr>
+        </table>
+        <p id="maxLengthP">(maximum 1000 characters)</p>
+        <input type="button" value="Publish" onclick="publishOpinion()" id="postOpinionBtn">
+        <p id="resultInfo"></p>
+
+        <script src="../../user-utils/user-authorization-handler.js"></script>
+        <script src="publish-opinion-handler.js"></script>
+    </body>
+</html>

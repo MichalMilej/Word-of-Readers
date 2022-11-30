@@ -1,0 +1,44 @@
+body {
+    text-align: center;
+}
+#bookTitleH {
+    margin-bottom: 2em;
+}
+#newOpinionTable {
+    border-collapse: separate;
+    border-radius: 1em;
+    border: 0.15em solid rgb(0, 0, 0);
+    border-spacing: 0.5em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#newOpinionTable td {
+    border: 0.05em solid rgb(0, 0, 0);;
+    padding: 0.5em;
+    border-radius: 0.75em;
+    width: 50%;
+    font-size: 1.1em;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: left;
+}
+#userProfilePhotoImg {
+    width: 5%;
+    height: 5%;
+}
+#opinionTextarea {
+    font: 0.8em Verdana;
+    width: 100%;
+    height: 20em;
+    padding: 1em;
+    box-sizing: border-box;
+}
+#maxLengthP {
+    font-size: 0.8em;
+    font-style: italic;
+}
+#postOpinionBtn {
+    margin-top: 1em;
+    padding: 1em 2em;
+}

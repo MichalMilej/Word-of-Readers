@@ -30,6 +30,7 @@ function displayBookData(json) {
         coverImg.src = json.coverResponse.location;
     }
     titleTd.appendChild(document.createTextNode(json.title));
+    sessionStorage.setItem("bookTitle", json.title);
     setAuthorsTd(authorsTd, json);
     if (json.publisherResponse != null) {
         publisherTd.appendChild(document.createTextNode(json.publisherResponse.name));
@@ -43,6 +44,8 @@ function displayBookData(json) {
         userScoreCountTd.appendChild(document.createTextNode(json.userScoreCount + " " + readers));
     }
     descriptionP.appendChild(document.createTextNode(json.description));
+
+    bookTitle = json.title;
 }
 
 function setAuthorsTd(authorsTd, json) {
