@@ -26,9 +26,9 @@ async function login() {
             localStorage.setItem("userProfilePhotoLocation", json.profilePhotoResponse.location);
             localStorage.setItem("userRole", json.userRole);
             localStorage.setItem("authorization", btoa(`${username}:${password}`));
-            window.location.href="../about-user/about-user.html";
+
+            loadPreviousPage();
         }
-        console.log("logged in");
     } catch(error) {
         submitResultP.innerHTML = "There was a problem with server connection.";
     }
@@ -40,4 +40,18 @@ function sendLoginRequest(username, authorization) {
             'Authorization': `Basic ${authorization}`
         }
     });
+}
+
+function loadPreviousPage() {
+    let lastPage = sessionStorage.getItem("lastPage");
+    let location = "../about-user/about-user.html";
+    switch(lastPage) {
+        case "catalog":
+            location = "../catalog/catalog.html";
+        break;
+        case "about-book":
+            location = `../about-book/about-book.html?bookId=${sessionStorage.getItem("bookId")}`;
+        break;
+    }
+    window.location.href = location;
 }

@@ -1,3 +1,5 @@
+sessionStorage.setItem("lastPage", "catalog");
+
 async function getBooksByTitle() {
     const title = document.getElementById("titleInput").value;
     const resultTable = document.getElementById("searchResultTable");
