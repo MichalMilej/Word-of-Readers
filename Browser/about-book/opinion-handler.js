@@ -38,9 +38,10 @@ function displayOpinions(json, pageSize) {
         let textTd = document.createElement('td');
         let reactionsTd = document.createElement('td');
 
-        setProfilePhotoTd(userTd, opinionIndex, json);
+        displayProfilePhoto(userTd, opinionIndex, json);
         userTd.appendChild(document.createTextNode(` ${json.content[opinionIndex].userResponsePublic.username},
          ${json.content[opinionIndex].publicationDate}`));
+        setDeleteOpinionBtn(userTd, opinionIndex, json);
 
         textTd.appendChild(document.createTextNode(json.content[opinionIndex].text));
 
@@ -66,10 +67,38 @@ function displayOpinions(json, pageSize) {
     }
 }
 
-function setProfilePhotoTd(profilePhotoTd, opinionIndex, json) {
+function displayProfilePhoto(td, opinionIndex, json) {
     let profilePhotoImg = document.createElement('img');
     profilePhotoImg.src = json.content[opinionIndex].userResponsePublic.profilePhotoResponse.location;
-    profilePhotoTd.appendChild(profilePhotoImg);
+    td.appendChild(profilePhotoImg);
+}
+
+function setDeleteOpinionBtn(td, opinionIndex, json) {
+    if (isUserLoggedIn() && (isUserModOrAdmin()
+        || json.content[opinionIndex].userResponsePublic.id == localStorage.getItem("userId"))) {
+
+        let deleteOpinionBtn = document.createElement('input');
+        deleteOpinionBtn.type = "button";
+        deleteOpinionBtn.classList.add("deleteOpinionBtn");
+        deleteOpinionBtn.value = 'X';
+        let opinionId = json.content[opinionIndex].id;
+        deleteOpinionBtn.setAttribute("onclick", (`sendDeleteOpinionRequest(${opinionId})`));
+
+        td.appendChild(deleteOpinionBtn);
+    }
+}
+
+async function sendDeleteOpinionRequest(opinionId) {
+    let response = await fetch(`http://localhost:8080/books/reviews/${opinionId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Basic ${localStorage.getItem('authorization')}`
+        }
+    })
+    if (response.ok) {
+        console.log('reload');
+        window.location.reload();
+    }
 }
 
 function hideButtons() {

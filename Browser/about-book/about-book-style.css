@@ -49,6 +49,17 @@ img {
     padding: 0.5em;
     border-radius: 0.75em;
 }
+.deleteOpinionBtn {
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+    padding: 0.2em;
+    float: right;
+    background-color: rgb(254, 78, 78);
+    border-radius: 0.5em;
+    border-width: 0.05em;
+    color: white;
+}
 .controlBtn {
     float: left;
     font-size: 0.9em;

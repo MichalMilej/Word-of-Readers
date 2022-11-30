@@ -6,3 +6,8 @@ function isUserLoggedIn() {
         }
     return true;
 }
+
+function isUserModOrAdmin() {
+    return localStorage.getItem("userRole") == "MOD" 
+    || localStorage.getItem("userRole") ==  "ADMIN";
+}

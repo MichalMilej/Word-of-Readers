@@ -24,6 +24,7 @@ async function login() {
             localStorage.setItem("userId", json.id)
             localStorage.setItem("username", username);
             localStorage.setItem("userProfilePhotoLocation", json.profilePhotoResponse.location);
+            localStorage.setItem("userRole", json.userRole);
             localStorage.setItem("authorization", btoa(`${username}:${password}`));
             window.location.href="../about-user/about-user.html";
         }

@@ -23,6 +23,7 @@ async function publishOpinion() {
     let opinionTextarea = document.getElementById('opinionTextarea');
     if (opinionTextarea.value.length == 0) {
         resultInfo.innerHTML = "Your opinion is empty.";
+        return;
     }
     
     if (bookId != null && isUserLoggedIn()) {
