@@ -15,6 +15,9 @@ input[type='button'] {
     font-size: 1.3rem;
     font-style: italic;
 }
+#catalogBtn {
+    margin-right: 0.5%;
+}
 #registrationBtn {
     margin-left: 0.5%;
 }
