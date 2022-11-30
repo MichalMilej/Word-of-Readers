@@ -15,4 +15,9 @@ public class UserPrincipalUtils {
     public static UserRole getUserPrincipalRole() {
         return ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserRole();
     }
+
+    public static boolean hasPrincipalModOrAdminRole() {
+        final UserRole principalRole = getUserPrincipalRole();
+        return principalRole == UserRole.MOD || principalRole == UserRole.ADMIN;
+    }
 }

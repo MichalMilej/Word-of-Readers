@@ -16,8 +16,8 @@ public class ReactionRequestValidator {
         reviewService.findReviewById(reviewId);
     }
 
-    public void validateNoUserReactionAtReview(final long userId, final long reviewId) {
-        if (reactionRepository.findByReviewIdAndUserId(userId, reviewId).isPresent()) {
+    public void validateNoUserReactionAtReview(final long reviewId, final long userId) {
+        if (reactionRepository.findByReviewIdAndUserId(reviewId, userId).isPresent()) {
             throw new LimitExceededException("User posted reaction at this review");
         }
     }

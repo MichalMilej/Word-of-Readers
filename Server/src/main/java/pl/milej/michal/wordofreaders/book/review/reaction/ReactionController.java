@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import pl.milej.michal.wordofreaders.book.review.ReviewServiceImpl;
 
 import java.util.Map;
 
@@ -16,7 +15,6 @@ import java.util.Map;
 @Transactional
 public class ReactionController {
     final ReactionServiceImpl userReactionService;
-    final ReviewServiceImpl reviewService;
     final ReactionAuthenticationService reactionAuthenticationService;
 
     @PostMapping("/{reviewId}/reactions")

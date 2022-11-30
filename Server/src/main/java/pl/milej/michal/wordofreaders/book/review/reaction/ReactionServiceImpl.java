@@ -28,7 +28,7 @@ public class ReactionServiceImpl implements ReactionService {
         final UserReaction userReaction = reactionRequest.getUserReaction();
 
         reactionRequestValidator.validateReviewExists(reviewId);
-        reactionRequestValidator.validateNoUserReactionAtReview(userId, reviewId);
+        reactionRequestValidator.validateNoUserReactionAtReview(reviewId, userId);
 
         Reaction newReaction = new Reaction();
         newReaction.setUserReaction(userReaction);

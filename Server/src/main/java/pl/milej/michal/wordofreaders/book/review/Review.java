@@ -10,7 +10,8 @@ import pl.milej.michal.wordofreaders.user.User;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,8 +34,8 @@ public class Review {
 
     private Integer dislikes = 0;
 
-    @OneToMany(mappedBy = "review")
-    private Set<Reaction> usersWhoReacted;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "review")
+    private List<Reaction> reactions = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)

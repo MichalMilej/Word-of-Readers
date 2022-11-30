@@ -37,13 +37,13 @@ public class ReviewController {
     }
 
     @PatchMapping ("/reviews/{reviewId}")
-    @PreAuthorize("@reviewAuthenticationService.isUserIdInReviewEqualsPrincipalId(#reviewId, principal.id)")
+    @PreAuthorize("@reviewAuthenticationService.canPrincipalAccessReview(#reviewId, principal.id)")
     ReviewResponse editReview(@PathVariable final long reviewId, @RequestBody final ReviewRequest reviewRequest) {
         return reviewService.editReview(reviewId, reviewRequest);
     }
 
     @DeleteMapping("/reviews/{reviewId}")
-    @PreAuthorize("@reviewAuthenticationService.isUserIdInReviewEqualsPrincipalId(#reviewId, principal.id)")
+    @PreAuthorize("@reviewAuthenticationService.canPrincipalAccessReview(#reviewId, principal.id)")
     void deleteReview(@PathVariable final Long reviewId) {
         reviewService.deleteReview(reviewId);
     }

@@ -8,22 +8,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.milej.michal.wordofreaders.book.Book;
-import pl.milej.michal.wordofreaders.book.BookRepository;
-import pl.milej.michal.wordofreaders.book.review.reaction.UserReaction;
+import pl.milej.michal.wordofreaders.book.BookServiceImpl;
 import pl.milej.michal.wordofreaders.exception.BadServerRequestException;
-import pl.milej.michal.wordofreaders.user.UserRepository;
 import pl.milej.michal.wordofreaders.user.UserPrincipalUtils;
+import pl.milej.michal.wordofreaders.user.UserServiceImpl;
 
 import java.sql.Date;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
-    final private ReviewRequestValidator reviewRequestValidator;
-    final private UserRepository userRepository;
-    final private BookRepository bookRepository;
-    final private ReviewRepository reviewRepository;
+    final ReviewRequestValidator reviewRequestValidator;
+    final ReviewRepository reviewRepository;
+    final UserServiceImpl userService;
+    final BookServiceImpl bookService;
+
 
     @Override
     public ReviewResponse addReview(final long bookId, ReviewRequest reviewRequest) {
@@ -33,12 +33,8 @@ public class ReviewServiceImpl implements ReviewService {
 
         Review newReview = new Review();
         newReview.setText(reviewRequest.getText());
-        newReview.setUser(userRepository.findById(userId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("User not found");
-        }));
-        newReview.setBook(bookRepository.findById(bookId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Book not found");
-        }));
+        newReview.setUser(userService.findUserById(userId));
+        newReview.setBook(bookService.findBookById(bookId));
         newReview.setPublicationDate(new Date(System.currentTimeMillis()));
 
         final Review savedReview = reviewRepository.save(newReview);
@@ -49,9 +45,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Page<ReviewResponse> getReviewsByBookId(final Long bookId, final Integer pageNumber, final Integer pageSize) {
-        final Book book = bookRepository.findById(bookId).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Book not found");
-        });
+        final Book book = bookService.findBookById(bookId);
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         return reviewRepository.findByBookId(book.getId(), pageable).map(ReviewConverter::convertToReviewResponse);
     }
@@ -91,20 +85,12 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public void deleteReview(final Long reviewId) {
-         reviewRepository.deleteById(reviewId);
+        reviewRepository.deleteById(reviewId);
     }
 
     public Review findReviewById(final Long id) {
         return reviewRepository.findById(id).orElseThrow(() -> {
             throw new ResourceNotFoundException("Review not found");
         });
-    }
-
-    private void addLikesOrDislikesToReview(final Review review, final UserReaction userReaction, final int value) {
-        if (userReaction == UserReaction.LIKE) {
-            review.setLikes(review.getLikes() + value);
-        } else if (userReaction == UserReaction.DISLIKE) {
-            review.setDislikes(review.getDislikes() + value);
-        }
     }
 }

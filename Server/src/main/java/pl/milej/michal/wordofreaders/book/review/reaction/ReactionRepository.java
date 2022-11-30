@@ -8,4 +8,5 @@ import java.util.Optional;
 @Repository
 public interface ReactionRepository extends CrudRepository<Reaction, Long> {
     Optional<Reaction> findByReviewIdAndUserId(Long reviewId, Long userId);
+    void deleteAllByReviewId(Long reviewId);
 }
