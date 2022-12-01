@@ -79,13 +79,20 @@ public class ReactionServiceImpl implements ReactionService {
         final Reaction updatedReaction = reactionRepository.save(existingReaction);
 
         final Review review = reviewService.findReviewById(existingReaction.getReview().getId());
-        ReviewResponse reviewResponse;
+
         if (lastUserReaction == UserReaction.LIKE) {
             reviewService.updateLikes(review.getId(), review.getLikes() - 1);
+        } else if (lastUserReaction == UserReaction.DISLIKE) {
+            reviewService.updateDislikes(review.getId(), review.getDislikes() - 1);
+        }
+
+        final ReviewResponse reviewResponse;
+        if (newUserReaction == UserReaction.LIKE) {
+            reviewResponse = reviewService.updateLikes(review.getId(), review.getLikes() + 1);
+        } else  if (newUserReaction == UserReaction.DISLIKE) {
             reviewResponse = reviewService.updateDislikes(review.getId(), review.getDislikes() + 1);
         } else {
-            reviewService.updateLikes(review.getId(), review.getLikes() + 1);
-            reviewResponse = reviewService.updateDislikes(review.getId(), review.getDislikes() - 1);
+            reviewResponse = reviewService.getReview(review.getId());
         }
 
         return Map.of(
