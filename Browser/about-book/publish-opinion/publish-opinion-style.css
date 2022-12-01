@@ -28,7 +28,7 @@ body {
     height: 4%;
 }
 #opinionTextarea {
-    font: 0.85em Verdana;
+    font: inherit;
     width: 100%;
     height: 15em;
     padding: 1em;
