@@ -81,7 +81,7 @@ function setDeleteOpinionBtn(td, opinionIndex, json) {
         deleteOpinionBtn.classList.add("deleteOpinionBtn");
         deleteOpinionBtn.value = 'X';
         let opinionId = json.content[opinionIndex].id;
-        deleteOpinionBtn.setAttribute("onclick", (`sendDeleteOpinionRequest(${opinionId})`));
+        deleteOpinionBtn.setAttribute("onclick", (`sendDeleteOpinionRequest("${opinionId}")`));
 
         td.appendChild(deleteOpinionBtn);
     }
@@ -98,47 +98,6 @@ async function sendDeleteOpinionRequest(opinionId) {
         console.log('reload');
         window.location.reload();
     }
-}
-
-function setReactionsTd(reactionsTd, opinionIndex, json) {
-    reactionsTd.appendChild(document.createTextNode(json.content[opinionIndex].likes + " likes ")); 
-    let likeBtn = document.createElement('input');
-    likeBtn.classList.add('reactionBtn');
-    likeBtn.type = 'button';
-    likeBtn.value = '+';
-    reactionsTd.appendChild(likeBtn);
-
-    reactionsTd.appendChild(document.createTextNode(" " + json.content[opinionIndex].dislikes + " dislikes "));
-    let dislikeBtn = document.createElement('input');
-    dislikeBtn.classList.add('reactionBtn');
-    dislikeBtn.type = 'button';
-    dislikeBtn.value = '-';
-    reactionsTd.appendChild(dislikeBtn);
-
-    if (isUserLoggedIn()) {
-        setReactionsButtons(likeBtn, dislikeBtn, json.content[opinionIndex].id);
-    }
-}
-
-async function setReactionsButtons(likeBtn, dislikeBtn, opinionId) {
-    likeBtn.style.display = 'inline';
-    dislikeBtn.style.display = 'inline';
-
-    let userId = localStorage.getItem("userId");
-
-    let json = await requestGetUserReaction(opinionId, userId);
-    let userReaction = json.userReaction;
-    console.log(userReaction);
-    if (userReaction == "LIKE") {
-        likeBtn.classList.add('likeReactionClicked');
-    } else if (userReaction == "DISLIKE") {
-        dislikeBtn.classList.add('dislikeReactionClicked');
-    }
-}
-
-async function requestGetUserReaction(opinionId, userId) {
-    let response = await fetch(`http://localhost:8080/books/reviews/${opinionId}/reactions/user/${userId}`);
-    return response.json();
 }
 
 function hideButtons() {
