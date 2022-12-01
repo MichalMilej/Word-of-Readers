@@ -4,9 +4,11 @@ table {
 }
 body {
     font-size: 1.1em;
+    box-sizing: border-box;
 }
 td {
     width: 30%;
+    text-align: left;
 }
 img {
     width: 3%;
@@ -15,10 +17,10 @@ img {
 .bookInfoTable {
     border: 0.2em solid rgb(0, 0, 0);
     border-spacing: 1em;
-    width: 30%;
+    width: 50%;
 }
 .headerTd {
-    width: 30%;
+    width: 20%;
 }
 #generalInfoSection {
     overflow: auto;
@@ -35,7 +37,19 @@ img {
     white-space: pre;
 }
 #userScoresTable {
+    width: 25%;
     margin-top: 1em;
+}
+#loggedUserScoreTr {
+    display: none;
+}
+#loggedUserScoreSelect {
+    font: 1em Verdana;
+    text-align: center;
+    padding: 4%;
+    border: 0.05em solid;
+    border-radius: 0.3em;
+    width: 50%;
 }
 .opinionTable {
     border: 0.15em solid rgb(0, 0, 0);
