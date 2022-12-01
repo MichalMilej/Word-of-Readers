@@ -48,20 +48,28 @@ public class ReactionServiceImpl implements ReactionService {
 
     @Override
     public ReactionResponse getUserReaction(final long reactionId) {
-        return ReactionConverter.convertToUserReactionResponse(findUserReactionById(reactionId));
+        return ReactionConverter.convertToUserReactionResponse(findReactionById(reactionId));
     }
 
     @Override
     public ReactionResponse getUserReactionByReviewIdAndUserId(final Long reviewId, final Long userId) {
-        return ReactionConverter.convertToUserReactionResponse(
-                reactionRepository.findByReviewIdAndUserId(reviewId, userId).orElseThrow(() -> {
-                    throw new ResourceNotFoundException("User reaction not found");
-                }));
+        // Check that user and review exist
+        userService.findUserById(userId);
+        reviewService.findReviewById(reviewId);
+        // Check if user posted reaction
+        try {
+            return ReactionConverter.convertToUserReactionResponse(findReactionByReviewIdAndUserId(reviewId, userId));
+        } catch (ResourceNotFoundException e) {
+            return ReactionResponse.builder()
+                    .reviewId(reviewId)
+                    .userId(userId)
+                    .userReaction(UserReaction.NONE).build();
+        }
     }
 
     @Override
     public Map<String, Object> updateUserReaction(final long reactionId, final ReactionRequest reactionRequest) {
-        final Reaction existingReaction = findUserReactionById(reactionId);
+        final Reaction existingReaction = findReactionById(reactionId);
         final UserReaction lastUserReaction = existingReaction.getUserReaction();
         final UserReaction newUserReaction = reactionRequest.getUserReaction();
         if (lastUserReaction == newUserReaction) {
@@ -85,9 +93,15 @@ public class ReactionServiceImpl implements ReactionService {
                 "ReviewResponse", reviewResponse);
     }
 
-    public Reaction findUserReactionById(final long reactionId) {
+    public Reaction findReactionById(final long reactionId) {
         return reactionRepository.findById(reactionId).orElseThrow(() -> {
             throw new ResourceNotFoundException("UserReaction not found");
+        });
+    }
+
+    public Reaction findReactionByReviewIdAndUserId(final long reviewId, final long userId) {
+        return reactionRepository.findByReviewIdAndUserId(reviewId, userId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("User reaction not found");
         });
     }
 }

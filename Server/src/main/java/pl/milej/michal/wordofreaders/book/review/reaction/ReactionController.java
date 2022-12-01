@@ -30,7 +30,7 @@ public class ReactionController {
     }
 
     @GetMapping("{reviewId}/reactions/user/{userId}")
-    ReactionResponse getUserReactionByUserIdAndReviewId(@PathVariable final Long reviewId, @PathVariable final Long userId) {
+    ReactionResponse getUserReactionByReviewIdAndUserId(@PathVariable final Long reviewId, @PathVariable final Long userId) {
         return userReactionService.getUserReactionByReviewIdAndUserId(reviewId, userId);
     }
 

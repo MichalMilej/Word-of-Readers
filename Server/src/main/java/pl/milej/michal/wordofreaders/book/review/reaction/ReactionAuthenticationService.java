@@ -10,6 +10,6 @@ public class ReactionAuthenticationService {
     final ReactionServiceImpl reactionService;
 
     public boolean isUserIdInReactionIdEqualsPrincipalId(final Long reactionId, final long principalId) {
-        return reactionService.findUserReactionById(reactionId).getUser().getId() == principalId;
+        return reactionService.findReactionById(reactionId).getUser().getId() == principalId;
     }
 }

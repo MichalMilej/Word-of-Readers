@@ -1,6 +1,7 @@
 package pl.milej.michal.wordofreaders.book.review.reaction;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.milej.michal.wordofreaders.book.review.Review;
 import pl.milej.michal.wordofreaders.user.User;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "review_reaction")
 public class Reaction {
 
