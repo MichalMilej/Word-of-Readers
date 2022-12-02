@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 @RequiredArgsConstructor
@@ -29,13 +31,10 @@ public class BookController {
 
     @GetMapping
     Page<BookResponse> getBooks(@RequestParam(required = false) final String title,
+                                @RequestParam(required = false) final List<Long> genresIds,
                                 @RequestParam final Integer pageNumber,
                                 @RequestParam final Integer pageSize) {
-        if (title == null) {
-            return bookService.getBooks(pageNumber, pageSize);
-        } else {
-            return bookService.getBooksByTitle(title, pageNumber, pageSize);
-        }
+        return bookService.getBooks(title, genresIds, pageNumber, pageSize);
     }
 
     @PatchMapping("/{bookId}")

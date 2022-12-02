@@ -1,10 +1,8 @@
 package pl.milej.michal.wordofreaders.book;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.*;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,12 +11,14 @@ import pl.milej.michal.wordofreaders.author.AuthorServiceImpl;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.book.cover.CoverServiceImpl;
 import pl.milej.michal.wordofreaders.book.genre.Genre;
+import pl.milej.michal.wordofreaders.book.genre.GenreRepository;
 import pl.milej.michal.wordofreaders.book.genre.GenreServiceImpl;
 import pl.milej.michal.wordofreaders.exception.*;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
 import pl.milej.michal.wordofreaders.publisher.PublisherServiceImpl;
 
 import java.sql.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +29,7 @@ public class BookServiceImpl implements BookService{
     final private PublisherServiceImpl publisherService;
     final private CoverServiceImpl coverService;
     final private GenreServiceImpl genreService;
+    final GenreRepository genreRepository;
 
     @Override
     public BookResponse addBook(BookRequest bookRequest) {
@@ -68,16 +69,35 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Page<BookResponse> getBooks(Integer pageNumber, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+    public Page<BookResponse> getBooks(String title, List<Long> genresIds, Integer pageNumber, Integer pageSize) {
+        final Pageable pageable;
+        if (title == null) {
+            pageable = PageRequest.of(pageNumber, pageSize);
+        } else {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("title"));
+        }
 
-        return bookRepository.findAll(pageable).map(BookConverter::convertToBookResponse);
-    }
+        final Page<Book> books;
+        if (title == null) {
+            books = bookRepository.findAll(pageable);
+        }
+        else {
+            books = bookRepository.findByTitleContainsIgnoreCase(title, pageable);
+        }
 
-    @Override
-    public Page<BookResponse> getBooksByTitle(String title, int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("title"));
-        return bookRepository.findByTitleContainsIgnoreCase(title, pageable).map(BookConverter::convertToBookResponse);
+        if (genresIds == null) {
+            return books.map(BookConverter::convertToBookResponse);
+        } else {
+            List<BookResponse> filteredBooks = books.filter(book -> {
+                for (Genre genre : book.getGenres()) {
+                    if (genresIds.contains(genre.getId())) {
+                        return true;
+                    }
+                }
+                return false;
+            }).stream().map(BookConverter::convertToBookResponse).toList();
+            return new PageImpl<>(filteredBooks, pageable, filteredBooks.size());
+        }
     }
 
     @Override
