@@ -16,10 +16,10 @@ input[type='button'] {
     font-style: italic;
 }
 #loginBtn {
-    margin-left: 0.5%;
+    margin-left: 0.5em;
 }
 #registrationBtn {
-    margin-left: 0.5%;
+    margin-left: 0.5em;
 }
 #loggedInSection {
     float: right;

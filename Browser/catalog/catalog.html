@@ -7,27 +7,34 @@
         <link rel="stylesheet" href="catalog-style.css">
     </head>
     <body>
-        <input type="button" value="Registration" onclick="window.location.href = '../registration/registration.html';" id="registrationBtn" class="menuBtn">
-        <input type="button" value="Login" onclick="window.location.href = '../login/login.html';" id="loginBtn" class="menuBtn">
-        <div id="loggedInSection">
-            <div id="loggedUserInfo" onclick="window.location.href='../about-user/about-user.html'">
-                <img id="loggedUserProfilePhotoImg">
-                <p id="loggedUserUsernameP"></p>
+        <div id="userPanel">
+            <input type="button" value="Registration" onclick="window.location.href = '../registration/registration.html';" id="registrationBtn" class="menuBtn">
+            <input type="button" value="Login" onclick="window.location.href = '../login/login.html';" id="loginBtn" class="menuBtn">
+            <div id="loggedInSection">
+                <div id="loggedUserInfo" onclick="window.location.href='../about-user/about-user.html'">
+                    <img id="loggedUserProfilePhotoImg">
+                    <p id="loggedUserUsernameP"></p>
+                </div>
+                <input type="button" value="Logout" onclick="logout()" id="logoutBtn" class="menuBtn">
             </div>
-            <input type="button" value="Logout" onclick="logout()" id="logoutBtn" class="menuBtn">
         </div>
         
         <h1 id="title">Word of Readers</h1>
 
         <input type="text" id="titleInput" placeholder="Find by title...">
         <input type="submit" value="Search" onclick="getBooksByTitle()">
+
+        <table id="genreFilterTable">
+        </table>
+
         <table id="searchResultTable" class="center">
         </table> 
 
-        <script src="catalog-search-handler.js"></script>
-        
         <script src="../user-utils/user-authorization-handler.js"></script>
         <script src="../user-utils/user-panel-handler.js"></script>
         <script src="../logout/logout-handler.js"></script>
+
+        <script src="genre-filter-handler.js"></script>
+        <script src="search-handler.js"></script>
     </body>
 </html>

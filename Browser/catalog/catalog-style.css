@@ -5,10 +5,31 @@ input {
     padding: 0.5em;
     font-size: 0.8em;
 }
+#userPanel {
+    float: right;
+    height: 100vh;
+}
+#loginBtn {
+    margin-left: 0em;
+}
+#title {
+    padding: 1em;
+}
 #titleInput {
     width: 25%;
-    margin-bottom: 2em;
+    margin-bottom: 0.8%;
     font-style: italic;
+}
+#genreFilterTable {
+    margin-bottom: 0.8%;
+}
+.genreCheckbox {
+    height: 0.85em;
+    width: 0.85em;
+    cursor: pointer;
+}
+.genreLabel {
+    font: italic 0.8em Verdana;
 }
 table {
     width: 50%;
@@ -20,7 +41,4 @@ table {
 }
 .bookRow:hover {
     background-color: bisque;
-}
-#title {
-    padding: 1.5em;
 }
