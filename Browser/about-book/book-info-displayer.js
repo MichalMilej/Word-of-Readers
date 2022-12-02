@@ -43,7 +43,9 @@ function displayBookData(json) {
     }
     if (json.userScoreCount != null) {
         let readers = json.userScoreCount == 1 ? "reader" : "readers";
-        userScoreCountTd.appendChild(document.createTextNode(json.userScoreCount + " " + readers));
+        let userScoreCountSpan = document.getElementById('userScoreCountSpan');
+        userScoreCountSpan.textContent = json.userScoreCount;
+        userScoreCountTd.appendChild(document.createTextNode(" " + readers));
     }
     descriptionP.appendChild(document.createTextNode(json.description));
 
