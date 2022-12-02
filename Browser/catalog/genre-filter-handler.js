@@ -1,3 +1,4 @@
+const selectedGenresIds = [];
 loadGenres();
 
 async function loadGenres() {
@@ -17,6 +18,7 @@ function displayGenres(json) {
         genreCheckbox.type = 'checkbox';
         genreCheckbox.id = json[genreIndex].name + "Checkbox";
         genreCheckbox.classList.add('genreCheckbox');
+        genreCheckbox.setAttribute("onchange", (`genreCheckboxClicked("${json[genreIndex].id}")`));
         genreTd.appendChild(genreCheckbox);
 
         let genreLabel = document.createElement('label');
@@ -37,4 +39,13 @@ function displayGenres(json) {
 
 function requestGetGenres() {
     return fetch(`http://localhost:8080/books/genres`);
+}
+
+function genreCheckboxClicked(genreId) {
+    if (selectedGenresIds.includes(genreId)) {
+        let index = selectedGenresIds.indexOf(genreId);
+        selectedGenresIds.splice(index, 1);
+    } else {
+        selectedGenresIds.push(genreId);
+    }
 }

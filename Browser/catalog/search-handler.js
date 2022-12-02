@@ -1,11 +1,17 @@
 sessionStorage.setItem("lastPage", "catalog");
 
-async function getBooksByTitle() {
+async function getBooksByTitle(pageNumber, pageSize) {
     const title = document.getElementById("titleInput").value;
     const resultTable = document.getElementById("searchResultTable");
     resultTable.innerHTML = "";
+    
     try {
-        const response = await fetch(`http://localhost:8080/books?title=${title}&pageNumber=0&pageSize=8`);
+        let response;
+        if (selectedGenresIds.length == 0) {
+            response = await fetch(`http://localhost:8080/books?title=${title}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        } else {
+            response = await requestGetBooksWithGenreFilter(title, selectedGenresIds, pageNumber, pageSize);
+        }
         const json = await response.json();
         displayBooksInTable(json, resultTable);
     } catch(err) {
@@ -74,4 +80,17 @@ function displayBooksInTable(json, table) {
         table.appendChild(bookTr);
         bookIndex++;
     }
+}
+
+function requestGetBooksWithGenreFilter(title, genresIds, pageNumber, pageSize) {
+    let genresArray = '';
+    let index = 0;
+    for (id in genresIds) {
+        if (index != 0) {
+            genresArray += ", ";
+        }
+        genresArray += id;
+    }
+
+    return fetch(`http://localhost:8080/books?title=${title}&genresIds=${genresIds}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
