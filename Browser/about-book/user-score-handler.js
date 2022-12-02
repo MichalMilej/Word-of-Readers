@@ -60,12 +60,12 @@ function updateUserScoreCount(incrementValue) {
 }
 
 function displayUserScoreSavedMessage() {
-    let loggedUserScoreSelectInfo = document.getElementById('loggedUserScoreSelectInfo');
-    loggedUserScoreSelectInfo.style.display = 'inline';
+    let loggedUserScoreSelectInfoTr = document.getElementById('loggedUserScoreSelectInfoTr');
+    loggedUserScoreSelectInfoTr.style.display = 'table-row';
 
     window.setTimeout(() => {
-        let loggedUserScoreSelectInfo = document.getElementById('loggedUserScoreSelectInfo');
-        loggedUserScoreSelectInfo.style.display = 'none';
+        let loggedUserScoreSelectInfoTr = document.getElementById('loggedUserScoreSelectInfoTr');
+        loggedUserScoreSelectInfoTr.style.display = 'none';
     }, 2000);
 }
 

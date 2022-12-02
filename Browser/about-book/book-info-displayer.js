@@ -24,6 +24,8 @@ function displayBookData(json) {
     let authorsTd = document.getElementById("authorsTd");
     let publisherTd = document.getElementById("publisherTd");
     let releaseDateTd = document.getElementById("releaseDateTd");
+    let genresTd = document.getElementById("genresTd");
+
     let userScoreAverageTd = document.getElementById("userScoreAverageTd");
     let userScoreCountTd = document.getElementById("userScoreCountTd");
     let descriptionP = document.getElementById("descriptionP");
@@ -38,8 +40,11 @@ function displayBookData(json) {
         publisherTd.appendChild(document.createTextNode(json.publisherResponse.name));
     }
     releaseDateTd.appendChild(document.createTextNode(json.releaseDate));
+    setGenresTd(genresTd, json);
     if (json.userScoreAverage != null) {
-        userScoreAverageTd.appendChild(document.createTextNode(json.userScoreAverage))
+        let userScoreAverage = parseFloat(json.userScoreAverage);
+        let roundUserScoreAverage = Math.round(userScoreAverage * 10) / 10;
+        userScoreAverageTd.appendChild(document.createTextNode(roundUserScoreAverage));
     }
     if (json.userScoreCount != null) {
         let readers = json.userScoreCount == 1 ? "reader" : "readers";
@@ -64,5 +69,16 @@ function setAuthorsTd(authorsTd, json) {
         }
         authorsTd.appendChild(document.createTextNode(json.authorResponses[authorIndex].lastName));
         authorIndex++;
+    }
+}
+
+function setGenresTd(genresTd, json) {
+    let genreIndex = 0;
+    for (genre in json.genreResponses) {
+        if (genreIndex != 0) {
+            genresTd.appendChild(document.createTextNode(", "));
+        }
+        genresTd.appendChild(document.createTextNode(json.genreResponses[genreIndex].name));
+        genreIndex++;
     }
 }
