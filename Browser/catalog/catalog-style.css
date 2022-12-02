@@ -20,6 +20,9 @@ input {
     margin-bottom: 0.8%;
     font-style: italic;
 }
+#submitSearchBtn {
+    cursor: pointer;
+}
 #genreFilterTable {
     margin-bottom: 0.8%;
 }
@@ -36,9 +39,24 @@ table {
     margin-left: auto;
     margin-right: auto;
 }
+#searchResultTable {
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+#resultsControlArea {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    float: right;
+}
 .bookRow {
     cursor: pointer;
 }
 .bookRow:hover {
     background-color: bisque;
+}
+.controlBtn {
+    font-size: 0.8em;
+    padding: 0.7em;
+    display: none;
 }

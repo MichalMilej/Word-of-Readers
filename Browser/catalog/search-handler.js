@@ -1,6 +1,14 @@
 sessionStorage.setItem("lastPage", "catalog");
 
-async function getBooksByTitle(pageNumber, pageSize) {
+let currentPageNumber = 0;
+let currentPageSize = 12;
+
+function loadBooks() {
+    currentPageNumber = 0;
+    getBooksByTitleAndGenre(currentPageNumber, currentPageSize);
+}
+
+async function getBooksByTitleAndGenre(pageNumber, pageSize) {
     const title = document.getElementById("titleInput").value;
     const resultTable = document.getElementById("searchResultTable");
     resultTable.innerHTML = "";
@@ -14,6 +22,7 @@ async function getBooksByTitle(pageNumber, pageSize) {
         }
         const json = await response.json();
         displayBooksInTable(json, resultTable);
+        displayControlButtons(pageNumber, json.totalPages);
     } catch(err) {
         resultTable.appendChild(document.createTextNode("There was a problem with retrieving and displaying books data from server."));
         console.error("There was a problem with retrieving and displaying books data from server.");
@@ -93,4 +102,31 @@ function requestGetBooksWithGenreFilter(title, genresIds, pageNumber, pageSize) 
     }
 
     return fetch(`http://localhost:8080/books?title=${title}&genresIds=${genresIds}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
+
+function displayControlButtons(pageNumber, totalPages) {
+    let previousPageBtn = document.getElementById('previousPageBtn');
+    let nextPageBtn = document.getElementById('nextPageBtn');
+    
+    if (pageNumber > 0) {
+        previousPageBtn.style.display = 'inline';
+    }
+    if (pageNumber == 0) {
+        previousPageBtn.style.display = 'none';
+    }
+    if (pageNumber + 1 == totalPages) {
+        nextPageBtn.style.display = 'none';
+    } else {
+        nextPageBtn.style.display = 'inline';
+    }
+}
+
+function loadNextBooks() {
+    currentPageNumber++;
+    getBooksByTitleAndGenre(currentPageNumber, currentPageSize);
+}
+
+function loadPreviousBooks() {
+    currentPageNumber--;
+    getBooksByTitleAndGenre(currentPageNumber, currentPageSize);
 }
