@@ -51,6 +51,10 @@ img {
     border-radius: 0.3em;
     width: 50%;
 }
+#loggedUserScoreSelectInfo {
+    padding-top: 0em;
+    display: none;
+}
 .opinionTable {
     border: 0.15em solid rgb(0, 0, 0);
     border-spacing: 0.5em;

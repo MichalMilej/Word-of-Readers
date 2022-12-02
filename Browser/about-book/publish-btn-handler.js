@@ -1,9 +1,6 @@
 if (isUserLoggedIn()) {
     let publishOpinionBtn = document.getElementById('publishOpinionBtn');
     publishOpinionBtn.style.display = "block";
-
-    let loggedUserScoreTr = document.getElementById('loggedUserScoreTr');
-    loggedUserScoreTr.style.display = "table-row";
 }
 
 function openPublishOpinionPage() {

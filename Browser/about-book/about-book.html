@@ -51,7 +51,7 @@
                 <tr id="loggedUserScoreTr">
                     <td class="headerTd">Your score:</td>
                     <td id="loggedUserScoreTd">
-                        <select id="loggedUserScoreSelect">
+                        <select id="loggedUserScoreSelect" onchange="saveUserScore()">
                             <option value="none">-</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -65,6 +65,10 @@
                             <option value="10">10</option>
                         </select>
                     </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td id="loggedUserScoreSelectInfo">Score saved.</td>
                 </tr>
             </table>
         </div>
@@ -85,8 +89,9 @@
         <script src="../logout/logout-handler.js"></script>
 
         <script src="book-info-displayer.js"></script>
+        <script src="user-score-handler.js"></script>
         <script src="reactions-handler.js"></script>
         <script src="opinions-handler.js"></script>
-        <script src="user-actions-controller.js"></script>
+        <script src="publish-btn-handler.js"></script>
     </body>
 </html>
