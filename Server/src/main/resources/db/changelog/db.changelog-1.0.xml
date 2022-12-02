@@ -351,6 +351,10 @@
             <column name="id">7</column>
             <column name="name">Education</column>
         </insert>
+        <insert tableName="genre">
+            <column name="id">8</column>
+            <column name="name">Biography</column>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>

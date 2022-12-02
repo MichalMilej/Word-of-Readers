@@ -16,7 +16,7 @@ public class GenreController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasAnyAuthority('MOD', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     GenreResponse addGenre(@RequestBody final GenreRequest genreRequest) {
         return genreService.addGenre(genreRequest);
     }
