@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.milej.michal.wordofreaders.user.UserPrincipalUtils;
 import pl.milej.michal.wordofreaders.user.UserRole;
-import pl.milej.michal.wordofreaders.user.UserServiceImpl;
 
 @Component
 @RequiredArgsConstructor

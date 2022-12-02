@@ -52,8 +52,19 @@ public class UserScoreServiceImpl implements UserScoreService {
 
     @Override
     public UserScoreResponse getUserScoreByUserId(long bookId, long userId) {
-        return UserScoreConverter.convertUserScoreToUserScoreResponse(
-                findUserScoreByBookIdAndUserId(bookId, userId));
+        // Check that book and user exist
+        bookService.findBookById(bookId);
+        userService.findUserById(userId);
+
+        try {
+            return UserScoreConverter.convertUserScoreToUserScoreResponse(
+                    findUserScoreByBookIdAndUserId(bookId, userId));
+        } catch (ResourceNotFoundException e) {
+            return UserScoreResponse.builder()
+                    .bookId(bookId)
+                    .userId(userId)
+                    .build();
+        }
     }
 
     @Override
