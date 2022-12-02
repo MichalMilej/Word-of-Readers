@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import pl.milej.michal.wordofreaders.author.AuthorResponse;
 import pl.milej.michal.wordofreaders.book.cover.CoverResponse;
+import pl.milej.michal.wordofreaders.book.genre.GenreResponse;
 import pl.milej.michal.wordofreaders.publisher.PublisherResponse;
 
 import java.sql.Date;
@@ -22,6 +23,7 @@ public class BookResponse {
     private Set<AuthorResponse> authorResponses;
     private CoverResponse coverResponse;
     private PublisherResponse publisherResponse;
+    private Set<GenreResponse> genreResponses;
     private Float userScoreAverage;
     private Integer userScoreCount;
 }

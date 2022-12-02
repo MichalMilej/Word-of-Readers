@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.milej.michal.wordofreaders.author.Author;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
+import pl.milej.michal.wordofreaders.book.genre.Genre;
 import pl.milej.michal.wordofreaders.book.score.UserScore;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
 import pl.milej.michal.wordofreaders.book.review.Review;
@@ -47,6 +48,14 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "cover_id", nullable = false)
     private Cover cover;
+
+    @ManyToMany
+    @JoinTable(
+            name = "book_genre",
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "genre_id", nullable = false)
+    )
+    private Set<Genre> genres;
 
     @Column(name = "user_score_average")
     private Float userScoreAverage;

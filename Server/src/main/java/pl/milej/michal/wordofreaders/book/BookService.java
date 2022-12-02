@@ -11,14 +11,18 @@ public interface BookService {
     Page<BookResponse> getBooks(final Integer pageNumber, final Integer pageSize);
     Page<BookResponse> getBooksByTitle(final String title, final int pageNumber, final int pageSize);
 
-    BookResponse updateBook(final long id, final BookRequest bookRequest);
+
     BookResponse assignAuthor(final long bookId, final long authorId);
-    BookResponse assignCover(final long bookId, final long coverId);
+    BookResponse assignGenre(final long bookId, final long genreId);
+
+    BookResponse updateBook(final long id, final BookRequest bookRequest);
+    BookResponse updateCover(final long bookId, final long coverId);
     BookResponse updatePublisher(final long bookId, final long publisherId);
     BookResponse updateUserScoreAverage(final long bookId, final float userScoreAverage);
     BookResponse updateUserScoreCount(final long bookId, final int userScoreCount);
 
     BookResponse removeAuthor(final long bookId, final long authorId);
+    BookResponse removeGenre(final long bookId, final long genreId);
 
     Book findBookById(final long bookId);
     void deleteBook(final long id);

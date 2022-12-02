@@ -12,6 +12,8 @@ import pl.milej.michal.wordofreaders.author.Author;
 import pl.milej.michal.wordofreaders.author.AuthorServiceImpl;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.book.cover.CoverServiceImpl;
+import pl.milej.michal.wordofreaders.book.genre.Genre;
+import pl.milej.michal.wordofreaders.book.genre.GenreServiceImpl;
 import pl.milej.michal.wordofreaders.exception.*;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
 import pl.milej.michal.wordofreaders.publisher.PublisherServiceImpl;
@@ -26,6 +28,7 @@ public class BookServiceImpl implements BookService{
     final private AuthorServiceImpl authorService;
     final private PublisherServiceImpl publisherService;
     final private CoverServiceImpl coverService;
+    final private GenreServiceImpl genreService;
 
     @Override
     public BookResponse addBook(BookRequest bookRequest) {
@@ -108,12 +111,15 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookResponse assignCover(final long bookId, final long coverId) {
+    public BookResponse assignGenre(long bookId, long genreId) {
         final Book book = findBookById(bookId);
-        final Cover cover = coverService.findCoverById(coverId);
+        final Genre genre = genreService.findGenreById(genreId);
 
-        book.setCover(cover);
+        if (book.getGenres().contains(genre)) {
+            throw new RelationAlreadySetException("This genre has already been assigned to this book");
+        }
 
+        book.getGenres().add(genre);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
@@ -123,6 +129,16 @@ public class BookServiceImpl implements BookService{
         final Publisher publisher = publisherService.findPublisherById(publisherId);
 
         book.setPublisher(publisher);
+
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse updateCover(final long bookId, final long coverId) {
+        final Book book = findBookById(bookId);
+        final Cover cover = coverService.findCoverById(coverId);
+
+        book.setCover(cover);
 
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
@@ -153,6 +169,15 @@ public class BookServiceImpl implements BookService{
         final Author author = authorService.findAuthorById(authorId);
 
         book.getAuthors().remove(author);
+        return BookConverter.convertToBookResponse(bookRepository.save(book));
+    }
+
+    @Override
+    public BookResponse removeGenre(long bookId, long genreId) {
+        final Book book = findBookById(bookId);
+        final Genre genre = genreService.findGenreById(genreId);
+
+        book.getGenres().remove(genre);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
