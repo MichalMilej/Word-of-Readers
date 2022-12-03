@@ -1,0 +1,204 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="Michał Milej">
+        <createTable tableName="profile_photo">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="location" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Michał Milej">
+        <createTable tableName="author">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="second_name" type="varchar(30)"/>
+            <column name="last_name" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="date"/>
+            <column name="death_date" type="date"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="Michał Milej">
+        <createTable tableName="cover">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="location" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="Michał Milej">
+        <createTable tableName="publisher">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="Michał Milej">
+        <createTable tableName="book">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="release_date" type="date"/>
+            <column name="description" type="varchar(1500)"/>
+            <column name="publisher_id" type="bigint">
+                <constraints foreignKeyName="fK_publisher" references="publisher(id)"/>
+            </column>
+            <column name="cover_id" type="bigint" defaultValue="1">
+                <constraints nullable="false" foreignKeyName="fk_book_cover" references="cover(id)"/>
+            </column>
+            <column name="user_score_average" type="float"/>
+            <column name="user_score_count" type="int" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="Michał Milej">
+        <createTable tableName="book_author">
+            <column name="author_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_author" references="author(id)"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_book" references="book(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="Michał Milej">
+        <createTable tableName="application_user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(20)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="hashed_password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="profile_photo_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_profile_photo" references="profile_photo(id)"/>
+            </column>
+            <column name="banned" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activated" type="boolean" defaultValue="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_role" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="8" author="Michał Milej">
+        <createTable tableName="review">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="text" type="varchar(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="publication_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="likes" type="integer" value="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dislikes" type="integer" value="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_book" references="book(id)"/>
+            </column>
+            <column name="application_user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_application_user" references="application_user(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="9" author="Michał Milej">
+        <createTable tableName="review_reaction">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_reaction" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="application_user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_application_user" references="application_user(id)"/>
+            </column>
+            <column name="review_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_review" references="review(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="10" author="Michał Milej">
+        <createTable tableName="user_score">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="score" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_book" references="book(id)"/>
+            </column>
+            <column name="application_user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_application_user" references="application_user(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="11" author="Michał Milej">
+        <createTable tableName="genre">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(40)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="12" author="Michał Milej">
+        <createTable tableName="book_genre">
+            <column name="book_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_book" references="book(id)"/>
+            </column>
+            <column name="genre_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_genre" references="genre(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

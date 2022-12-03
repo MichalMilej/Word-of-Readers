@@ -1,0 +1,87 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="16" author="Michał Milej">
+        <insert tableName="publisher">
+            <column name="id">1</column>
+            <column name="name">Wydawnictwo GREG</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">2</column>
+            <column name="name">Media Rodzina</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">3</column>
+            <column name="name">Siedmioróg</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">4</column>
+            <column name="name">Wydawnictwo Rea</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">5</column>
+            <column name="name">Helion</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">6</column>
+            <column name="name">Iskry</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">7</column>
+            <column name="name">NetPress Digital Sp. z o.o.</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">8</column>
+            <column name="name">Astrum</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">9</column>
+            <column name="name">Muza</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">10</column>
+            <column name="name">Zysk i S-ka</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">11</column>
+            <column name="name">Albatros</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">12</column>
+            <column name="name">Świat Książki</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">13</column>
+            <column name="name">Sonia Draga</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">14</column>
+            <column name="name">Rebis</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">15</column>
+            <column name="name">MAG</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">16</column>
+            <column name="name">Vesper</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">17</column>
+            <column name="name">Dolnośląskie</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">18</column>
+            <column name="name">Insignis</column>
+        </insert>
+        <insert tableName="publisher">
+            <column name="id">19</column>
+            <column name="name">Wydawnictwo Marginesy</column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,107 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="18" author="Michał Milej">
+        <insert tableName="book">
+            <column name="id">1</column>
+            <column name="title">Pan Tadeusz</column>
+            <column name="release_date">2021-01-01</column>
+            <column name="description">Wydanie "Pana Tadeusza" kompletne bez skrótów i cięć w treści. W tym wydaniu znajdziesz odpowiedzi na pytania z podręcznika - „pewniak na teście”, czyli wskazanie zagadnień, które zwykle pojawiają się w pytaniach z danej lektury we wszelkich testach sprawdzających wiedzę, a także w podręcznikach i na klasówkach. Zawiera bardzo szczegółowe streszczenie oraz drugie skrócone, ułatwiające szybkie przygotowanie się przed lekcją. Opracowanie zawiera plan wydarzeń, wnikliwie wyjaśnioną problematykę oraz szerokie charakterystyki bohaterów.</column>
+            <column name="publisher_id">1</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">2</column>
+            <column name="title">Reduta Ordona</column>
+            <column name="release_date">1997-01-01</column>
+            <column name="description">Redutę Ordona Adama Mickiewicza zalicza się do jednego z najważniejszych utworów polskiego romantyzmu. Napisany został przez poetę po upadku powstania listopadowego. Inspiracją do jego napisania była opowieść adiutanta Stefana Garczyńskiego, który brał udział w obronie w obronie jednego z fortów znajdujących się na warszawskiej Woli. Dowódcą oddziałów, które broniły tego fortu był Julian Konstanty Ordon. Grupa wojska będąca jedynym oddziałem, który bronił tego przyczółku była bardzo nieliczna, a przewaga wojsk rosyjskich była miażdżąca. Po bohaterskiej obronie fortu, kiedy żołnierze nie mogli już dłużej powstrzymywać naporu Rosjan, dowódca postanowił wysadzić fort, by tym samym zniszczyć oddział nieprzyjaciela. Wielu żołnierzy zginęło wtedy, ale dowódca przeżył i później działał na emigracji. Mickiewicz w swym wierszu jednak uśmiercił Ordona, by tym samym oddać hołd tym, którzy polegli w bohaterskiej walce.</column>
+            <column name="publisher_id">7</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">3</column>
+            <column name="title">Lalka</column>
+            <column name="release_date">2017-01-01</column>
+            <column name="description">Stanisław Wokulski jest jedną z najbardziej fascynujących postaci w polskiej literaturze, a sama Lalka jest powieścią kochaną przez kolejne pokolenia. Nic dziwnego, ta uważana za najlepszą powieść Bolesława Prusa przedstawia prawdziwy świat, aktualne problemy i dylematy. Warszawa opisana na kartach powieści wciąż żyje - organizowane są trasy spacerowe śladami jej bohaterów, a na Krakowskim Przedmieściu na kamienicy o numerze 4-6 widnieje tabliczka: „W tym miejscu stał dom, w którym mieszkał w latach 1878-79 Stanisław Wokulski, postać powołana do życia przez Bolesława Prusa w powieści Lalka, uczestnik Powstania 1863 roku, były zesłaniec syberyjski, były kupiec i obywatel m.st. Warszawy, filantrop i uczony urodzony w r. 1832".</column>
+            <column name="publisher_id">1</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">4</column>
+            <column name="title">Katarynka</column>
+            <column name="release_date">2013-01-01</column>
+            <column name="description">Kompozycyjnie Katarynka podzielona jest na dwie części. Pierwsza jest silnie nasycona wątkami biograficznymi, druga która stanowi właściwą akcję noweli.</column>
+            <column name="publisher_id">1</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">5</column>
+            <column name="title">Quo vadis</column>
+            <column name="release_date">2021-01-01</column>
+            <column name="description">Rzym za czasów cesarza Nerona to miejsce zderzenia dwóch światów - zapatrzonej w siebie, kipiącej od bogactw, pełnej zabaw, uczt i zepsucia rzeczywistości Imperium Rzymskiego oraz rodzącej się kultury chrześcijańskiej, tak odmiennej od wszystkiego, co do tej pory znali ludzie. Z pierwszego z owych światów pochodzi Winicjusz, z drugiego Ligia - a jednak tych dwoje tak bardzo odmiennych ludzi połączy miłość silniejsza od wszelkich uczuć, jakich dane im było doświadczyć. Historia ich związku, a także historia szalonego cesarza, pożaru Rzymu i prześladowania wyznawców Chrystusa to tło, na którym rozwija się przed oczami czytelnika moc i potęga religii chrześcijańskiej, rozpoczynającej właśnie swój pochód drogą, na której na zawsze zmieni świat. Przedstawiamy jedną z najbardziej znanych powieści Henryka Sienkiewicza w wydaniu lekturowym, z opracowaniem przygotowanym przez doświadczonych nauczycieli. Czytelnik znajdzie tu dokładnie omówioną problematykę, tło historyczne, charakterystyki bohaterów i szczegółowe streszczenie. Zapraszamy do lektury!</column>
+            <column name="publisher_id">1</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">6</column>
+            <column name="title">Potop. Lektura z opracowaniem</column>
+            <column name="release_date">2021-01-01</column>
+            <column name="description">Wydanie Potopu kompletne bez skrótów i cięć w treści. W tym wydaniu znajdziesz odpowiedzi na pytania z podręcznika - „pewniak na teście”, czyli wskazanie zagadnień, które zwykle pojawiają się w pytaniach z danej lektury we wszelkich testach sprawdzających wiedzę, a także w podręcznikach i na klasówkach. Zawiera bardzo szczegółowe streszczenie oraz drugie skrócone, ułatwiające szybkie przygotowanie się przed lekcją. Opracowanie zawiera plan wydarzeń, wnikliwie wyjaśnioną problematykę oraz szerokie charakterystyki bohaterów.</column>
+            <column name="publisher_id">1</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">7</column>
+            <column name="title">Bractwo Pierścienia. Władca Pierścieni. Tom 1</column>
+            <column name="release_date">2019-01-01</column>
+            <column name="description">Pierwsza część Władcy Pierścieni, porywającej przygody, stworzonej z epickim rozmachem przez J.R.R. Tolkiena. W spokojnej wiosce w Shire młody hobbit Frodo zostaje obarczony niezwykle odpowiedzialnym zadaniem. Ma ON podjąć niebezpieczną podróż przez Środziemie do Szczelin Zagłady, by tam zniszczyć Pierścień Jedyny. Musi bowiem udaremnić niecne plany Władcy Ciemności…</column>
+            <column name="publisher_id">10</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">8</column>
+            <column name="title">Dwie wieże. Władca Pierścieni. Tom 2. Wydanie ilustrowane</column>
+            <column name="release_date">2017-01-01</column>
+            <column name="description">Bogato ilustrowane, ekskluzywne wydanie jednej z najsłynniejszych książek w historii. Po śmierci Boromira i pojmaniu Merry’egó i Pippina rozbite Bractwó Pierścienia podąża niestrudzenie ku swemu przeznaczeniu, choć żaden z jej członków nie wie, co dzieje się z Samem i Frodem. A tropiony przez Nazgule Powiernik Pierścienia z uporem idzie dalej. Podążając za Gollumem, przemierza Martwe Bagna, by stanąć wreszcie u stóp Minas Morgul – przerażającej fortecy strzegącej drogi do Krainy Cienia...</column>
+            <column name="publisher_id">10</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">9</column>
+            <column name="title">Baśnie Andersena</column>
+            <column name="release_date">2021-01-01</column>
+            <column name="description">Kto nie zna Calineczki, Kaja i Gerdy, Królowej Śniegu? Kto nie wzruszał się losem brzydkiego kaczątka, dziewczynki z zapałkami, stokrotki? Bohaterowie baśni H. Ch. Andersena są bliscy każdemu z nas, bo ich historie są żywe, barwne, ciekawie opowiedziane. Genialny bajarz z Danii wciąż podbija serca dzieci na całym świecie prostotą swoich baśni, a jednocześnie zawartą w nich głęboką prawdą o ludziach i świecie.</column>
+            <column name="publisher_id">1</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">10</column>
+            <column name="title">Gra o tron. Pieśń Lodu i Ognia. Tom 1. Wydanie serialowe</column>
+            <column name="release_date">2022-01-01</column>
+            <column name="description">Zbliża się zima, lodowate wichry wieją z północy, gdzie schroniły się wyparte przez ludzi pradawne rasy i starzy bogowie. Zbuntowani władcy na szczęście pokonali szalonego Smoczego Króla, Aerysa Targaryena, zasiadającego na Żelaznym Tronie Zachodnich Krain, lecz obalony władca pozostawił po sobie potomstwo, równie szalone jak ON sam. Tron objął Robert - najznamienitszy z buntowników. Minęły już lata pokoju i oto możnowładcy zaczynają grę o tron... George R.R Martin jest jednym z najbardziej cenionych pisarzy fantastyki. Dzięki swej wielotomowej sadze pozyskał miliony oddanych fanów i odrodził tradycję epickiej fantasy w stylu tolkienowskim.</column>
+            <column name="publisher_id">10</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">11</column>
+            <column name="title">Pamiętnik</column>
+            <column name="release_date">2020-01-01</column>
+            <column name="description">Młodzieńcza miłość rządzi się swoimi prawami. Jest pełna beztroski, niewinności, uroku i pasji jednocześnie. To odkrywanie uczuć do drugiej osoby i poznawanie obiektu swojej fascynacji każdego dnia na nowo. Często lekceważona przez starszych, którzy patrzą na nią z przymrużeniem oka, wychodząc z założenia, że to krótkotrwałe i ulotne zauroczenie. Nierzadko to jednak mylne myślenie, bowiem nastoletnie związki potrafią przerodzić się w dojrzałe, niemniej namiętne uczucie. Doskonale przekonali się o tym Allie i Noah, główni bohaterowie książki pod tytułem "Pamiętnik”, którą napisał Nicholas Sparks.</column>
+            <column name="publisher_id">11</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">12</column>
+            <column name="title">Anna Karenina T.1</column>
+            <column name="release_date">2021-01-01</column>
+            <column name="description">Anna Karenina, powieść psychologiczna wielkiego rosyjskiego pisarza Lwa Tołstoja, należy do ścisłego kanonu literatury światowej.</column>
+            <column name="publisher_id">3</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">13</column>
+            <column name="title">Harry Potter i Kamień Filozoficzny. Tom 1 Wydanie ilustrowane</column>
+            <column name="release_date">2015-01-01</column>
+            <column name="description">Minęło już 15 lat od daty premiery pierwszego tomu Harry’ego Pottera. Fani przygód uczniów Hogwartu z pewnością nie mogli się doczekać, aż na własne oczy ujrzą pierwsze ilustrowane wydanie I tomu bestsellerowej sagi przygód młodego czarodzieja z Hogwartu. „Harry Potter i Kamień Filozoficzny”. W książce obok treści znajdują się także ilustracje postaci, miejsc, zwierząt, które stanowią ważną rolę w historii.</column>
+            <column name="publisher_id">2</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="19" author="Michał Milej">
+    </changeSet>
+
+    <changeSet id="20" author="Michał Milej">
+    </changeSet>
+
+</databaseChangeLog>

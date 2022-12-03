@@ -40,8 +40,10 @@ table {
     margin-right: auto;
 }
 #searchResultTable {
+    width: 70%;
     margin-top: 2em;
     margin-bottom: 3em;
+    font-size: 0.9em;
 }
 #resultsControlArea {
     width: 50%;

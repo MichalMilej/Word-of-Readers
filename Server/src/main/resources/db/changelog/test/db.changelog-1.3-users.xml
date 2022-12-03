@@ -1,0 +1,91 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!-- password is the same for all users -->
+    <changeSet id="15" author="Michał Milej">
+        <insert tableName="application_user">
+            <column name="id">1</column>
+            <column name="username">Boss</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">boss@word.of.readers.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">ADMIN</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">2</column>
+            <column name="username">Johny</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">johny@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">MOD</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">3</column>
+            <column name="username">Elize</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">elize@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">MOD</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">4</column>
+            <column name="username">Jack</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">jack@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">MOD</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">5</column>
+            <column name="username">Marek</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">marek@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">MOD</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">6</column>
+            <column name="username">Agata</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">agata@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">USER</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">7</column>
+            <column name="username">Adam</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">adam@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">USER</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">8</column>
+            <column name="username">Bartek</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">bartek@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">USER</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">9</column>
+            <column name="username">George</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">george@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">USER</column>
+        </insert>
+        <insert tableName="application_user">
+            <column name="id">10</column>
+            <column name="username">Asia</column>
+            <column name="hashed_password">$2a$10$Hx2/4MuhvcB8SyC43yspOuUprEkWOpWQDDMg0aS3a3gZsPBYN.0oa</column>
+            <column name="email">asia@mail.com</column>
+            <column name="profile_photo_id">1</column>
+            <column name="user_role">USER</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

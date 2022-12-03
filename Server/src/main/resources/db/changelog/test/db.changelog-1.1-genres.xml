@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="13" author="Michał Milej">
+        <insert tableName="genre">
+            <column name="id">1</column>
+            <column name="name">Romance</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">2</column>
+            <column name="name">Fantasy</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">3</column>
+            <column name="name">Science-Fiction</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">4</column>
+            <column name="name">Adventure</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">5</column>
+            <column name="name">History</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">6</column>
+            <column name="name">Crime</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">7</column>
+            <column name="name">Education</column>
+        </insert>
+        <insert tableName="genre">
+            <column name="id">8</column>
+            <column name="name">Biography</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
