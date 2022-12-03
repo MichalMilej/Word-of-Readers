@@ -91,17 +91,354 @@
         </insert>
         <insert tableName="book">
             <column name="id">13</column>
-            <column name="title">Harry Potter i Kamień Filozoficzny. Tom 1 Wydanie ilustrowane</column>
+            <column name="title">Harry Potter i Kamień Filozoficzny. Tom 1</column>
             <column name="release_date">2015-01-01</column>
             <column name="description">Minęło już 15 lat od daty premiery pierwszego tomu Harry’ego Pottera. Fani przygód uczniów Hogwartu z pewnością nie mogli się doczekać, aż na własne oczy ujrzą pierwsze ilustrowane wydanie I tomu bestsellerowej sagi przygód młodego czarodzieja z Hogwartu. „Harry Potter i Kamień Filozoficzny”. W książce obok treści znajdują się także ilustracje postaci, miejsc, zwierząt, które stanowią ważną rolę w historii.</column>
             <column name="publisher_id">2</column>
         </insert>
+        <insert tableName="book">
+            <column name="id">14</column>
+            <column name="title">Harry Potter i Komnata Tajemnic. Tom 2</column>
+            <column name="release_date">2016-01-01</column>
+            <column name="description">Harry po pełnym przygód roku w Hogwarcie spędza nudne wakacje u Dursleyów i z utęsknieniem wyczekuje powrotu do szkoły. Sprawy jednak znacznie się komplikują, gdy pewnego dnia odwiedza go tajemniczy przybysz i ostrzega przed… powrotem do Szkoły Magii i Czarodziejstwa, gdzie ma dojść do strasznych wydarzeń. Czy Harry posłucha ostrzeżenia? Co złego ma się wydarzyć w Hogwarcie? Jakie tajemnice skrywa rodzina Malforya? I najważniejsze – czym jest i gdzie znajduje się tytułowa Komnata Tajemnic?</column>
+            <column name="publisher_id">2</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">15</column>
+            <column name="title">Diuna. Kroniki Diuny. Tom 1</column>
+            <column name="release_date">2022-01-01</column>
+            <column name="description">Diuna F. Herberta z obrazem i rysunkami Wojciecha Siudmaka, w tłumaczeniu Marka Marszała. Arrakis, zwana Diuną, to jedyne we wszechświecie źródło melanżu - substancji przedłużającej życie, umożliwiającej odbywanie podróży kosmicznych i przewidywanie przyszłości.</column>
+            <column name="publisher_id">14</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">16</column>
+            <column name="title">Hyperion. Tom 1</column>
+            <column name="release_date">2015-01-01</column>
+            <column name="description">"Hyperion" to wciągająca i bestsellerowa powieść science-fiction. O odległych galaktykach, końcu Ziemi i niezwykłej misji, jaką wykonać musi siedmioro niezwyciężonych pielgrzymów.</column>
+            <column name="publisher_id">15</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">17</column>
+            <column name="title">Tomek w grobowcach faraonów. Kolekcja: Klub Podróżnika. Tom 34</column>
+            <column name="release_date">2018-01-01</column>
+            <column name="description">Klub Podróżnika to kolekcja klasycznych powieści młodzieżowych - 35 książek takich mistrzów pióra, jak: Aleksander Dumas, Jack London czy Juliusz Verne. Nie mogło w niej zabraknąć i polskich akcentów: cykl o Tomku Wilmowskim Alfreda Szklarskiego czy ?W pustyni i w puszczy? Henryka Sienkiewicza. Dla wszystkich, którym nieobcy jest duch przygody, prawdziwa wydawnicza gratka!</column>
+            <column name="publisher_id">9</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">18</column>
+            <column name="title">Wyspa skarbów</column>
+            <column name="release_date">2017-01-01</column>
+            <column name="description">Powieść przygodowa angielskiego pisarza Roberta Louisa Stevensona z 1883 roku, Wyspa skarbów, należy do kanonu literatury dziecięcej i młodzieżowej. Głównym bohaterem powieści jest młody chłopak, Kuba Hawkins, który przez przypadek trafia na trop skarbu legendarnego pirata Flinta. Kuba postanawia wyruszyć na poszukiwanie skarbu, który zgodnie z tajemniczą mapą został ukryty na bezludnej zamorskiej wyspie. Współorganizuje więc zamorską wyprawę, na czele której staje wytrawny wilk morski, kapitan Bill. Na pokładzie statku okazuje się, że wśród załogi znajdują się dawni kompani Flinta, pragnący za wszelką cenę odzyskać utracone mienie. Pod wodzą Długiego Jana Silvera, korsarza z drewnianą nogą, wywołują bunt, by zawładnąć statkiem. Dla Kuby i wiernych mu towarzyszy rozpoczyna się czas wielkiej próby.</column>
+            <column name="publisher_id">3</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">19</column>
+            <column name="title">Obca. Tom 1</column>
+            <column name="release_date">2021-01-01</column>
+            <column name="description">"Obca" to bestsellerowa powieść, której autorką jest Diana Gabaldon. Każda osoba lubiąca historię i fantasy powinna sięgnąć po tę książkę.</column>
+            <column name="publisher_id">12</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">20</column>
+            <column name="title">W głębi lasu</column>
+            <column name="release_date">2020-01-01</column>
+            <column name="description">Szukasz książki, która dostarczy Ci skrajnych emocji, mrocznych tajemnic i intensywnej akcji? W takim razie "W głębi lasu" spełni Twoje wszystkie oczekiwania.</column>
+            <column name="publisher_id">11</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">21</column>
+            <column name="title">Zbrodnie zimową porą</column>
+            <column name="release_date">2020-01-01</column>
+            <column name="description">Rozwiąż dwanaście mrocznych zagadek, które przygotowała mistrzyni gatunku kryminalnego. “Zbrodnie zimową porą” to idealny sposób na spędzenie zimowych wieczorów!</column>
+            <column name="publisher_id">17</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">22</column>
+            <column name="title">Czysty kod. Podręcznik dobrego programisty</column>
+            <column name="release_date">2010-02-01</column>
+            <column name="description">O tym, ile problemów sprawia niedbale napisany kod, wie każdy programista. Nie wszyscy jednak wiedzą, jak napisać ten świetny, "czysty" kod i czym właściwie powinien się on charakteryzować. Co więcej - jak odróżnić dobry kod od złego? Odpowiedź na te pytania oraz sposoby tworzenia czystego, czytelnego kodu znajdziesz właśnie w tej książce. Podręcznik jest obowiązkową pozycją dla każdego, kto chce poznać techniki rzetelnego i efektywnego programowania.</column>
+            <column name="publisher_id">5</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">23</column>
+            <column name="title">Thinking in Java. Edycja polska</column>
+            <column name="release_date">2006-09-01</column>
+            <column name="description">Książka "Thinking in Java. Edycja polska. Wydanie IV" zawiera szczegółowe omówienie zasad programowania w Javie. Przeznaczona jest dla początkujących programistów i dla ekspertów. Przystępnie prezentuje zarówno zagadnienia podstawowe, jak i zaawansowane. Dziesiątki przykładów ułatwiają zrozumienie każdego tematu. Wszystko to sprawia, że poznajemy prawdziwą Javę -- uniwersalną, czytelną, niezależną od platformy systemowej. Czytając tę książkę, dowiesz się, co jest niezbędne do tworzenia wydajnych i bezpiecznych aplikacji w Javie.</column>
+            <column name="publisher_id">5</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">24</column>
+            <column name="title">Steve Jobs</column>
+            <column name="release_date">2013-11-01</column>
+            <column name="description">Ekskluzywna biografia twórcy firmy Apple -Steve'a Jobsa (jedyna napisana przy jego współpracy) pióra Waltera Isaacsona, autora bestsellerowych biografii Benjamina Franklina i Alberta Einseina.</column>
+            <column name="publisher_id">18</column>
+        </insert>
+        <insert tableName="book">
+            <column name="id">25</column>
+            <column name="title">Diana. Jej historia</column>
+            <column name="release_date">2021-11-10</column>
+            <column name="description">Księżna Diana, królowa ludzkich serc – ikona za życia i legenda po śmierci – nie przestaje fascynować. Ta przełomowa biografia nazwana „najdłuższym pozwem rozwodowym w historii” została napisana we współpracy z samą księżną i przy wsparciu jej przyjaciół. Nigdy wcześniej żaden członek rodziny królewskiej nie mówił w tak surowy, nieupiększony sposób o swoim nieszczęśliwym małżeństwie, relacji z królową, wyjątkowym życiu w domu Windsorów, nadziejach, obawach i marzeniach.</column>
+            <column name="publisher_id">19</column>
+        </insert>
     </changeSet>
 
     <changeSet id="19" author="Michał Milej">
+        <insert tableName="book_author">
+            <column name="book_id">1</column>
+            <column name="author_id">1</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">2</column>
+            <column name="author_id">1</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">3</column>
+            <column name="author_id">2</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">4</column>
+            <column name="author_id">2</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">5</column>
+            <column name="author_id">3</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">6</column>
+            <column name="author_id">3</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">7</column>
+            <column name="author_id">4</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">8</column>
+            <column name="author_id">4</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">9</column>
+            <column name="author_id">5</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">10</column>
+            <column name="author_id">6</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">11</column>
+            <column name="author_id">7</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">12</column>
+            <column name="author_id">8</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">13</column>
+            <column name="author_id">10</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">14</column>
+            <column name="author_id">10</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">15</column>
+            <column name="author_id">11</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">16</column>
+            <column name="author_id">12</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">17</column>
+            <column name="author_id">13</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">18</column>
+            <column name="author_id">14</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">19</column>
+            <column name="author_id">15</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">20</column>
+            <column name="author_id">16</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">21</column>
+            <column name="author_id">17</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">22</column>
+            <column name="author_id">18</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">23</column>
+            <column name="author_id">19</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">24</column>
+            <column name="author_id">20</column>
+        </insert>
+        <insert tableName="book_author">
+            <column name="book_id">25</column>
+            <column name="author_id">21</column>
+        </insert>
     </changeSet>
 
     <changeSet id="20" author="Michał Milej">
+        <insert tableName="book_genre">
+            <column name="book_id">1</column>
+            <column name="genre_id">5</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">1</column>
+            <column name="genre_id">7</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">2</column>
+            <column name="genre_id">7</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">3</column>
+            <column name="genre_id">5</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">3</column>
+            <column name="genre_id">7</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">4</column>
+            <column name="genre_id">7</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">5</column>
+            <column name="genre_id">5</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">6</column>
+            <column name="genre_id">5</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">7</column>
+            <column name="genre_id">2</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">7</column>
+            <column name="genre_id">4</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">8</column>
+            <column name="genre_id">2</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">8</column>
+            <column name="genre_id">4</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">9</column>
+            <column name="genre_id">4</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">9</column>
+            <column name="genre_id">7</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">10</column>
+            <column name="genre_id">2</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">11</column>
+            <column name="genre_id">1</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">12</column>
+            <column name="genre_id">1</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">12</column>
+            <column name="genre_id">5</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">13</column>
+            <column name="genre_id">2</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">13</column>
+            <column name="genre_id">4</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">14</column>
+            <column name="genre_id">2</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">14</column>
+            <column name="genre_id">4</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">15</column>
+            <column name="genre_id">3</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">16</column>
+            <column name="genre_id">3</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">17</column>
+            <column name="genre_id">4</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">18</column>
+            <column name="genre_id">4</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">19</column>
+            <column name="genre_id">1</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">19</column>
+            <column name="genre_id">2</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">20</column>
+            <column name="genre_id">6</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">21</column>
+            <column name="genre_id">6</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">22</column>
+            <column name="genre_id">7</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">23</column>
+            <column name="genre_id">7</column>
+        </insert>
+
+        <insert tableName="book_genre">
+            <column name="book_id">24</column>
+            <column name="genre_id">8</column>
+        </insert>
+        <insert tableName="book_genre">
+            <column name="book_id">25</column>
+            <column name="genre_id">8</column>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
