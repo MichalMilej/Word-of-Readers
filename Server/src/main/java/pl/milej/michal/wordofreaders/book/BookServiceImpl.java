@@ -1,7 +1,6 @@
 package pl.milej.michal.wordofreaders.book;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.*;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -11,14 +10,15 @@ import pl.milej.michal.wordofreaders.author.AuthorServiceImpl;
 import pl.milej.michal.wordofreaders.book.cover.Cover;
 import pl.milej.michal.wordofreaders.book.cover.CoverServiceImpl;
 import pl.milej.michal.wordofreaders.book.genre.Genre;
-import pl.milej.michal.wordofreaders.book.genre.GenreRepository;
 import pl.milej.michal.wordofreaders.book.genre.GenreServiceImpl;
 import pl.milej.michal.wordofreaders.exception.*;
 import pl.milej.michal.wordofreaders.publisher.Publisher;
 import pl.milej.michal.wordofreaders.publisher.PublisherServiceImpl;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +29,6 @@ public class BookServiceImpl implements BookService{
     final private PublisherServiceImpl publisherService;
     final private CoverServiceImpl coverService;
     final private GenreServiceImpl genreService;
-    final GenreRepository genreRepository;
 
     @Override
     public BookResponse addBook(BookRequest bookRequest) {
@@ -78,26 +77,22 @@ public class BookServiceImpl implements BookService{
         }
 
         final Page<Book> books;
-        if (title == null) {
+        if (title == null && genresIds == null) {
             books = bookRepository.findAll(pageable);
-        }
-        else {
-            books = bookRepository.findByTitleContainsIgnoreCase(title, pageable);
-        }
-
-        if (genresIds == null) {
-            return books.map(BookConverter::convertToBookResponse);
+        } else if (genresIds == null) {
+            books = bookRepository.findAllByTitleContainsIgnoreCase(title, pageable);
         } else {
-            List<BookResponse> filteredBooks = books.filter(book -> {
-                for (Genre genre : book.getGenres()) {
-                    if (genresIds.contains(genre.getId())) {
-                        return true;
-                    }
-                }
-                return false;
-            }).stream().map(BookConverter::convertToBookResponse).toList();
-            return new PageImpl<>(filteredBooks, pageable, filteredBooks.size());
+            final Set<Genre> genres = new HashSet<>();
+            for (Long id : genresIds) {
+                genres.add(genreService.findGenreById(id));
+            }
+            if (title == null) {
+                books = bookRepository.findAllByGenresIn(genres, pageable);
+            } else {
+                books = bookRepository.findAllByTitleContainsIgnoreCaseAndGenresIn(title, genres, pageable);
+            }
         }
+        return books.map(BookConverter::convertToBookResponse);
     }
 
     @Override
