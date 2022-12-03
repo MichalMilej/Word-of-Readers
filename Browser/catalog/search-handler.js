@@ -1,7 +1,7 @@
-sessionStorage.setItem("lastPage", "catalog");
+localStorage.setItem("lastPage", "catalog");
 
 let currentPageNumber = 0;
-let currentPageSize = 12;
+let currentPageSize = 10;
 
 function loadBooks() {
     currentPageNumber = 0;

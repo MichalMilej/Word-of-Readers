@@ -3,8 +3,8 @@ const urlParams = new URLSearchParams(url.split("?")[1]);
 var bookId = null;
 if (urlParams.has("bookId")) {
     bookId = urlParams.get("bookId");
-    sessionStorage.setItem("lastPage", "about-book");
-    sessionStorage.setItem("bookId", bookId);
+    localStorage.setItem("lastPage", "about-book");
+    localStorage.setItem("bookId", bookId);
     loadAndDisplayBookData(bookId);
 }
 

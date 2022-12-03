@@ -43,14 +43,14 @@ function sendLoginRequest(username, authorization) {
 }
 
 function loadPreviousPage() {
-    let lastPage = sessionStorage.getItem("lastPage");
+    let lastPage = localStorage.getItem("lastPage");
     let location = "../about-user/about-user.html";
     switch(lastPage) {
         case "catalog":
             location = "../catalog/catalog.html";
         break;
         case "about-book":
-            location = `../about-book/about-book.html?bookId=${sessionStorage.getItem("bookId")}`;
+            location = `../about-book/about-book.html?bookId=${localStorage.getItem("bookId")}`;
         break;
     }
     window.location.href = location;

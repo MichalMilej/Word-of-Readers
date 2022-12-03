@@ -27,8 +27,8 @@ input {
     margin-bottom: 0.8%;
 }
 .genreCheckbox {
-    height: 0.85em;
-    width: 0.85em;
+    height: 0.9em;
+    width: 0.9em;
     cursor: pointer;
 }
 .genreLabel {
@@ -43,7 +43,7 @@ table {
     width: 70%;
     margin-top: 2em;
     margin-bottom: 3em;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 #resultsControlArea {
     width: 50%;
