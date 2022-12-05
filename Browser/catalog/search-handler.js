@@ -40,10 +40,22 @@ function displayBooksInTable(json, table) {
     publisherTh.appendChild(document.createTextNode("Publisher"));
     let authorsTh = document.createElement('th');
     authorsTh.appendChild(document.createTextNode("Authors"));
+
+    let userScoreAverageTh = document.createElement('th');
+    userScoreAverageTh.appendChild(document.createTextNode('Average score'));
+    userScoreAverageTh.classList.add('shortTh');
+
+    let userScoreCountTh = document.createElement('th');
+    userScoreCountTh.appendChild(document.createTextNode('Scores'));
+    userScoreCountTh.classList.add('shortTh');
+    
     headersTr.appendChild(titleTh);
     headersTr.appendChild(releaseDateTh);
     headersTr.appendChild(publisherTh);
     headersTr.appendChild(authorsTh);
+    headersTr.appendChild(userScoreAverageTh);
+    headersTr.appendChild(userScoreCountTh);
+
     table.appendChild(headersTr);
 
     // Display table content
@@ -54,6 +66,10 @@ function displayBooksInTable(json, table) {
         let releaseDateTd = document.createElement('td');
         let publisherTd = document.createElement('td');
         let authorsTd = document.createElement('td');
+        let userScoreAverageTd = document.createElement('td');
+        userScoreAverageTd.style.textAlign = 'right';
+        let userScoreCountTd = document.createElement('td');
+        userScoreCountTd.style.textAlign = 'right';
 
         let bookId = json.content[bookIndex].id;
         bookTr.setAttribute("onclick", `window.location.href="../about-book/about-book.html?bookId=${bookId}"`);
@@ -80,11 +96,21 @@ function displayBooksInTable(json, table) {
             }
         }
         authorsTd.appendChild(document.createTextNode(authorsLastNames));
+        // setting average score
+        let userScoreAverage = json.content[bookIndex].userScoreAverage;
+        if (userScoreAverage != null) {
+            userScoreAverage = (Math.round(userScoreAverage * 10) / 10).toFixed(1);
+            userScoreAverageTd.appendChild(document.createTextNode(userScoreAverage));
+        }
+        // setting user score count
+        userScoreCountTd.appendChild(document.createTextNode(json.content[bookIndex].userScoreCount));
 
         bookTr.appendChild(titleTd);
         bookTr.appendChild(releaseDateTd);
         bookTr.appendChild(publisherTd);
         bookTr.appendChild(authorsTd);
+        bookTr.appendChild(userScoreAverageTd);
+        bookTr.appendChild(userScoreCountTd);
 
         table.appendChild(bookTr);
         bookIndex++;
