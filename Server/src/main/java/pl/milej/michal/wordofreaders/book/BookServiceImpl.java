@@ -46,6 +46,7 @@ public class BookServiceImpl implements BookService{
         book.setTitle(title);
         book.setDescription(bookRequest.getDescription());
         book.setReleaseDate(releaseDate);
+        setBookIsbn(book, bookRequest.getIsbn());
         if (bookRequest.getPublisherId() != null) {
             final Publisher publisher = publisherService.findPublisherById(bookRequest.getPublisherId());
             book.setPublisher(publisher);
@@ -105,8 +106,17 @@ public class BookServiceImpl implements BookService{
         if (bookRequest.getReleaseDate() != null) {
             existingBook.setReleaseDate(bookRequest.getReleaseDate());
         }
+        setBookIsbn(existingBook, bookRequest.getIsbn());
         if (bookRequest.getDescription() != null) {
             existingBook.setDescription(bookRequest.getDescription());
+        }
+        if (bookRequest.getPublisherId() != null) {
+            final Publisher publisher = publisherService.findPublisherById(bookRequest.getPublisherId());
+            existingBook.setPublisher(publisher);
+        }
+        if (bookRequest.getCoverId() !=  null) {
+            final Cover cover = coverService.findCoverById(bookRequest.getCoverId());
+            existingBook.setCover(cover);
         }
 
         return BookConverter.convertToBookResponse(bookRepository.save(existingBook));
@@ -205,5 +215,15 @@ public class BookServiceImpl implements BookService{
         return bookRepository.findById(bookId).orElseThrow(() -> {
             throw new ResourceNotFoundException("Book not found");
         });
+    }
+
+    private void setBookIsbn(final Book book, String isbn) {
+        if (isbn != null) {
+            if (bookRepository.findByIsbnEquals(isbn).isPresent()) {
+                throw new BadRequestException("This ISBN number has already been assigned");
+            } else {
+                book.setIsbn(isbn);
+            }
+        }
     }
 }

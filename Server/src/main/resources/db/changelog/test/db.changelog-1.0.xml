@@ -64,6 +64,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="release_date" type="date"/>
+            <column name="isbn" type="varchar(13)">
+                <constraints unique="true"/>
+            </column>
             <column name="description" type="varchar(1500)"/>
             <column name="publisher_id" type="bigint">
                 <constraints foreignKeyName="fK_publisher" references="publisher(id)"/>

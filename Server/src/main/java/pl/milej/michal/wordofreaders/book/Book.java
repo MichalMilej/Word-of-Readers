@@ -31,6 +31,9 @@ public class Book {
     @Column(name = "release_date")
     private Date releaseDate;
 
+    @Column(unique = true, length = 13)
+    private String isbn;
+
     private String description;
 
     @ManyToMany

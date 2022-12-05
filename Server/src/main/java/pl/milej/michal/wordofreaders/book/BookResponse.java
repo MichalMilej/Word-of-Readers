@@ -19,6 +19,7 @@ public class BookResponse {
     private String title;
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date releaseDate;
+    private String isbn;
     private String description;
     private Set<AuthorResponse> authorResponses;
     private CoverResponse coverResponse;

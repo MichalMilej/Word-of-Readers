@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import pl.milej.michal.wordofreaders.book.genre.Genre;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,6 +14,7 @@ import java.util.Set;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     Page<Book> findAllByTitleContainsIgnoreCase(String title, Pageable pageable);
+    Optional<Book> findByIsbnEquals(String isbn);
     Optional<Book> findByTitleContainsIgnoreCaseAndReleaseDateEquals(String title, Date releaseDate);
 
     Page<Book> findAllByGenresIn(Set<Genre> genres, Pageable pageable);

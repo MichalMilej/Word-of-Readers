@@ -13,6 +13,7 @@ public class BookRequest {
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date releaseDate;
+    private String isbn;
     private String description;
     private Long publisherId;
     private Long coverId;

@@ -15,6 +15,7 @@ public class BookConverter {
                 .id(book.getId())
                 .title(book.getTitle())
                 .releaseDate(book.getReleaseDate())
+                .isbn(book.getIsbn())
                 .description(book.getDescription())
                 .authorResponses(book.getAuthors() != null ? book.getAuthors().stream()
                         .map(AuthorConverter::convertAuthorToAuthorResponse).collect(Collectors.toSet()) : null)
