@@ -71,7 +71,7 @@ th {
     cursor: pointer;
 }
 .bookRow:hover {
-    background-color: bisque;
+    background-color: rgb(164, 244, 255);
 }
 .controlBtn {
     font-size: 0.8em;
