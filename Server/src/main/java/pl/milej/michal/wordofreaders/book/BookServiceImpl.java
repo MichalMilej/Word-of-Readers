@@ -22,7 +22,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
     final private BookRepository bookRepository;
     final private AuthorServiceImpl authorService;
@@ -169,22 +169,28 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public BookResponse updateUserScoreAverage(final long bookId, final float userScoreAverage) {
-        if (userScoreAverage < 0 || userScoreAverage > 10) {
-            throw new BadServerRequestException("Wrong userScoreAverage");
-        }
+    public BookResponse updateUserScoreAverage(final long bookId, Float scoreAverage) {
         final Book book = findBookById(bookId);
-        book.setUserScoreAverage(userScoreAverage);
+        if (book.getUserScoreCount() == 0) {
+            book.setUserScoreAverage(null);
+        } else {
+            if (scoreAverage < 1 || scoreAverage > 10) {
+                throw new BadServerRequestException("Incorrect score average value");
+            }
+            book.setUserScoreAverage(scoreAverage);
+        }
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 
     @Override
-    public BookResponse updateUserScoreCount(final long bookId, final int userScoreCount) {
-        if (userScoreCount < 0) {
-            throw new BadRequestException("Wrong userScoreTotalNumber");
-        }
+    public BookResponse incrementUserScoreCount(final long bookId, final int incrementation) {
         final Book book = findBookById(bookId);
-        book.setUserScoreCount(userScoreCount);
+        final int currentCount = book.getUserScoreCount();
+        if (currentCount + incrementation < 0) {
+            throw new BadRequestException("Wrong incrementation value");
+        }
+
+        book.setUserScoreCount(currentCount + incrementation);
         return BookConverter.convertToBookResponse(bookRepository.save(book));
     }
 

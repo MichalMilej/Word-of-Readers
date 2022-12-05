@@ -3,6 +3,7 @@ package pl.milej.michal.wordofreaders.book.score;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import pl.milej.michal.wordofreaders.book.Book;
 import pl.milej.michal.wordofreaders.book.BookResponse;
 import pl.milej.michal.wordofreaders.book.BookServiceImpl;
 import pl.milej.michal.wordofreaders.user.UserPrincipalUtils;
@@ -36,7 +37,7 @@ public class UserScoreServiceImpl implements UserScoreService {
         final UserScoreResponse newUserScoreResponse = UserScoreConverter.convertUserScoreToUserScoreResponse(
                 userScoreRepository.saveAndFlush(newUserScore));
 
-        updateUserScoreCountInBookService(bookId, 1);
+        bookService.incrementUserScoreCount(bookId, 1);
         final BookResponse bookResponse = updateUserScoreAverageInBookService(bookId);
 
         Map<String, Object> map = new HashMap<>();
@@ -92,8 +93,8 @@ public class UserScoreServiceImpl implements UserScoreService {
         userScoreRepository.delete(userScore);
         userScoreRepository.flush();
 
-        updateUserScoreAverageInBookService(bookId);
-        return updateUserScoreCountInBookService(bookId, -1);
+       bookService.incrementUserScoreCount(bookId, -1);
+       return updateUserScoreAverageInBookService(bookId);
     }
 
     public UserScore findUserScoreByBookIdAndUserId(long bookId, long userId) {
@@ -104,16 +105,18 @@ public class UserScoreServiceImpl implements UserScoreService {
 
     public UserScore findUserScoreById(final long userScoreId) {
         return userScoreRepository.findById(userScoreId).orElseThrow(() -> {
-                    throw new ResourceNotFoundException("UserScore not found");
+            throw new ResourceNotFoundException("UserScore not found");
         });
     }
 
-    private BookResponse updateUserScoreCountInBookService(final long bookId, final int incrementationValue) {
-        return bookService.updateUserScoreCount(bookId,
-                bookService.findBookById(bookId).getUserScoreCount() + incrementationValue);
-    }
-
     private BookResponse updateUserScoreAverageInBookService(final long bookId) {
-        return bookService.updateUserScoreAverage(bookId, userScoreRepository.calculateScoreAverage(bookId));
+        final Book book = bookService.findBookById(bookId);
+        final Float scoreAverage;
+        if (book.getUserScoreCount() == 0) {
+            scoreAverage = null;
+        } else {
+            scoreAverage = userScoreRepository.calculateScoreAverage(bookId);
+        }
+        return bookService.updateUserScoreAverage(bookId, scoreAverage);
     }
 }
