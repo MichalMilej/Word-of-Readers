@@ -22,41 +22,41 @@ async function loadLoggedUserScoreSelectValue() {
 }
 
 async function saveUserScore() {
-    let loggedUserScoreSelect = document.getElementById('loggedUserScoreSelect');
-    let requestBody = {
-        "score": parseInt(loggedUserScoreSelect.value)
-    }
+    let selectedValue = document.getElementById('loggedUserScoreSelect').value;
     let userId = localStorage.getItem('userId');
-    let userScoreRes;
     try {
-        let getUserScoreRes = await requestGetUserScore(bookId, userId);
-        let getUserScoreJson = await getUserScoreRes.json();
+        let currentUserScoreRes = await requestGetUserScore(bookId, userId);
+        let currentUserScoreJson = await currentUserScoreRes.json();
 
-        if (getUserScoreJson.id != null && loggedUserScoreSelect.value == 'none') {
-            userScoreRes = await requestDeleteUserScore(getUserScoreJson.id);
-            if (userScoreRes.ok) {
-                updateUserScoreCount(-1);
-            }
-        } else if (getUserScoreJson.id != null) {
-            userScoreRes = await requestPatchUserScore(getUserScoreJson.id, requestBody);
+        let resStatus;
+        if (currentUserScoreJson.id != null && selectedValue == 'none') {
+            resStatus = (await requestDeleteUserScore(currentUserScoreJson.id)).status;
         } else {
-            userScoreRes = await requestPostUserScore(bookId, requestBody);
-            if (userScoreRes.ok) {
-                updateUserScoreCount(1);
+            let requestBody = {
+                "score": parseInt(selectedValue)
             }
-        }
+            if (currentUserScoreJson.id != null) {
+                resStatus = (await requestPatchUserScore(currentUserScoreJson.id, requestBody)).status;
+            } else {
+                resStatus = (await requestPostUserScore(bookId, requestBody)).status;
+            }
+        }   
 
-        if (userScoreRes.ok) {
+        if (resStatus == 200 || resStatus == 201) {
             displayUserScoreSavedMessage();
+            updateScoreInfo(bookId);
         }
     } catch(err) {
         console.log(err);
     }
 }
 
-function updateUserScoreCount(incrementValue) {
-    let userScoreCountSpan = document.getElementById('userScoreCountSpan');
-    userScoreCountSpan.textContent = (parseInt(userScoreCountSpan.textContent) + incrementValue);
+async function updateScoreInfo(bookId) {
+    let bookRes = await requestGetBook(bookId);
+    let json = await bookRes.json();
+
+    setUserScoreAverageSpan(json);
+    setUserScoreCountSpan(json);
 }
 
 function displayUserScoreSavedMessage() {
