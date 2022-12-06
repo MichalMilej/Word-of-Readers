@@ -20,12 +20,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Optional<Book> findByIsbnEquals(String isbn);
     Optional<Book> findByTitleContainsIgnoreCaseAndReleaseDateEquals(String title, Date releaseDate);
 
-    @Query("SELECT b FROM Book b JOIN b.genres g ON g.id in :genresIds")
+    @Query("SELECT DISTINCT b FROM Book b JOIN b.genres g ON g.id in :genresIds")
     Page<Book> findAllByGenresIdsIn(List<Long> genresIds, Pageable pageable);
-    @Query("SELECT b FROM Book b JOIN b.genres g ON LOWER(b.title)"
+    @Query("SELECT DISTINCT b FROM Book b JOIN b.genres g ON LOWER(b.title)"
             + "LIKE LOWER(CONCAT('%', CONCAT(:title, '%'))) AND g.id in :genresIds")
     Page<Book> findAllByTitleIgnoreCaseAndGenresIdsIn(String title, List<Long> genresIds, Pageable pageable);
-    @Query("SELECT b FROM Book b JOIN b.authors a ON LOWER(a.lastName)"
+    @Query("SELECT DISTINCT b FROM Book b JOIN b.authors a ON LOWER(a.lastName)"
             + "LIKE LOWER(CONCAT('%', CONCAT(:authorLastName, '%')))"
             + "JOIN b.genres g ON g.id in :genresIds")
     Page<Book> findAllByAuthorLastNameIgnoreCaseAndGenresIdsIn(String authorLastName, List<Long> genresIds, Pageable pageable);
