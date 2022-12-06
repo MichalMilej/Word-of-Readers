@@ -9,24 +9,39 @@ function loadBooks() {
 }
 
 async function getBooksByTitleAndGenre(pageNumber, pageSize) {
-    const title = document.getElementById("titleInput").value;
-    const resultTable = document.getElementById("searchResultTable");
+    const searchBySelectValue = document.getElementById('searchBySelect').value;
+    const searchInputValue = document.getElementById('searchInput').value;
+
+    const resultTable = document.getElementById('searchResultTable');
     resultTable.innerHTML = "";
     
     try {
-        let response;
-        if (selectedGenresIds.length == 0) {
-            response = await fetch(`http://localhost:8080/books?title=${title}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
-        } else {
-            response = await requestGetBooksWithGenreFilter(title, selectedGenresIds, pageNumber, pageSize);
-        }
+        let response = await sendGetBooksRequest(searchBySelectValue, searchInputValue, selectedGenresIds, pageNumber, pageSize);
         const json = await response.json();
         displayBooksInTable(json, resultTable);
         displayControlButtons(pageNumber, json.totalPages);
     } catch(err) {
         resultTable.appendChild(document.createTextNode("There was a problem with retrieving and displaying books data from server."));
-        console.error("There was a problem with retrieving and displaying books data from server.");
+        console.error(err);
     }
+}
+
+function sendGetBooksRequest(searchByParamValue, searchInputValue, genresIds, pageNumber, pageSize) {
+    let url = "http://localhost:8080/books?";
+    if (searchByParamValue == "title") {
+        if (selectedGenresIds.length == 0) {
+            return fetch(`${url}title=${searchInputValue}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        } else {
+            return fetch(`${url}title=${searchInputValue}&genresIds=${genresIds}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        }
+    } else {
+        if (selectedGenresIds.length == 0) {
+            return fetch(`${url}authorLastName=${searchInputValue}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        } else {
+            return fetch(`${url}authorLastName=${searchInputValue}&genresIds=${genresIds}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+        }
+    }
+
 }
 
 function displayBooksInTable(json, table) {
@@ -116,10 +131,6 @@ function displayBooksInTable(json, table) {
         table.appendChild(bookTr);
         bookIndex++;
     }
-}
-
-function requestGetBooksWithGenreFilter(title, genresIds, pageNumber, pageSize) {
-    return fetch(`http://localhost:8080/books?title=${title}&genresIds=${genresIds}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 
 function displayControlButtons(pageNumber, totalPages) {

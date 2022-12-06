@@ -23,13 +23,13 @@ input {
     padding: 0.5em;
     font-style: italic;
 }
-#searchParamSelect {
+#searchBySelect {
     font-size: 0.8em;
     padding: 0.5em;
     font-style: italic;
     text-align: center;
 }
-#titleInput {
+#searchInput {
     width: 25%;
     font-style: italic;
 }
