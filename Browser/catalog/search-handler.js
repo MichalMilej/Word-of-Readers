@@ -85,17 +85,18 @@ function displayBooksInTable(json, table) {
             publisherTd.appendChild(document.createTextNode(json.content[bookIndex].publisherResponse.name));
         }
         // setting authors last names
-        let authorsLastNames = "";
+        let authorsNames = "";
         if (json.content[bookIndex].authorResponses != null) {
             let j = 0;
             for (author in json.content[bookIndex].authorResponses) {
                 if (j != 0) {
-                    authorsLastNames += ", ";
+                    authorsNames += ", ";
                 }
-                authorsLastNames += json.content[bookIndex].authorResponses[j++].lastName;
+                authorsNames += json.content[bookIndex].authorResponses[j].firstName + " ";
+                authorsNames += json.content[bookIndex].authorResponses[j++].lastName;
             }
         }
-        authorsTd.appendChild(document.createTextNode(authorsLastNames));
+        authorsTd.appendChild(document.createTextNode(authorsNames));
         // setting average score
         let userScoreAverage = json.content[bookIndex].userScoreAverage;
         if (userScoreAverage != null) {
@@ -118,15 +119,6 @@ function displayBooksInTable(json, table) {
 }
 
 function requestGetBooksWithGenreFilter(title, genresIds, pageNumber, pageSize) {
-    let genresArray = '';
-    let index = 0;
-    for (id in genresIds) {
-        if (index != 0) {
-            genresArray += ", ";
-        }
-        genresArray += id;
-    }
-
     return fetch(`http://localhost:8080/books?title=${title}&genresIds=${genresIds}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
 }
 

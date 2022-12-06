@@ -22,8 +22,15 @@
         <div id="mainPageArea">
         <h1 id="title">World of Readers</h1>
 
-        <input type="text" id="titleInput" placeholder="Find by title...">
-        <input id="submitSearchBtn" type="submit" value="Search" onclick="loadBooks()">
+        <div id="searchSection">
+            <span id="searchBySpan">Find by</span>
+            <select id="searchParamSelect">
+                <option value="title">title</option>
+                <option value="authorLastName">author surname</option>
+            </select>
+            <input type="text" id="titleInput" placeholder="...">
+            <input id="submitSearchBtn" type="submit" value="Search" onclick="loadBooks()">
+        </div>
 
         <table id="genreFilterTable">
         </table>
