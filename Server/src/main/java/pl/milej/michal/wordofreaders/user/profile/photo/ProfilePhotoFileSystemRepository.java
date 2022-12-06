@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
+import pl.milej.michal.wordofreaders.exception.BadServerRequestException;
 import pl.milej.michal.wordofreaders.exception.SavingFileException;
 
 import java.io.IOException;
@@ -30,5 +31,14 @@ public class ProfilePhotoFileSystemRepository {
 
     public FileSystemResource getProfilePhoto(final String location) {
         return new FileSystemResource(Paths.get(location));
+    }
+
+    public void deleteProfilePhoto(final String location) {
+        final Path path = Paths.get(location);
+        try {
+            Files.delete(path);
+        } catch (IOException e ) {
+            throw new BadServerRequestException("File location not found");
+        }
     }
 }

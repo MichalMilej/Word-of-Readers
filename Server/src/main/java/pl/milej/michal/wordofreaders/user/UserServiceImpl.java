@@ -95,11 +95,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserResponse updateUserProfilePhoto(final long id, final MultipartFile profilePhotoImage) {
         final User existingUser = findUserById(id);
+        final Long lastProfilePhotoId = existingUser.getProfilePhoto().getId();
 
         final ProfilePhoto newProfilePhoto = profilePhotoService.addProfilePhoto(profilePhotoImage);
         existingUser.setProfilePhoto(newProfilePhoto);
+        final User updatedUser = userRepository.saveAndFlush(existingUser);
 
-        return UserConverter.convertToUserResponse(userRepository.save(existingUser));
+        // Delete previous profile photo
+        if (lastProfilePhotoId != 1) { // Profile photo with index 1 is the default one
+            profilePhotoService.deleteProfilePhoto(lastProfilePhotoId);
+        }
+
+        return UserConverter.convertToUserResponse(updatedUser);
     }
 
     @Override

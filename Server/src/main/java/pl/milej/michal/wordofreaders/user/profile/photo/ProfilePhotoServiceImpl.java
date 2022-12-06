@@ -22,11 +22,23 @@ public class ProfilePhotoServiceImpl implements ProfilePhotoService{
     }
 
     @Override
-    public FileSystemResource getProfilePhotoImage(final Long id) {
-        final ProfilePhoto photo = profilePhotoRepository.findById(id).orElseThrow(() -> {
-            throw new ResourceNotFoundException("Cover not found");
-        });
+    public FileSystemResource getProfilePhotoImage(final Long profilePhotoId) {
+        final ProfilePhoto photo = findProfilePhotoById(profilePhotoId);
 
         return profilePhotoFileSystemRepository.getProfilePhoto(photo.getLocation());
+    }
+
+    @Override
+    public void deleteProfilePhoto(final Long profilePhotoId) {
+        final ProfilePhoto photo = findProfilePhotoById(profilePhotoId);
+
+        profilePhotoFileSystemRepository.deleteProfilePhoto(photo.getLocation());
+        profilePhotoRepository.delete(photo);
+    }
+
+    public ProfilePhoto findProfilePhotoById(final Long profilePhotoId) {
+        return profilePhotoRepository.findById(profilePhotoId).orElseThrow(() -> {
+            throw new ResourceNotFoundException("Profile photo not found");
+        });
     }
 }
