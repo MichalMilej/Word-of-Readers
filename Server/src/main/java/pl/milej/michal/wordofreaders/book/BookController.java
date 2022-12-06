@@ -31,10 +31,11 @@ public class BookController {
 
     @GetMapping
     Page<BookResponse> getBooks(@RequestParam(required = false) final String title,
+                                @RequestParam(required = false) final String authorLastName,
                                 @RequestParam(required = false) final List<Long> genresIds,
                                 @RequestParam final Integer pageNumber,
                                 @RequestParam final Integer pageSize) {
-        return bookService.getBooks(title, genresIds, pageNumber, pageSize);
+        return bookService.getBooks(title, authorLastName, genresIds, pageNumber, pageSize);
     }
 
     @PatchMapping("/{bookId}")

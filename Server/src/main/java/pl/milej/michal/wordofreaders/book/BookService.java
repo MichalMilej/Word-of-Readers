@@ -8,7 +8,9 @@ public interface BookService {
     BookResponse addBook(final BookRequest bookRequest);
 
     BookResponse getBook(final long id);
-    Page<BookResponse> getBooks(final String title, final List<Long> genresIds,
+    Page<BookResponse> getBooks(final String title,
+                                final String authorLastName,
+                                final List<Long> genresIds,
                                 final Integer pageNumber, final Integer pageSize);
     BookResponse assignAuthor(final long bookId, final long authorId);
     BookResponse assignGenre(final long bookId, final long genreId);

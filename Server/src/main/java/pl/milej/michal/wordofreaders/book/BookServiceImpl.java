@@ -69,28 +69,31 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<BookResponse> getBooks(String title, List<Long> genresIds, Integer pageNumber, Integer pageSize) {
-        final Pageable pageable;
-        if (title == null) {
-            pageable = PageRequest.of(pageNumber, pageSize);
-        } else {
-            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("title"));
-        }
+    public Page<BookResponse> getBooks(final String title,
+                                       final String authorLastName,
+                                       final List<Long> genresIds,
+                                       final Integer pageNumber,
+                                       final Integer pageSize) {
+        final Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("title"));
 
         final Page<Book> books;
-        if (title == null && genresIds == null) {
-            books = bookRepository.findAll(pageable);
-        } else if (genresIds == null) {
-            books = bookRepository.findAllByTitleContainsIgnoreCase(title, pageable);
-        } else {
-            final Set<Genre> genres = new HashSet<>();
-            for (Long id : genresIds) {
-                genres.add(genreService.findGenreById(id));
+        if (title == null && authorLastName == null) {
+            if (genresIds == null) {
+                books = bookRepository.findAll(pageable);
+            } else  {
+                books = bookRepository.findAllByGenresIdsIn(genresIds, pageable);
             }
-            if (title == null) {
-                books = bookRepository.findAllByGenresIn(genres, pageable);
+        } else if (title != null) {
+            if (genresIds == null) {
+                books = bookRepository.findAllByTitleContainsIgnoreCase(title, pageable);
+            } else  {
+                books = bookRepository.findAllByTitleIgnoreCaseAndGenresIdsIn(title, genresIds, pageable);
+            }
+        } else {
+            if (genresIds == null) {
+                books = bookRepository.findAllByAuthorLastNameIgnoreCase(authorLastName, pageable);
             } else {
-                books = bookRepository.findAllByTitleContainsIgnoreCaseAndGenresIn(title, genres, pageable);
+                books = bookRepository.findAllByAuthorLastNameIgnoreCaseAndGenresIdsIn(authorLastName, genresIds, pageable);
             }
         }
         return books.map(BookConverter::convertToBookResponse);
