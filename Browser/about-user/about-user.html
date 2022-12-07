@@ -8,19 +8,24 @@
     </head>
     <body>
         <img id="profilePhotoImg">
-
+        <label id="changeProfilePhotoLabel">
+            <input id="changeProfilePhotoIn" type="file" accept=".png, .jpg, .jpeg, .svg" onchange="changeProfilePhoto(this)">
+            Change photo
+        </label>
+        <p id="changeProfilePhotoResultInfo">Profile photo changed.</p>
+        
         <table id="userInfoTable">
             <tr>
                 <th>Username:</td>
-                <td id="usernameTd"></td>
+                <td id="usernameTd"><span id="usernameSpan"></span></td>
             </tr>
             <tr>
                 <th>E-mail:</td>
-                <td id="emailTd"></td>
+                <td id="emailTd"><span id="emailSpan"></span></td>
             </tr>
             <tr>
                 <th>Role:</td>
-                <td id="roleTd"></td>
+                <td id="roleTd"><span id="roleSpan"></span></td>
             </tr>
         </table>
 
@@ -28,5 +33,6 @@
 
         <script src="../user-utils/user-authorization-handler.js"></script>
         <script src="about-user-displayer.js"></script>
+        <script src="profile-photo-changer.js"></script>
     </body>
 </html>

@@ -4,18 +4,18 @@ if (isUserLoggedIn()) {
 
 async function displayUserInfo() {
     let profilePhotoImg = document.getElementById('profilePhotoImg');
-    let usernameTd = document.getElementById('usernameTd');
-    let emailTd = document.getElementById('emailTd');
-    let roleTd = document.getElementById('roleTd');
+    let usernameSpan = document.getElementById('usernameSpan');
+    let emailSpan = document.getElementById('emailSpan');
+    let roleSpan = document.getElementById('roleSpan');
 
     try {
         const response = await sendGetUserInfoRequest(localStorage.getItem("userId"), localStorage.getItem("authorization"));
         const json = await response.json();
 
         profilePhotoImg.src = json.profilePhotoResponse.location;
-        usernameTd.appendChild(document.createTextNode(json.username));
-        emailTd.appendChild(document.createTextNode(json.email));
-        roleTd.appendChild(document.createTextNode(json.userRole.toLowerCase()));
+        usernameSpan.textContent = json.username;
+        emailSpan.textContent = json.email;
+        roleSpan.textContent = json.userRole.toLowerCase();
 
         localStorage.setItem("userProfilePhotoLocation", json.profilePhotoResponse.location);
     } catch(error) {

@@ -9,6 +9,9 @@ input {
 input[type='button'] {
     cursor: pointer;
 }
+img {
+    border-radius: 0.5em;
+}
 .menuBtn {
     float: right;
     padding: 1rem;
