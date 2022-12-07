@@ -48,4 +48,5 @@ function genreCheckboxClicked(genreId) {
     } else {
         selectedGenresIds.push(genreId);
     }
+    loadBooks();
 }

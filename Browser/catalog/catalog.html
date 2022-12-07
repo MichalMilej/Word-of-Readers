@@ -28,7 +28,7 @@
                 <option value="title">title</option>
                 <option value="authorLastName">author surname</option>
             </select>
-            <input type="text" id="searchInput" placeholder="...">
+            <input type="text" id="searchInput" placeholder="..." oninput="searchInputUpdated(this)">
             <input id="submitSearchBtn" type="submit" value="Search" onclick="loadBooks()">
         </div>
 

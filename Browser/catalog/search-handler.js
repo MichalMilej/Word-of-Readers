@@ -2,13 +2,23 @@ localStorage.setItem("lastPage", "catalog");
 
 let currentPageNumber = 0;
 let currentPageSize = 10;
+loadBooks();
+
+function searchInputUpdated(searchInput) {
+    let searchInputValue = searchInput.value;
+    if (searchInputValue.length >= 3) {
+        loadBooks();
+    } else if (searchInputValue.length == 0 ) {
+        loadBooks();
+    }
+}
 
 function loadBooks() {
     currentPageNumber = 0;
-    getBooksByTitleAndGenre(currentPageNumber, currentPageSize);
+    loadAndDisplayBooks(currentPageNumber, currentPageSize);
 }
 
-async function getBooksByTitleAndGenre(pageNumber, pageSize) {
+async function loadAndDisplayBooks(pageNumber, pageSize) {
     const searchBySelectValue = document.getElementById('searchBySelect').value;
     const searchInputValue = document.getElementById('searchInput').value;
 
@@ -152,10 +162,10 @@ function displayControlButtons(pageNumber, totalPages) {
 
 function loadNextBooks() {
     currentPageNumber++;
-    getBooksByTitleAndGenre(currentPageNumber, currentPageSize);
+    loadAndDisplayBooks(currentPageNumber, currentPageSize);
 }
 
 function loadPreviousBooks() {
     currentPageNumber--;
-    getBooksByTitleAndGenre(currentPageNumber, currentPageSize);
+    loadAndDisplayBooks(currentPageNumber, currentPageSize);
 }
