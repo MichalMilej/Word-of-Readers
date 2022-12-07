@@ -7,8 +7,93 @@
     <changeSet id="17" author="Michał Milej">
         <insert tableName="cover">
             <column name="id">1</column>
-            <column name="name">default cover</column>
+            <column name="name">default-book-cover</column>
             <column name="location" value="${filesystem.path.default.book.cover}"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">2</column>
+            <column name="name">pan-tadeusz</column>
+            <column name="location" value="${filesystem.path.test}/covers/pan-tadeusz.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">3</column>
+            <column name="name">reduta-ordona</column>
+            <column name="location" value="${filesystem.path.test}/covers/reduta-ordona.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">4</column>
+            <column name="name">lalka</column>
+            <column name="location" value="${filesystem.path.test}/covers/lalka.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">5</column>
+            <column name="name">katarynka</column>
+            <column name="location" value="${filesystem.path.test}/covers/katarynka.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">6</column>
+            <column name="name">quo-vadis</column>
+            <column name="location" value="${filesystem.path.test}/covers/quo-vadis.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">7</column>
+            <column name="name">potop-lektura-z-opracowaniem</column>
+            <column name="location" value="${filesystem.path.test}/covers/potop-lektura-z-opracowaniem.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">8</column>
+            <column name="name">bractwo-pierscienia-wladca-pierscieni-tom-1</column>
+            <column name="location" value="${filesystem.path.test}/covers/bractwo-pierscienia-wladca-pierscieni-tom-1.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">9</column>
+            <column name="name">dwie-wieze-wladca-pierscieni-tom-2-wydanie-ilustrowane</column>
+            <column name="location" value="${filesystem.path.test}/covers/dwie-wieze-wladca-pierscieni-tom-2-wydanie-ilustrowane.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">10</column>
+            <column name="name">basnie-andersena</column>
+            <column name="location" value="${filesystem.path.test}/covers/basnie-andersena.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">11</column>
+            <column name="name">gra-o-tron-piesn-lodu-i-ognia-tom-1-wydanie-serialowe</column>
+            <column name="location" value="${filesystem.path.test}/covers/gra-o-tron-piesn-lodu-i-ognia-tom-1-wydanie-serialowe.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">12</column>
+            <column name="name">pamietnik</column>
+            <column name="location" value="${filesystem.path.test}/covers/pamietnik.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">13</column>
+            <column name="name">anna-karenina-t-1</column>
+            <column name="location" value="${filesystem.path.test}/covers/anna-karenina-t-1.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">14</column>
+            <column name="name">harry-potter-i-kamien-filozoficzny-tom-1</column>
+            <column name="location" value="${filesystem.path.test}/covers/harry-potter-i-kamien-filozoficzny-tom-1.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">15</column>
+            <column name="name">harry-potter-i-komnata-tajemnic-tom-2</column>
+            <column name="location" value="${filesystem.path.test}/covers/harry-potter-i-komnata-tajemnic-tom-2.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">16</column>
+            <column name="name">diuna-kroniki-diuny-tom1</column>
+            <column name="location" value="${filesystem.path.test}/covers/diuna-kroniki-diuny-tom1.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">17</column>
+            <column name="name">hyperion-tom-1</column>
+            <column name="location" value="${filesystem.path.test}/covers/hyperion-tom-1.jpg"/>
+        </insert>
+        <insert tableName="cover">
+            <column name="id">18</column>
+            <column name="name">tomek-w-grobowcach-faraonow-kolekcja-klub-podroznika-tom-34</column>
+            <column name="location" value="${filesystem.path.test}/covers/tomek-w-grobowcach-faraonow-kolekcja-klub-podroznika-tom-34.jpg"/>
         </insert>
     </changeSet>
 

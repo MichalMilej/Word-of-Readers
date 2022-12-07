@@ -12,6 +12,7 @@
             <column name="isbn">9788373271920</column>
             <column name="description">Wydanie "Pana Tadeusza" kompletne bez skrótów i cięć w treści. W tym wydaniu znajdziesz odpowiedzi na pytania z podręcznika - „pewniak na teście”, czyli wskazanie zagadnień, które zwykle pojawiają się w pytaniach z danej lektury we wszelkich testach sprawdzających wiedzę, a także w podręcznikach i na klasówkach. Zawiera bardzo szczegółowe streszczenie oraz drugie skrócone, ułatwiające szybkie przygotowanie się przed lekcją. Opracowanie zawiera plan wydarzeń, wnikliwie wyjaśnioną problematykę oraz szerokie charakterystyki bohaterów.</column>
             <column name="publisher_id">1</column>
+            <column name="cover_id">2</column>
         </insert>
         <insert tableName="book">
             <column name="id">2</column>
@@ -19,6 +20,7 @@
             <column name="release_date">1997-01-01</column>
             <column name="description">Redutę Ordona Adama Mickiewicza zalicza się do jednego z najważniejszych utworów polskiego romantyzmu. Napisany został przez poetę po upadku powstania listopadowego. Inspiracją do jego napisania była opowieść adiutanta Stefana Garczyńskiego, który brał udział w obronie w obronie jednego z fortów znajdujących się na warszawskiej Woli. Dowódcą oddziałów, które broniły tego fortu był Julian Konstanty Ordon. Grupa wojska będąca jedynym oddziałem, który bronił tego przyczółku była bardzo nieliczna, a przewaga wojsk rosyjskich była miażdżąca. Po bohaterskiej obronie fortu, kiedy żołnierze nie mogli już dłużej powstrzymywać naporu Rosjan, dowódca postanowił wysadzić fort, by tym samym zniszczyć oddział nieprzyjaciela. Wielu żołnierzy zginęło wtedy, ale dowódca przeżył i później działał na emigracji. Mickiewicz w swym wierszu jednak uśmiercił Ordona, by tym samym oddać hołd tym, którzy polegli w bohaterskiej walce.</column>
             <column name="publisher_id">7</column>
+            <column name="cover_id">3</column>
         </insert>
         <insert tableName="book">
             <column name="id">3</column>
@@ -27,6 +29,7 @@
             <column name="isbn">9788373271869</column>
             <column name="description">Stanisław Wokulski jest jedną z najbardziej fascynujących postaci w polskiej literaturze, a sama Lalka jest powieścią kochaną przez kolejne pokolenia. Nic dziwnego, ta uważana za najlepszą powieść Bolesława Prusa przedstawia prawdziwy świat, aktualne problemy i dylematy. Warszawa opisana na kartach powieści wciąż żyje - organizowane są trasy spacerowe śladami jej bohaterów, a na Krakowskim Przedmieściu na kamienicy o numerze 4-6 widnieje tabliczka: „W tym miejscu stał dom, w którym mieszkał w latach 1878-79 Stanisław Wokulski, postać powołana do życia przez Bolesława Prusa w powieści Lalka, uczestnik Powstania 1863 roku, były zesłaniec syberyjski, były kupiec i obywatel m.st. Warszawy, filantrop i uczony urodzony w r. 1832".</column>
             <column name="publisher_id">1</column>
+            <column name="cover_id">4</column>
         </insert>
         <insert tableName="book">
             <column name="id">4</column>
@@ -35,6 +38,7 @@
             <column name="isbn">9788373272675</column>
             <column name="description">Kompozycyjnie Katarynka podzielona jest na dwie części. Pierwsza jest silnie nasycona wątkami biograficznymi, druga która stanowi właściwą akcję noweli.</column>
             <column name="publisher_id">1</column>
+            <column name="cover_id">5</column>
         </insert>
         <insert tableName="book">
             <column name="id">5</column>
@@ -43,6 +47,7 @@
             <column name="isbn">9788373271876</column>
             <column name="description">Rzym za czasów cesarza Nerona to miejsce zderzenia dwóch światów - zapatrzonej w siebie, kipiącej od bogactw, pełnej zabaw, uczt i zepsucia rzeczywistości Imperium Rzymskiego oraz rodzącej się kultury chrześcijańskiej, tak odmiennej od wszystkiego, co do tej pory znali ludzie. Z pierwszego z owych światów pochodzi Winicjusz, z drugiego Ligia - a jednak tych dwoje tak bardzo odmiennych ludzi połączy miłość silniejsza od wszelkich uczuć, jakich dane im było doświadczyć. Historia ich związku, a także historia szalonego cesarza, pożaru Rzymu i prześladowania wyznawców Chrystusa to tło, na którym rozwija się przed oczami czytelnika moc i potęga religii chrześcijańskiej, rozpoczynającej właśnie swój pochód drogą, na której na zawsze zmieni świat. Przedstawiamy jedną z najbardziej znanych powieści Henryka Sienkiewicza w wydaniu lekturowym, z opracowaniem przygotowanym przez doświadczonych nauczycieli. Czytelnik znajdzie tu dokładnie omówioną problematykę, tło historyczne, charakterystyki bohaterów i szczegółowe streszczenie. Zapraszamy do lektury!</column>
             <column name="publisher_id">1</column>
+            <column name="cover_id">6</column>
         </insert>
         <insert tableName="book">
             <column name="id">6</column>
@@ -51,6 +56,7 @@
             <column name="isbn">9788373271586</column>
             <column name="description">Wydanie Potopu kompletne bez skrótów i cięć w treści. W tym wydaniu znajdziesz odpowiedzi na pytania z podręcznika - „pewniak na teście”, czyli wskazanie zagadnień, które zwykle pojawiają się w pytaniach z danej lektury we wszelkich testach sprawdzających wiedzę, a także w podręcznikach i na klasówkach. Zawiera bardzo szczegółowe streszczenie oraz drugie skrócone, ułatwiające szybkie przygotowanie się przed lekcją. Opracowanie zawiera plan wydarzeń, wnikliwie wyjaśnioną problematykę oraz szerokie charakterystyki bohaterów.</column>
             <column name="publisher_id">1</column>
+            <column name="cover_id">7</column>
         </insert>
         <insert tableName="book">
             <column name="id">7</column>
@@ -59,6 +65,7 @@
             <column name="isbn">9788381168151</column>
             <column name="description">Pierwsza część Władcy Pierścieni, porywającej przygody, stworzonej z epickim rozmachem przez J.R.R. Tolkiena. W spokojnej wiosce w Shire młody hobbit Frodo zostaje obarczony niezwykle odpowiedzialnym zadaniem. Ma ON podjąć niebezpieczną podróż przez Środziemie do Szczelin Zagłady, by tam zniszczyć Pierścień Jedyny. Musi bowiem udaremnić niecne plany Władcy Ciemności…</column>
             <column name="publisher_id">10</column>
+            <column name="cover_id">8</column>
         </insert>
         <insert tableName="book">
             <column name="id">8</column>
@@ -67,6 +74,7 @@
             <column name="isbn">9788381161749</column>
             <column name="description">Bogato ilustrowane, ekskluzywne wydanie jednej z najsłynniejszych książek w historii. Po śmierci Boromira i pojmaniu Merry’egó i Pippina rozbite Bractwó Pierścienia podąża niestrudzenie ku swemu przeznaczeniu, choć żaden z jej członków nie wie, co dzieje się z Samem i Frodem. A tropiony przez Nazgule Powiernik Pierścienia z uporem idzie dalej. Podążając za Gollumem, przemierza Martwe Bagna, by stanąć wreszcie u stóp Minas Morgul – przerażającej fortecy strzegącej drogi do Krainy Cienia...</column>
             <column name="publisher_id">10</column>
+            <column name="cover_id">9</column>
         </insert>
         <insert tableName="book">
             <column name="id">9</column>
@@ -75,6 +83,7 @@
             <column name="isbn">9788373277755</column>
             <column name="description">Kto nie zna Calineczki, Kaja i Gerdy, Królowej Śniegu? Kto nie wzruszał się losem brzydkiego kaczątka, dziewczynki z zapałkami, stokrotki? Bohaterowie baśni H. Ch. Andersena są bliscy każdemu z nas, bo ich historie są żywe, barwne, ciekawie opowiedziane. Genialny bajarz z Danii wciąż podbija serca dzieci na całym świecie prostotą swoich baśni, a jednocześnie zawartą w nich głęboką prawdą o ludziach i świecie.</column>
             <column name="publisher_id">1</column>
+            <column name="cover_id">10</column>
         </insert>
         <insert tableName="book">
             <column name="id">10</column>
@@ -83,6 +92,7 @@
             <column name="isbn">9788382025866</column>
             <column name="description">Zbliża się zima, lodowate wichry wieją z północy, gdzie schroniły się wyparte przez ludzi pradawne rasy i starzy bogowie. Zbuntowani władcy na szczęście pokonali szalonego Smoczego Króla, Aerysa Targaryena, zasiadającego na Żelaznym Tronie Zachodnich Krain, lecz obalony władca pozostawił po sobie potomstwo, równie szalone jak ON sam. Tron objął Robert - najznamienitszy z buntowników. Minęły już lata pokoju i oto możnowładcy zaczynają grę o tron... George R.R Martin jest jednym z najbardziej cenionych pisarzy fantastyki. Dzięki swej wielotomowej sadze pozyskał miliony oddanych fanów i odrodził tradycję epickiej fantasy w stylu tolkienowskim.</column>
             <column name="publisher_id">10</column>
+            <column name="cover_id">11</column>
         </insert>
         <insert tableName="book">
             <column name="id">11</column>
@@ -91,6 +101,7 @@
             <column name="isbn">9788382152388</column>
             <column name="description">Młodzieńcza miłość rządzi się swoimi prawami. Jest pełna beztroski, niewinności, uroku i pasji jednocześnie. To odkrywanie uczuć do drugiej osoby i poznawanie obiektu swojej fascynacji każdego dnia na nowo. Często lekceważona przez starszych, którzy patrzą na nią z przymrużeniem oka, wychodząc z założenia, że to krótkotrwałe i ulotne zauroczenie. Nierzadko to jednak mylne myślenie, bowiem nastoletnie związki potrafią przerodzić się w dojrzałe, niemniej namiętne uczucie. Doskonale przekonali się o tym Allie i Noah, główni bohaterowie książki pod tytułem "Pamiętnik”, którą napisał Nicholas Sparks.</column>
             <column name="publisher_id">11</column>
+            <column name="cover_id">12</column>
         </insert>
         <insert tableName="book">
             <column name="id">12</column>
@@ -99,6 +110,7 @@
             <column name="isbn">9788366837935</column>
             <column name="description">Anna Karenina, powieść psychologiczna wielkiego rosyjskiego pisarza Lwa Tołstoja, należy do ścisłego kanonu literatury światowej.</column>
             <column name="publisher_id">3</column>
+            <column name="cover_id">13</column>
         </insert>
         <insert tableName="book">
             <column name="id">13</column>
@@ -107,6 +119,7 @@
             <column name="isbn">9788380082113</column>
             <column name="description">Minęło już 15 lat od daty premiery pierwszego tomu Harry’ego Pottera. Fani przygód uczniów Hogwartu z pewnością nie mogli się doczekać, aż na własne oczy ujrzą pierwsze ilustrowane wydanie I tomu bestsellerowej sagi przygód młodego czarodzieja z Hogwartu. „Harry Potter i Kamień Filozoficzny”. W książce obok treści znajdują się także ilustracje postaci, miejsc, zwierząt, które stanowią ważną rolę w historii.</column>
             <column name="publisher_id">2</column>
+            <column name="cover_id">14</column>
         </insert>
         <insert tableName="book">
             <column name="id">14</column>
@@ -115,6 +128,7 @@
             <column name="isbn">9788380082137</column>
             <column name="description">Harry po pełnym przygód roku w Hogwarcie spędza nudne wakacje u Dursleyów i z utęsknieniem wyczekuje powrotu do szkoły. Sprawy jednak znacznie się komplikują, gdy pewnego dnia odwiedza go tajemniczy przybysz i ostrzega przed… powrotem do Szkoły Magii i Czarodziejstwa, gdzie ma dojść do strasznych wydarzeń. Czy Harry posłucha ostrzeżenia? Co złego ma się wydarzyć w Hogwarcie? Jakie tajemnice skrywa rodzina Malforya? I najważniejsze – czym jest i gdzie znajduje się tytułowa Komnata Tajemnic?</column>
             <column name="publisher_id">2</column>
+            <column name="cover_id">15</column>
         </insert>
         <insert tableName="book">
             <column name="id">15</column>
@@ -123,6 +137,7 @@
             <column name="isbn">9788381884471</column>
             <column name="description">Diuna F. Herberta z obrazem i rysunkami Wojciecha Siudmaka, w tłumaczeniu Marka Marszała. Arrakis, zwana Diuną, to jedyne we wszechświecie źródło melanżu - substancji przedłużającej życie, umożliwiającej odbywanie podróży kosmicznych i przewidywanie przyszłości.</column>
             <column name="publisher_id">14</column>
+            <column name="cover_id">16</column>
         </insert>
         <insert tableName="book">
             <column name="id">16</column>
@@ -131,6 +146,7 @@
             <column name="isbn">9788374805575</column>
             <column name="description">"Hyperion" to wciągająca i bestsellerowa powieść science-fiction. O odległych galaktykach, końcu Ziemi i niezwykłej misji, jaką wykonać musi siedmioro niezwyciężonych pielgrzymów.</column>
             <column name="publisher_id">15</column>
+            <column name="cover_id">17</column>
         </insert>
         <insert tableName="book">
             <column name="id">17</column>
@@ -139,6 +155,7 @@
             <column name="isbn">9788328705142</column>
             <column name="description">Klub Podróżnika to kolekcja klasycznych powieści młodzieżowych - 35 książek takich mistrzów pióra, jak: Aleksander Dumas, Jack London czy Juliusz Verne. Nie mogło w niej zabraknąć i polskich akcentów: cykl o Tomku Wilmowskim Alfreda Szklarskiego czy ?W pustyni i w puszczy? Henryka Sienkiewicza. Dla wszystkich, którym nieobcy jest duch przygody, prawdziwa wydawnicza gratka!</column>
             <column name="publisher_id">9</column>
+            <column name="cover_id">18</column>
         </insert>
         <insert tableName="book">
             <column name="id">18</column>
