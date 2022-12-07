@@ -7,8 +7,48 @@
 
     <changeSet id="14" author="Michał Milej">
         <insert tableName="profile_photo">
-            <column name="id" value="1"/>
+            <column name="id">1</column>
             <column name="location" value="${filesystem.path.default.profile.photo}"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">2</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/1.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">3</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/2.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">4</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/3.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">5</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/4.png"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">6</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/5.png"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">7</column>
+            <column name="location" value="${filesystem.path.test}/profile/photos/6.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">8</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/7.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">9</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/8.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">10</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/9.jpg"/>
+        </insert>
+        <insert tableName="profile_photo">
+            <column name="id">11</column>
+            <column name="location" value="${filesystem.path.test}/profile.photos/10.jpg"/>
         </insert>
     </changeSet>
 

@@ -1,0 +1,191 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    
+    <changeSet id="19" author="Michał Milej">
+        <insert tableName="review">
+            <column name="id">1</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-12-07</column>
+            <column name="book_id">1</column>
+            <column name="application_user_id">1</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">2</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-12-04</column>
+            <column name="book_id">1</column>
+            <column name="application_user_id">2</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">3</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2020-11-04</column>
+            <column name="book_id">2</column>
+            <column name="application_user_id">3</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">4</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2011-06-19</column>
+            <column name="book_id">3</column>
+            <column name="application_user_id">4</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">5</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-12-01</column>
+            <column name="book_id">4</column>
+            <column name="application_user_id">5</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">6</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2020-12-07</column>
+            <column name="book_id">5</column>
+            <column name="application_user_id">6</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">7</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2018-12-07</column>
+            <column name="book_id">6</column>
+            <column name="application_user_id">7</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">8</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2015-12-07</column>
+            <column name="book_id">7</column>
+            <column name="application_user_id">8</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">9</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2016-12-07</column>
+            <column name="book_id">8</column>
+            <column name="application_user_id">9</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">10</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">9</column>
+            <column name="application_user_id">10</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">11</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">10</column>
+            <column name="application_user_id">1</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">12</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">11</column>
+            <column name="application_user_id">2</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">13</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">12</column>
+            <column name="application_user_id">3</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">14</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">13</column>
+            <column name="application_user_id">4</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">15</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">14</column>
+            <column name="application_user_id">5</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">16</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">15</column>
+            <column name="application_user_id">6</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">17</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">16</column>
+            <column name="application_user_id">7</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">18</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">17</column>
+            <column name="application_user_id">8</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">19</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">18</column>
+            <column name="application_user_id">9</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">20</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">19</column>
+            <column name="application_user_id">10</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">21</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">20</column>
+            <column name="application_user_id">1</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">22</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">21</column>
+            <column name="application_user_id">2</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">23</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2022-02-07</column>
+            <column name="book_id">22</column>
+            <column name="application_user_id">3</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">24</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2019-02-15</column>
+            <column name="book_id">23</column>
+            <column name="application_user_id">4</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">25</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2021-06-19</column>
+            <column name="book_id">24</column>
+            <column name="application_user_id">5</column>
+        </insert>
+        <insert tableName="review">
+            <column name="id">26</column>
+            <column name="text">Very interesting book. I highly recommend it!</column>
+            <column name="publication_date">2019-06-19</column>
+            <column name="book_id">25</column>
+            <column name="application_user_id">6</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

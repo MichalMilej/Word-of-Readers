@@ -106,7 +106,7 @@
             <column name="email" type="varchar(255)">
                 <constraints unique="true" nullable="false"/>
             </column>
-            <column name="profile_photo_id" type="bigint">
+            <column name="profile_photo_id" type="bigint" defaultValue="1">
                 <constraints nullable="false" foreignKeyName="fk_profile_photo" references="profile_photo(id)"/>
             </column>
             <column name="banned" type="boolean" defaultValue="false">
@@ -132,10 +132,10 @@
             <column name="publication_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="likes" type="integer" value="0">
+            <column name="likes" type="integer" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="dislikes" type="integer" value="0">
+            <column name="dislikes" type="integer" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
             <column name="book_id" type="bigint">
