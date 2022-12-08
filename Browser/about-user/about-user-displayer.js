@@ -30,3 +30,12 @@ function sendGetUserInfoRequest(userId, authorization) {
         }
     });
 }
+
+function switchToPreviousPage() {
+    let lastPage = localStorage.getItem("lastPage");
+    if (lastPage == "catalog") {
+        window.location.href = "../catalog/catalog.html";
+    } else {
+        window.location.href = `../about-book/about-book.html?bookId=${localStorage.getItem('bookId')}`;
+    }
+}

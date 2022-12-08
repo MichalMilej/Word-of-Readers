@@ -10,9 +10,6 @@ input {
     right: 0;
     margin-right: 2em;
 }
-#loginBtn {
-    margin-left: 0em;
-}
 #title {
     padding: 0.6em;
     font-style: italic;
@@ -50,7 +47,7 @@ table {
     margin-right: auto;
 }
 #searchResultTable {
-    width: 80%;
+    width: 75%;
     margin-top: 2em;
     margin-bottom: 1em;
     font-size: 0.9em;

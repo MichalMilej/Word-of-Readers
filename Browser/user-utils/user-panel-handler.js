@@ -2,6 +2,10 @@ if (isUserLoggedIn()) {
     hideStandardPanel();
     loadUserInfo();
     displayUserPanel();
+
+    if (isUserModOrAdmin()) {
+        displayManagementBtn();
+    }
 }
 
 function hideStandardPanel() {
@@ -22,4 +26,13 @@ function loadUserInfo() {
 function displayUserPanel() {
     let loggedInSection = document.getElementById('loggedInSection');
     loggedInSection.style.display = "block";
+}
+
+function displayManagementBtn() {
+    let managementBtn = document.getElementById('managementBtn');
+    managementBtn.style.display = 'block';
+}
+
+function openManagementPage() {
+    window.open("http://localhost:8080/api", "_blank").focus();
 }
