@@ -15,7 +15,11 @@ async function displayUserInfo() {
         profilePhotoImg.src = json.profilePhotoResponse.location;
         usernameSpan.textContent = json.username;
         emailSpan.textContent = json.email;
-        roleSpan.textContent = json.userRole.toLowerCase();
+        if (json.userRole != 'MOD') {
+            roleSpan.textContent = json.userRole.toLowerCase();
+        } else {
+            roleSpan.textContent = 'moderator';
+        }
 
         localStorage.setItem("userProfilePhotoLocation", json.profilePhotoResponse.location);
     } catch(error) {
