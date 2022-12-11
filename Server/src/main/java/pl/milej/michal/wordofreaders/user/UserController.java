@@ -26,13 +26,13 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    @PreAuthorize("@userAuthenticationService.canPrincipalAccessUser(#userId)")
+    @PreAuthorize("hasAnyAuthority('MOD', 'ADMIN') || @userAuthenticationService.canPrincipalAccessUser(#userId)")
     UserResponse getUser(@PathVariable final long userId) {
         return userService.getUser(userId);
     }
 
     @GetMapping("/username/{username}")
-    @PreAuthorize("@userAuthenticationService.canPrincipalAccessUser(#username)")
+    @PreAuthorize("hasAnyAuthority('MOD', 'ADMIN') || @userAuthenticationService.canPrincipalAccessUser(#username)")
     UserResponse getUserByUsername(@PathVariable final String username) {
         return userService.getUserByUsername(username);
     }
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}/profile-photo")
-    @PreAuthorize("@userAuthenticationService.canPrincipalAccessUser(#userId)")
+    @PreAuthorize("hasAuthority('ADMIN') || @userAuthenticationService.canPrincipalAccessUser(#userId)")
     UserResponse updateUserProfilePhoto(@PathVariable final long userId, @RequestBody final MultipartFile newProfilePhotoImage) {
         return userService.updateUserProfilePhoto(userId, newProfilePhotoImage);
     }
