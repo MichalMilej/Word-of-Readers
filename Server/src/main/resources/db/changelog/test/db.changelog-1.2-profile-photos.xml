@@ -32,7 +32,7 @@
         </insert>
         <insert tableName="profile_photo">
             <column name="id">7</column>
-            <column name="location" value="${filesystem.path.test}/profile/photos/6.jpg"/>
+            <column name="location" value="${filesystem.path.test}/profile.photos/6.jpg"/>
         </insert>
         <insert tableName="profile_photo">
             <column name="id">8</column>
