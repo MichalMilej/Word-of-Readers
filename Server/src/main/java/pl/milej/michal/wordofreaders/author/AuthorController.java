@@ -28,12 +28,14 @@ public class AuthorController {
     }
 
     @GetMapping
-    public Page<AuthorResponse> getAuthors(@RequestParam final Integer pageNumber, @RequestParam final Integer pageSize) {
+    public Page<AuthorResponse> getAuthors(@RequestParam final Integer pageNumber,
+                                           @RequestParam final Integer pageSize) {
         return authorService.getAuthors(pageNumber, pageSize);
     }
 
     @PatchMapping("/{id}")
-    public AuthorResponse updateAuthor(@PathVariable final long id, @RequestBody final AuthorRequest authorRequest) {
+    public AuthorResponse updateAuthor(@PathVariable final long id,
+                                       @RequestBody final AuthorRequest authorRequest) {
         return authorService.updateAuthor(id, authorRequest);
     }
 
