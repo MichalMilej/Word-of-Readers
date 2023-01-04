@@ -112,3 +112,6 @@ img {
 .dislikeReactionBtnClicked {
     background-color: rgb(248, 142, 142);
 }
+#descriptionP {
+    width: 60%;
+}
