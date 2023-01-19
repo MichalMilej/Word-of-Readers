@@ -23,4 +23,4 @@ The second part of the application is browser. Fortunately this part is a lot mo
 
 1. Locate file "catalog.html" in folder "Browser/catalog".
 2. Open it with Chrome or any other browser.
-3. Enjoy using my application :)
+3. Enjoy using the World of Readers :)
