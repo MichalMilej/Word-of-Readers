@@ -13,8 +13,7 @@ If your system environment is ready, you are able to set required parameters and
 
 1. Open with your IDE the "Server" folder.
 2. Locate file with name "docker-compose.yml" and execute "docker-compose up".
-3. Open file "application.properties" and set there variables that don't have values at the right side of equation.
-You should specify absolute disc paths at your system that points to required folders and files.
+3. Open file "application.properties" and set there correct paths to folders and files. Disc paths should be absolute.
 4. Use gradle panel in IDE to run bootRun task or manually execute command "./gradlew bootRun".
 
 Hopefully server is up and running.
@@ -24,3 +23,11 @@ The second part of the application is browser. Fortunately this part is a lot mo
 1. Locate file "catalog.html" in folder "Browser/catalog".
 2. Open it with Chrome or any other browser.
 3. Enjoy using the World of Readers :)
+
+Screenshots:
+![catalog](Browser/screenshots/catalog.png)
+![about_book](Browser/screenshots/about_book.png)
+![opinions](Browser/screenshots/opinions.png)
+![profile](Browser/screenshots/profile.png)
+![opinion_publishing](Browser/screenshots/opinion_publishing.png)
+![management](Browser/screenshots/management_api.png)
